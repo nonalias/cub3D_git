@@ -18,4 +18,6 @@ void	init(t_game *game)
 	game->player.rot_angle = 0;
 	game->player.rot_speed = 4;
 	game->player.move_speed = 1;
+	game->tile_xsize = game->win.width / game->map_xlength;
+	game->tile_ysize = game->win.height / game->map_ylength;
 }

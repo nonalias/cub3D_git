@@ -12,10 +12,9 @@
 # define WIN_WIDTH 500
 # define WIN_HEIGHT 500
 
-
 typedef struct	s_img {
 	void		*img_ptr;
-	int			data;
+	int			*data;
 	int			size_l;
 	int			bpp;
 	int			endian;
@@ -53,12 +52,17 @@ typedef struct	s_game
 	t_img		img;
 	t_player	player;
 	t_line		line;
+	double		tile_xsize;
+	double		tile_ysize;
 	int			key_check[300];
 	int			map_xlength;
 	int			map_ylength;
 }				t_game;
 
-int		map[11][11] = {
+int		my_map[11][11];
+
+/*
+int		my_map[11][11] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
 	{1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
@@ -71,8 +75,9 @@ int		map[11][11] = {
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 };
+*/
 
-int				make_2d(t_game *game);
+void			make_2d(t_game *game);
 int				make_rader(t_game *game);
 void			make_3d(t_game *game);
 void			make_player(t_game *game);

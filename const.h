@@ -14,5 +14,7 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_R 15
+# define COLOR_WALL 0x675d50
+# define COLOR_ROAD 0xfffff0
 
 #endif

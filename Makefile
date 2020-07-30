@@ -7,6 +7,8 @@ SRCS	=	./cub3d.c \
 			./move_a.c \
 			./move_d.c \
 			./wall.c \
+			./view.c \
+			./make_2d.c \
 
 
 all:
