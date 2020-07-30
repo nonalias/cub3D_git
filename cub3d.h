@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include "const.h"
 
 # define KEY_PRESSED 2
 # define KEY_RELEASED 3
@@ -53,7 +54,23 @@ typedef struct	s_game
 	t_player	player;
 	t_line		line;
 	int			key_check[300];
+	int			map_xlength;
+	int			map_ylength;
 }				t_game;
+
+int		map[11][11] = {
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
+	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1},
+	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1},
+	{1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1},
+	{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+};
 
 int				make_2d(t_game *game);
 int				make_rader(t_game *game);
@@ -66,7 +83,7 @@ int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
 
 int				get_wall_distance(t_game *game);
-int				check_wall(double x, double y);
+int				check_wall(t_game *game, double x, double y);
 
 int				hook_action(t_game *game);
 

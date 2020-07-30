@@ -27,4 +27,5 @@ int		hook_action(t_game *game)
 	else if (game->key_check[KEY_S])
 		move_d(game);
 	make_view(game);
+	return (1);
 }
