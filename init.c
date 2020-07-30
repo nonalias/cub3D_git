@@ -20,4 +20,6 @@ void	init(t_game *game)
 	game->player.move_speed = 1;
 	game->tile_xsize = game->win.width / game->map_xlength;
 	game->tile_ysize = game->win.height / game->map_ylength;
+	game->seek_angle = 66;
+	game->seek_distance = 400;
 }

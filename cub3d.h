@@ -52,6 +52,8 @@ typedef struct	s_game
 	t_img		img;
 	t_player	player;
 	t_line		line;
+	int			seek_angle;
+	int			seek_distance;
 	double		tile_xsize;
 	double		tile_ysize;
 	int			key_check[300];
@@ -78,11 +80,13 @@ int		my_map[11][11] = {
 */
 
 void			make_2d(t_game *game);
-int				make_rader(t_game *game);
+void			make_rader(t_game *game);
+void			make_rader_line(t_game *game);
 void			make_3d(t_game *game);
 void			make_player(t_game *game);
 void			make_line(t_game *game); // TODO: line 매개변수로 넣을지 game 단에서 처리할지 결정
 void			make_view(t_game *game);
+void			make_tile(t_game *game, int i, int j, int color);
 
 int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
@@ -102,6 +106,7 @@ void			move_s_d(t_game *game);
 void			move_s(t_game *game);
 void			move_a(t_game *game);
 void			move_d(t_game *game);
+int				to_coord(t_game *game, double x, double y);
 
 
 #endif
