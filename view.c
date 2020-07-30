@@ -6,8 +6,7 @@ void	make_view(t_game *game)
 	game->img.data = (int *)mlx_get_data_addr(game->img.img_ptr, &game->img.bpp, &game->img.size_l, &game->img.endian);
 	make_2d(game);
 	make_rader(game);
-	//make_player(game);
-	//make_line(game);
+	make_player(game);
 	//make_3d(game);
 	/*
 	game->line.color = 0x00ff00;

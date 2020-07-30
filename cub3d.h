@@ -7,11 +7,6 @@
 # include <math.h>
 # include "const.h"
 
-# define KEY_PRESSED 2
-# define KEY_RELEASED 3
-# define WIN_WIDTH 500
-# define WIN_HEIGHT 500
-
 typedef struct	s_img {
 	void		*img_ptr;
 	int			*data;

@@ -22,9 +22,9 @@ int		hook_action(t_game *game)
 		move_s_d(game);
 	else if (game->key_check[KEY_S])
 		move_s(game);
-	else if (game->key_check[KEY_S])
+	else if (game->key_check[KEY_A])
 		move_a(game);
-	else if (game->key_check[KEY_S])
+	else if (game->key_check[KEY_D])
 		move_d(game);
 	make_view(game);
 	return (1);
