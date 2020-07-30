@@ -41,10 +41,32 @@ void	make_line(t_game *game)
 			game->line.origin_y += dy;
 			continue;
 		}
+	//	mlx_pixel_put(game->mlx_ptr, game->win_ptr, (int)game->line.origin_x, (int)game->line.origin_y, game->line.color);
 		game->img.data[to_coord(game, game->line.origin_x, game->line.origin_y)] = game->line.color;
 		game->line.origin_x += dx;
 		game->line.origin_y += dy;
 	}
+}
+
+void	map_print(t_game *game)
+{
+	int		i;
+	int		j;
+
+	printf("\n");
+	i = 0;
+	while (i < game->map_xlength)
+	{
+		j = 0;
+		while (j < game->map_ylength)
+		{
+			printf("%d ", my_map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("\n");
 }
 
 void	make_tile(t_game *game, int i, int j, int color)
@@ -53,12 +75,13 @@ void	make_tile(t_game *game, int i, int j, int color)
 	int		u;
 
 	k = 0;
-	game->line.origin_y = j * game->tile_ysize;
-	game->line.target_y = (j + 1)* game->tile_ysize;
+	//map_print(game);
 	while (k < game->tile_xsize)
 	{
-		game->line.origin_x = i * game->tile_xsize + k;
-		game->line.target_x = i * game->tile_xsize + k;
+		game->line.origin_x = j * game->tile_xsize + k;
+		game->line.target_x = j * game->tile_xsize + k;
+		game->line.origin_y = i * game->tile_ysize;
+		game->line.target_y = (i + 1)* game->tile_ysize + 1;
 		game->line.color = color;
 		make_line(game);
 		k++;
@@ -76,7 +99,7 @@ void	make_2d(t_game *game)
 		j = 0;
 		while (j < game->map_ylength)
 		{
-			if (my_map[i][i] == 1)
+			if (my_map[i][j] == 1)
 				make_tile(game, i, j, COLOR_WALL);
 			else
 				make_tile(game, i, j, COLOR_ROAD);
