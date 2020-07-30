@@ -1,5 +1,7 @@
 SRCS	=	./cub3d.c \
 			./init.c \
+			./callback.c \
+
 
 all:
 	gcc -L ./mlx -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./
