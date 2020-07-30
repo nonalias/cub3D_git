@@ -2,6 +2,11 @@ SRCS	=	./cub3d.c \
 			./init.c \
 			./callback.c \
 			./hookaction.c \
+			./move_w.c \
+			./move_s.c \
+			./move_a.c \
+			./move_d.c \
+			./wall.c \
 
 
 all:

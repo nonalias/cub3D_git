@@ -12,8 +12,7 @@
 # define WIN_HEIGHT 500
 
 
-typedef struct	s_img
-{
+typedef struct	s_img {
 	void		*img_ptr;
 	int			data;
 	int			size_l;
@@ -67,12 +66,20 @@ int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
 
 int				get_wall_distance(t_game *game);
-int				check_wall(int x, int y);
+int				check_wall(double x, double y);
 
 int				hook_action(t_game *game);
 
 void			init(t_game *game);
 
+void			move_w_a(t_game *game);
+void			move_w_d(t_game *game);
+void			move_w(t_game *game);
+void			move_s_a(t_game *game);
+void			move_s_d(t_game *game);
+void			move_s(t_game *game);
+void			move_a(t_game *game);
+void			move_d(t_game *game);
 
 
 #endif
