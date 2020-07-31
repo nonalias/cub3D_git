@@ -23,7 +23,7 @@ void	make_rader_line(t_game *game)
 			game->line.origin_y += dy;
 			continue;
 		}
-		game->img.data[to_coord(game, game->line.origin_x, game->line.origin_y)] = game->line.color;
+		game->img.data[to_coord(game, game->line.origin_x / MINIMAP_RATIO, game->line.origin_y / MINIMAP_RATIO)] = game->line.color;
 		game->line.origin_x += dx;
 		game->line.origin_y += dy;
 	}
@@ -38,8 +38,8 @@ void	make_rader(t_game *game)
 	{
 		game->line.origin_x = game->player.cur_x;
 		game->line.origin_y = game->player.cur_y;
-		game->line.target_x = game->player.cur_x + game->seek_distance * cos(M_PI / 180 * (game->player.rot_angle + i));
-		game->line.target_y = game->player.cur_y + game->seek_distance * sin(M_PI / 180 * (game->player.rot_angle + i));
+		game->line.target_x = game->player.cur_x + game->seek_distance / MINIMAP_RATIO * cos(M_PI / 180 * (game->player.rot_angle + i));
+		game->line.target_y = game->player.cur_y + game->seek_distance / MINIMAP_RATIO * sin(M_PI / 180 * (game->player.rot_angle + i));
 		game->line.color = 0x0000a1;
 		make_rader_line(game);
 		i += 0.05;

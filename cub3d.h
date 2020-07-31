@@ -105,6 +105,7 @@ int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
 
 int				get_wall_distance(t_game *game);
+int				mini_check_wall(t_game *game, double x, double y);
 int				check_wall(t_game *game, double x, double y);
 
 int				hook_action(t_game *game);
