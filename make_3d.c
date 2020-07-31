@@ -55,10 +55,13 @@ void	make_3d(t_game *game)
 		game->line.origin_y = distance * 1.312497;
 		game->line.target_x = game->line.origin_x;
 		game->line.target_y = game->win.width - distance * 1.3;
+		game->line.color = 0xaaaaaa - 0x010101 * (int)(0xaaaaaa / game->seek_distance * distance);
+		/*
 		if (distance < 200)
 			game->line.color = 0xaaaaaa;
 		else
 			game->line.color = 0xaaaaaa - 0x0a0a0a;
+			*/
 		make_line(game);
 		i += 0.1;
 	}
