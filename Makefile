@@ -14,5 +14,5 @@ SRCS	=	./cub3d.c \
 
 
 all:
-	gcc -L ./mlx -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./
-	./a.out
+	gcc -L ./mlx -L ./ -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./
+	./a.out abc.cub --save --debug

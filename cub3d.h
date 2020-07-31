@@ -2,6 +2,7 @@
 
 # define __CUB3D_H
 # include "./mlx/mlx.h"
+# include "./libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
@@ -39,14 +40,31 @@ typedef struct	s_window
 	int			height;
 }				t_window;
 
+typedef	struct	s_flag
+{
+	int			debug;
+	int			save;
+}				t_flag;
+
+typedef struct	s_debug
+{
+	char		*map_str;
+	char		*x_str;
+	char		*y_str;
+	char		*rot_angle_str;
+}				t_debug; //TODO : 끝날 때 free 해 주어야 함.
+
 typedef struct	s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	char		*map_name;
 	t_window	win;
 	t_img		img;
 	t_player	player;
 	t_line		line;
+	t_flag		flags;
+	t_debug		debug;
 	int			seek_angle;
 	int			seek_distance;
 	double		tile_xsize;
@@ -103,5 +121,6 @@ void			move_a(t_game *game);
 void			move_d(t_game *game);
 int				to_coord(t_game *game, double x, double y);
 
+void			debug_process(t_game *game);
 
 #endif

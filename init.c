@@ -22,4 +22,7 @@ void	init(t_game *game)
 	game->tile_ysize = game->win.height / game->map_ylength;
 	game->seek_angle = 66;
 	game->seek_distance = 200;
+	game->flags.debug = 0;
+	game->flags.save = 0;
+	
 }
