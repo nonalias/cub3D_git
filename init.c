@@ -24,5 +24,4 @@ void	init(t_game *game)
 	game->seek_distance = game->win.width / 3;
 	game->flags.debug = 0;
 	game->flags.save = 0;
-	
 }

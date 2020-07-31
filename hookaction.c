@@ -1,5 +1,17 @@
 #include "cub3d.h"
 
+void	free_process(t_game *game)
+{
+	free(game->debug.map_str);
+	free(game->debug.x_str);
+	free(game->debug.y_str);
+	free(game->debug.rot_angle_str);
+	game->debug.map_str = NULL;
+	game->debug.x_str = NULL;
+	game->debug.y_str = NULL;
+	game->debug.rot_angle_str = NULL;
+}
+
 int		hook_action(t_game *game)
 {
 	if (game->key_check[LEFT_ARROW])
@@ -28,5 +40,6 @@ int		hook_action(t_game *game)
 		game->player.rot_angle += 360;
 	make_view(game);
 	debug_process(game);
+	free_process(game);
 	return (1);
 }
