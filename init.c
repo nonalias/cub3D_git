@@ -21,7 +21,7 @@ void	init(t_game *game)
 	game->tile_xsize = game->win.width / game->map_xlength / MINIMAP_RATIO;
 	game->tile_ysize = game->win.height / game->map_ylength / MINIMAP_RATIO;
 	game->seek_angle = 66;
-	game->seek_distance = 200;
+	game->seek_distance = game->win.width / 3;
 	game->flags.debug = 0;
 	game->flags.save = 0;
 	

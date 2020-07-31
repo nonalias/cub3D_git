@@ -9,6 +9,7 @@ SRCS	=	./cub3d.c \
 			./wall.c \
 			./view.c \
 			./make_2d.c \
+			./make_3d.c \
 			./make_rader.c \
 			./make_player.c \
 

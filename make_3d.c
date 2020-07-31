@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	make_rader_line(t_game *game)
+int		get_wall_distance(t_game *game)
 {
 	double	dx;
 	double	dy;
@@ -15,7 +15,11 @@ void	make_rader_line(t_game *game)
 			|| fabs(game->line.target_y - game->line.origin_y) > 1)
 	{
 		if (check_wall(game, game->line.origin_x, game->line.origin_y))
-			break ;
+		{
+			dx = game->player.cur_x - game->line.origin_x;
+			dy = game->player.cur_y - game->line.origin_y;
+			return sqrt(dx * dx + dy * dy);
+		}
 		if (game->line.origin_x < 0 || game->line.origin_x >= game->win.width
 				|| game->line.origin_y < 0 || game->line.origin_y >= game->win.height)
 		{
@@ -23,25 +27,41 @@ void	make_rader_line(t_game *game)
 			game->line.origin_y += dy;
 			continue;
 		}
-		game->img.data[to_coord(game, game->line.origin_x / MINIMAP_RATIO, game->line.origin_y / MINIMAP_RATIO)] = game->line.color;
 		game->line.origin_x += dx;
 		game->line.origin_y += dy;
 	}
 }
 
-void	make_rader(t_game *game)
+//TODO: rader도 seekangle부분 수정하기
+void	make_3d(t_game *game)
 {
-	double		i;
+	double	distance;
+	double	wallheight;
+	double	i;
 
 	i = game->seek_angle / 2 * -1;
 	while (i < game->seek_angle / 2)
-	{
+	{ 
 		game->line.origin_x = game->player.cur_x;
 		game->line.origin_y = game->player.cur_y;
 		game->line.target_x = game->player.cur_x + game->seek_distance * cos(M_PI / 180 * (game->player.rot_angle + i));
 		game->line.target_y = game->player.cur_y + game->seek_distance * sin(M_PI / 180 * (game->player.rot_angle + i));
-		game->line.color = 0x0000a1;
-		make_rader_line(game);
-		i += 0.05;
+		distance = get_wall_distance(game);
+		// if 24672 no show  (distance infinite)
+		if (distance < 0 || distance > game->seek_distance)
+		{
+			i += 0.1;
+			continue;
+		}
+		game->line.origin_x = ((i + game->seek_angle / 2) * game->win.width / game->seek_angle);
+		game->line.origin_y = distance;
+		game->line.target_x = game->line.origin_x;
+		game->line.target_y = game->win.width - distance;
+		if (distance < 200)
+			game->line.color = 0xaaaaaa;
+		else
+			game->line.color = 0xaaaaaa - 0x0a0a0a;
+		make_line(game);
+		i += 0.1;
 	}
 }
