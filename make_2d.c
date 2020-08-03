@@ -76,12 +76,12 @@ void	make_tile(t_game *game, int i, int j, int color)
 
 	k = 0;
 	//map_print(game);
-	while (k < game->tile_xsize)
+	while (k < game->tile_xsize / MINIMAP_RATIO)
 	{
-		game->line.origin_x = j * game->tile_xsize + k;
-		game->line.target_x = j * game->tile_xsize + k;
-		game->line.origin_y = i * game->tile_ysize;
-		game->line.target_y = (i + 1)* game->tile_ysize + 1;
+		game->line.origin_x = j * game->tile_xsize / MINIMAP_RATIO + k;
+		game->line.target_x = j * game->tile_xsize / MINIMAP_RATIO + k;
+		game->line.origin_y = i * game->tile_ysize / MINIMAP_RATIO;
+		game->line.target_y = (i + 1)* game->tile_ysize / MINIMAP_RATIO + 1;
 		game->line.color = color;
 		make_line(game);
 		k++;

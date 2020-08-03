@@ -18,8 +18,8 @@ void	init(t_game *game)
 	game->player.rot_angle = 0;
 	game->player.rot_speed = 4;
 	game->player.move_speed = 4;
-	game->tile_xsize = game->win.width / game->map_xlength / MINIMAP_RATIO;
-	game->tile_ysize = game->win.height / game->map_ylength / MINIMAP_RATIO;
+	game->tile_xsize = game->win.width / game->map_xlength;
+	game->tile_ysize = game->win.height / game->map_ylength;
 	game->seek_angle = 66;
 	game->seek_distance = game->win.width / 3;
 	game->flags.debug = 0;
