@@ -36,7 +36,7 @@ int		hook_action(t_game *game)
 		move_d(game);
 	if (game->player.rot_angle > 360)
 		game->player.rot_angle -= 360;
-	else if (game->player.rot_angle < 360)
+	else if (game->player.rot_angle < 0)
 		game->player.rot_angle += 360;
 	make_view(game);
 	debug_process(game);

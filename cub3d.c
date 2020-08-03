@@ -32,7 +32,7 @@ void	debug_process(t_game *game)
 	game->debug.y_str = ft_strdup("PLAYER POSITION (Y) : ");
 	game->debug.y_str = ft_strjoin(game->debug.y_str, ft_itoa((int)game->player.cur_y));
 	game->debug.rot_angle_str = ft_strdup("ROTATION ANGLE : ");
-	game->debug.rot_angle_str = ft_strjoin(game->debug.rot_angle_str, ft_itoa((int)game->player.rot_angle % 360));
+	game->debug.rot_angle_str = ft_strjoin(game->debug.rot_angle_str, ft_itoa((int)game->player.rot_angle));
 	x = (int)(game->win.width / 1.6); 
 	y = (int)(game->win.height / 20);
 	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.map_str);
