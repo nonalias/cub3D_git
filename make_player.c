@@ -21,8 +21,8 @@ void	make_player(t_game *game)
 	game->line.color = 0xff0000;
 	game->line.origin_x = game->player.cur_x / MINIMAP_RATIO;
 	game->line.origin_y = game->player.cur_y / MINIMAP_RATIO;
-	game->line.target_x = game->player.cur_x / MINIMAP_RATIO + (20 / MINIMAP_RATIO * cos(M_PI / 180 * game->player.rot_angle));
-	game->line.target_y = game->player.cur_y / MINIMAP_RATIO + (20 / MINIMAP_RATIO * sin(M_PI / 180 * game->player.rot_angle));
+	game->line.target_x = game->player.cur_x / MINIMAP_RATIO + (20 / MINIMAP_RATIO * cos(TO_RADIAN(game->player.rot_angle)));
+	game->line.target_y = game->player.cur_y / MINIMAP_RATIO + (20 / MINIMAP_RATIO * sin(TO_RADIAN(game->player.rot_angle)));
 	make_line(game);
 	game->img.data[to_coord(game, game->player.cur_x / MINIMAP_RATIO, game->player.cur_y / MINIMAP_RATIO)] = 0x00ff00;
 }

@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "const.h"
+# define TO_RADIAN(x) (((M_PI) / (180)) * (x))
 
 typedef struct	s_img {
 	void		*img_ptr;

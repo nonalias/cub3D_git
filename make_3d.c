@@ -50,9 +50,9 @@ void	make_3d(t_game *game)
 		game->line.origin_x = game->player.cur_x;
 		game->line.origin_y = game->player.cur_y;
 		double	razer_angle = game->player.rot_angle + i;
-		game->line.target_x = game->player.cur_x + game->seek_distance * cos(M_PI / 180 * (razer_angle));
-		game->line.target_y = game->player.cur_y + game->seek_distance * sin(M_PI / 180 * (razer_angle));
-		distance = get_wall_distance(game) * cos(M_PI / 180 * i);
+		game->line.target_x = game->player.cur_x + game->seek_distance * cos(TO_RADIAN(razer_angle));
+		game->line.target_y = game->player.cur_y + game->seek_distance * sin(TO_RADIAN(razer_angle));
+		distance = get_wall_distance(game) * cos(TO_RADIAN(i));
 		//distance -= get_remain(distance, 4);
 		// if 24672 no show  (distance infinite)
 		if (distance < 0 || distance > game->seek_distance)
