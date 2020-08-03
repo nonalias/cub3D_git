@@ -55,6 +55,14 @@ typedef struct	s_debug
 	char		*rot_angle_str;
 }				t_debug; //TODO : 끝날 때 free 해 주어야 함.
 
+typedef	struct	s_wall
+{
+	double		x;
+	double		y;
+	double		angle;
+	double		distance;
+}				t_wall;
+
 typedef struct	s_game
 {
 	void		*mlx_ptr;
@@ -66,6 +74,7 @@ typedef struct	s_game
 	t_line		line;
 	t_flag		flags;
 	t_debug		debug;
+	t_wall		wall;
 	int			seek_angle;
 	int			seek_distance;
 	double		tile_xsize;
@@ -106,6 +115,7 @@ int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
 
 int				get_wall_distance(t_game *game);
+void			get_wall_x_y(t_game *game);
 int				mini_check_wall(t_game *game, double x, double y);
 int				check_wall(t_game *game, double x, double y);
 
