@@ -46,5 +46,5 @@ double	raycasting_y(t_game *game)
 			nexthorztouchy += game->ray.ystep;
 		}
 	}
-	return game->ray.foundhorzwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.horzx, game->ray.horzy)) : game->win.width * game->win.height;
+	return game->ray.foundhorzwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.horzx, game->ray.horzy)) < 10 ? 10 : (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.horzx, game->ray.horzy)): game->win.width * game->win.height;
 }

@@ -44,5 +44,5 @@ double	raycasting_x(t_game *game)
 			nextverttouchy += game->ray.ystep;
 		}
 	}
-	return game->ray.foundvertwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.vertx, game->ray.verty)) : game->win.width * game->win.height;
+	return game->ray.foundvertwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.vertx, game->ray.verty)) < 10 ? 10 : (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.vertx, game->ray.verty)) : game->win.width * game->win.height;
 }
