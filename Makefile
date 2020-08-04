@@ -14,6 +14,8 @@ SRCS	=	./cub3d.c \
 			./make_player.c \
 			./raycasting_x.c \
 			./raycasting_y.c \
+			./make_ceil.c \
+			./make_floor.c \
 
 
 all:

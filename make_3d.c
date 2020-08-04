@@ -5,8 +5,7 @@ int		get_wall_distance(t_game *game)
 {
 	double	dx; double	dy;
 	double	step;
-dx = game->line.target_x - game->line.origin_x;
-	dy = game->line.target_y - game->line.origin_y;
+dx = game->line.target_x - game->line.origin_x; dy = game->line.target_y - game->line.origin_y;
 	step = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
 	dx /= step;
 	dy /= step;
@@ -14,8 +13,7 @@ dx = game->line.target_x - game->line.origin_x;
 			|| fabs(game->line.target_y - game->line.origin_y) > 1)
 	{ 
 		if (check_wall(game, game->line.origin_x, game->line.origin_y))
-		{
-			dx = game->player.cur_x - game->line.origin_x;
+		{ dx = game->player.cur_x - game->line.origin_x;
 			dy = game->player.cur_y - game->line.origin_y;
 			return sqrt(dx * dx + dy * dy);
 		}
@@ -72,6 +70,20 @@ void	make_3d(t_game *game)
 		double	distanceprojectionplane = (game->win.width / 2) / tan(M_PI / 180 * game->seek_angle / 2);
 		double	wallstripheight = (game->tile_ysize / distance) * distanceprojectionplane;
 		game->line.origin_x = ((i + game->seek_angle / 2) * game->win.width / game->seek_angle);
+		game->line.origin_y = 0;
+		game->line.target_x = game->line.origin_x;
+		game->line.target_y = game->win.height / 2 + (wallstripheight / 2);
+		game->line.color = 0x50bcdf;
+		make_line(game);
+
+		game->line.origin_x = ((i + game->seek_angle / 2) * game->win.width / game->seek_angle);
+		game->line.origin_y = game->win.height / 2 + (wallstripheight / 2);
+		game->line.target_x = game->line.origin_x;
+		game->line.target_y = game->win.height;
+		game->line.color = 0xf0ecdd;
+		make_line(game);
+
+		game->line.origin_x = ((i + game->seek_angle / 2) * game->win.width / game->seek_angle);
 		game->line.origin_y = game->win.height / 2 - (wallstripheight / 2);
 		game->line.target_x = game->line.origin_x;
 		game->line.target_y = game->win.height / 2 + (wallstripheight / 2);
@@ -80,19 +92,19 @@ void	make_3d(t_game *game)
 		{
 			if (game->wall.angle > 90 && game->wall.angle < 270)
 			{
-				game->line.color = 0xff0000;
+				game->line.color = 0xe96187;
 			}
 			else
-				game->line.color = 0x00ff00;
+				game->line.color = 0xa0d995;
 		}
 		else if (game->wall.is_x_or_y == Y_SIDE)
 		{
 			if (game->wall.angle > 0 && game->wall.angle < 180)
 			{
-				game->line.color = 0x0000ff;
+				game->line.color = 0x92a9d1;
 			}
 			else
-				game->line.color = 0xdadada;
+				game->line.color = 0xdcd9f8;
 		}
 		/*
 		if (distance < game->seek_distance / 8 * 1)
@@ -115,6 +127,6 @@ void	make_3d(t_game *game)
 			game->line.color = 0xdadada - 0xa0a0a0;
 			*/
 		make_line(game);
-		i += 0.128;
+		i += 0.06;
 	}
 }
