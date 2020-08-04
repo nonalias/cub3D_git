@@ -18,6 +18,6 @@
 # define COLOR_ROAD 0xfffff0
 # define COLOR_WHITE 0xffffff
 # define COLOR_GREEN 0x00ff00
-# define MINIMAP_RATIO 3
+# define MINIMAP_RATIO 5
 
 #endif
