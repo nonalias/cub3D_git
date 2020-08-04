@@ -33,7 +33,7 @@ double	raycasting_x(t_game *game)
 		{
 			game->ray.foundvertwallhit = 1;
 			if (game->ray.left_facing)
-				nextverttouchx -= 1;
+				nextverttouchx += 1;
 			game->ray.vertx = nextverttouchx;
 			game->ray.verty = nextverttouchy;
 			break;
