@@ -8,6 +8,7 @@
 # include <math.h>
 # include "const.h"
 # define TO_RADIAN(x) (((M_PI) / (180)) * (x))
+# define TWO_POINT_DISTANCE(x1, y1, x2, y2) (sqrt(((x1) - (x2)) * ((x1) - (x2)) + ((y1) - (y2)) * ((y1) - (y2))))
 
 typedef struct	s_img {
 	void		*img_ptr;
@@ -115,7 +116,7 @@ int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
 
 int				get_wall_distance(t_game *game);
-void			get_wall_x_y(t_game *game);
+double			get_wall_x_y(t_game *game);
 int				mini_check_wall(t_game *game, double x, double y);
 int				check_wall(t_game *game, double x, double y);
 

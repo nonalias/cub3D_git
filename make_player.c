@@ -37,6 +37,6 @@ void	make_player(t_game *game)
 	game->line.target_y = game->player.cur_y / MINIMAP_RATIO + (20 / MINIMAP_RATIO * sin(TO_RADIAN(game->player.rot_angle)));
 	make_line(game);
 	*/
-	make_cursor(game);
-//	game->img.data[to_coord(game, game->player.cur_x / MINIMAP_RATIO, game->player.cur_y / MINIMAP_RATIO)] = 0x00ff00;
+//	make_cursor(game);
+	game->img.data[to_coord(game, game->player.cur_x / MINIMAP_RATIO, game->player.cur_y / MINIMAP_RATIO)] = 0xff0000;
 }

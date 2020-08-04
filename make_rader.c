@@ -37,11 +37,15 @@ void	make_rader(t_game *game)
 	while (i < game->seek_angle / 2)
 	{
 		game->wall.angle = game->player.rot_angle + i;
-		game->line.origin_x = game->player.cur_x;
-		game->line.origin_y = game->player.cur_y;
+		if (game->wall.angle < 0)
+			game->wall.angle += 360;
+		else if (game->wall.angle > 360)
+			game->wall.angle -= 360;
+		game->line.origin_x = game->player.cur_x / MINIMAP_RATIO;
+		game->line.origin_y = game->player.cur_y / MINIMAP_RATIO;
 		get_wall_x_y(game);
-		game->line.target_x = game->wall.x;
-		game->line.target_y = game->wall.y;
+		game->line.target_x = game->wall.x / MINIMAP_RATIO;
+		game->line.target_y = game->wall.y / MINIMAP_RATIO;
 		game->line.color = 0x0000a1;
 		make_line(game);
 		//make_rader_line(game);
