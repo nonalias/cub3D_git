@@ -32,6 +32,8 @@ double	raycasting_x(t_game *game)
 		if (check_wall(game, nextverttouchx, nextverttouchy))
 		{
 			game->ray.foundvertwallhit = 1;
+			if (game->ray.left_facing)
+				nextverttouchx += 1;
 			game->ray.vertx = nextverttouchx;
 			game->ray.verty = nextverttouchy;
 			break;
@@ -42,5 +44,5 @@ double	raycasting_x(t_game *game)
 			nextverttouchy += game->ray.ystep;
 		}
 	}
-	return game->ray.foundvertwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.vertx, game->ray.verty)) : DBL_MAX;
+	return game->ray.foundvertwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.vertx, game->ray.verty)) : game->win.width * game->win.height;
 }

@@ -49,6 +49,6 @@ void	make_rader(t_game *game)
 		game->line.color = 0x0000a1;
 		make_line(game);
 		//make_rader_line(game);
-		i += 0.05;
+		i += 0.06;
 	}
 }

@@ -92,19 +92,21 @@ void	make_3d(t_game *game)
 		{
 			if (game->wall.angle > 90 && game->wall.angle < 270)
 			{
-				game->line.color = 0xe96187;
+				game->line.color = 0xe96187; //ㅃㅏㄹ강
 			}
 			else
-				game->line.color = 0xa0d995;
+			{
+				game->line.color = 0xa0d995; // 초록
+			}
 		}
 		else if (game->wall.is_x_or_y == Y_SIDE)
 		{
 			if (game->wall.angle > 0 && game->wall.angle < 180)
 			{
-				game->line.color = 0x92a9d1;
+				game->line.color = 0x0a1172; //네이비
 			}
 			else
-				game->line.color = 0xdcd9f8;
+				game->line.color = 0xdcd9f8; //연분
 		}
 		/*
 		if (distance < game->seek_distance / 8 * 1)

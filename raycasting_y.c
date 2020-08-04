@@ -35,6 +35,8 @@ double	raycasting_y(t_game *game)
 		{
 			game->ray.foundhorzwallhit = 1;
 			game->ray.horzx = nexthorztouchx;
+			if (game->ray.up_facing)
+				nexthorztouchy += 1;
 			game->ray.horzy = nexthorztouchy;
 			break;
 		}
@@ -44,5 +46,5 @@ double	raycasting_y(t_game *game)
 			nexthorztouchy += game->ray.ystep;
 		}
 	}
-	return game->ray.foundhorzwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.horzx, game->ray.horzy)) : DBL_MAX;
+	return game->ray.foundhorzwallhit ? (TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, game->ray.horzx, game->ray.horzy)) : game->win.width * game->win.height;
 }
