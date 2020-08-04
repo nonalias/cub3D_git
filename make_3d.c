@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+/*
 int		get_wall_distance(t_game *game)
 {
 	double	dx; double	dy;
@@ -29,6 +30,7 @@ dx = game->line.target_x - game->line.origin_x;
 		game->line.origin_y += dy;
 	}
 }
+*/
 
 double	get_remain(double distance, int operator)
 {
@@ -57,7 +59,7 @@ void	make_3d(t_game *game)
 			game->wall.angle += 360;
 		else if (game->wall.angle > 360)
 			game->wall.angle -= 360;
-		distance = get_wall_x_y(game) * cos(TO_RADIAN(i));
+		distance = get_wall_x_y(game) ;
 		//distance -= get_remain(distance, 4);
 		// if 24672 no show  (distance infinite)
 		/*
@@ -74,6 +76,25 @@ void	make_3d(t_game *game)
 		game->line.target_x = game->line.origin_x;
 		game->line.target_y = game->win.height / 2 + (wallstripheight / 2);
 		//game->line.color = 0xaaaaaa - 0x010101 * (int)(0xaaaaaa / game->seek_distance * distance);
+		if (game->wall.is_x_or_y == X_SIDE)
+		{
+			if (game->wall.angle > 90 && game->wall.angle < 270)
+			{
+				game->line.color = 0xff0000;
+			}
+			else
+				game->line.color = 0x00ff00;
+		}
+		else if (game->wall.is_x_or_y == Y_SIDE)
+		{
+			if (game->wall.angle > 0 && game->wall.angle < 180)
+			{
+				game->line.color = 0x0000ff;
+			}
+			else
+				game->line.color = 0xdadada;
+		}
+		/*
 		if (distance < game->seek_distance / 8 * 1)
 			game->line.color = 0xdadada;
 		else if (distance < game->seek_distance / 8 * 2)
@@ -92,7 +113,8 @@ void	make_3d(t_game *game)
 			game->line.color = 0xdadada - 0x8c8c8c;
 		else
 			game->line.color = 0xdadada - 0xa0a0a0;
+			*/
 		make_line(game);
-		i += 0.1;
+		i += 0.128;
 	}
 }

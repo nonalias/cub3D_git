@@ -4,11 +4,15 @@
 # include "./mlx/mlx.h"
 # include "./libft.h"
 # include <stdio.h>
+# include <limits.h>
 # include <stdlib.h>
 # include <math.h>
 # include "const.h"
+# include <float.h>
 # define TO_RADIAN(x) (((M_PI) / (180)) * (x))
 # define TWO_POINT_DISTANCE(x1, y1, x2, y2) (sqrt(((x1) - (x2)) * ((x1) - (x2)) + ((y1) - (y2)) * ((y1) - (y2))))
+# define X_SIDE 1
+# define Y_SIDE 0
 
 typedef struct	s_img {
 	void		*img_ptr;
@@ -62,7 +66,26 @@ typedef	struct	s_wall
 	double		y;
 	double		angle;
 	double		distance;
+	int			is_x_or_y;
 }				t_wall;
+
+typedef struct	s_ray
+{
+	double		vertx;
+	double		verty;
+	double		horzx;
+	double		horzy;
+	double		xintercept;
+	double		yintercept;
+	double		xstep;
+	double		ystep;
+	int			foundhorzwallhit;
+	int			foundvertwallhit;
+	int			up_facing;
+	int			down_facing;
+	int			left_facing;
+	int			right_facing;
+}				t_ray;
 
 typedef struct	s_game
 {
@@ -76,6 +99,7 @@ typedef struct	s_game
 	t_flag		flags;
 	t_debug		debug;
 	t_wall		wall;
+	t_ray		ray;
 	int			seek_angle;
 	int			seek_distance;
 	double		tile_xsize;
@@ -136,4 +160,6 @@ int				to_coord(t_game *game, double x, double y);
 
 void			debug_process(t_game *game);
 
+double			raycasting_x(t_game *game);
+double			raycasting_y(t_game *game);
 #endif

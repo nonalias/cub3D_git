@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		my_map2[11][11] = {
+int		my_map[11][11] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
 	{1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
@@ -14,7 +14,7 @@ int		my_map2[11][11] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 };
 
-int		my_map[11][11] = {
+int		my_map2[11][11] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
 	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
@@ -44,96 +44,15 @@ int		mini_check_wall(t_game * game, double x, double y)
 
 double	get_wall_x_y(t_game *game)
 {
-	double	xintercept, yintercept;
-	double	xstep, ystep;
-	int		foundhorzwallhit = 0;
-	int		israyfacingup;
-	int		israyfacingdown;
-	int		israyfacingright;
-	int		israyfacingleft;
-	double	horzwallhitx = 0;
-	double	horzwallhity = 0;
+	double	distance_x;
+	double	distance_y;
 
-	israyfacingdown = game->wall.angle > 0 && game->wall.angle < 180;  
-	israyfacingup = !israyfacingdown;
-	israyfacingright = game->wall.angle < 90 || game->wall.angle > 270;
-	israyfacingleft = !israyfacingright;
-
-	yintercept = floor(game->player.cur_y / game->tile_ysize) * game->tile_ysize;
-	if (israyfacingdown)
-		yintercept += game->tile_ysize;
-	xintercept = game->player.cur_x + (yintercept - game->player.cur_y) / tan(TO_RADIAN(game->wall.angle));
-
-	ystep = game->tile_ysize;
-	if (israyfacingup)
-		ystep *= -1;
-
-	xstep = game->tile_xsize / tan(TO_RADIAN(game->wall.angle));
-	xstep *= (israyfacingleft && xstep > 0) ? -1 : 1;
-	xstep *= (israyfacingright && xstep < 0) ? -1 : 1;
-
-	double nexthorztouchx = xintercept;
-	double nexthorztouchy = yintercept;
-
-	if (israyfacingup)
-		nexthorztouchy -= 1;
-	while (nexthorztouchx >= 0 && nexthorztouchx <= game->win.width && nexthorztouchy >= 0 && nexthorztouchy <= game->win.height)
-	{
-		if (check_wall(game, nexthorztouchx, nexthorztouchy))
-		{
-			foundhorzwallhit = 1;
-			horzwallhitx = nexthorztouchx;
-			horzwallhity = nexthorztouchy;
-			break;
-		}
-		else
-		{
-			nexthorztouchx += xstep;
-			nexthorztouchy += ystep;
-		}
-	}
-
-	int	foundvertwallhit = 0;
-	double vertwallhitx = 0;
-	double vertwallhity = 0;
-
-	xintercept = floor(game->player.cur_x / game->tile_xsize) * game->tile_xsize;
-	xintercept += israyfacingright ? game->tile_xsize : 0;
-	yintercept = game->player.cur_y + (xintercept - game->player.cur_x) * tan(TO_RADIAN(game->wall.angle));
-	xstep = game->tile_xsize;
-	xstep *= israyfacingleft ? -1 : 1;
-
-	ystep = game->tile_ysize * tan(TO_RADIAN(game->wall.angle));
-	ystep *= (israyfacingup && ystep > 0) ? -1 : 1;
-	ystep *= (israyfacingdown && ystep < 0) ? -1 : 1;
-
-	double nextverttouchx = xintercept;
-	double nextverttouchy = yintercept;
-
-	if (israyfacingleft)
-		nextverttouchx -= 1;
-
-	while (nextverttouchx >= 0 && nextverttouchx <= game->win.width && nextverttouchy >= 0 && nextverttouchy <= game->win.height)
-	{
-		if (check_wall(game, nextverttouchx, nextverttouchy))
-		{
-			foundvertwallhit = 1;
-			vertwallhitx = nextverttouchx;
-			vertwallhity = nextverttouchy;
-			break;
-		}
-		else
-		{
-			nextverttouchx += xstep;
-			nextverttouchy += ystep;
-		}
-	}
-	double horzhitdistance = foundhorzwallhit ? TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, horzwallhitx, horzwallhity) : game->win.height * game->win.width;
-	double verthitdistance = foundvertwallhit ? TWO_POINT_DISTANCE(game->player.cur_x, game->player.cur_y, vertwallhitx, vertwallhity) : game->win.height * game->win.width;
-
-	game->wall.x = (horzhitdistance < verthitdistance) ? horzwallhitx : vertwallhitx;
-	game->wall.y = (horzhitdistance < verthitdistance) ? horzwallhity : vertwallhity;
-	return horzhitdistance < verthitdistance ? horzhitdistance : verthitdistance;
+	distance_x = raycasting_x(game);
+	distance_y = raycasting_y(game);
+	game->wall.x = distance_x < distance_y ? game->ray.vertx : game->ray.horzx;
+	game->wall.y = distance_x < distance_y ? game->ray.verty : game->ray.horzy;
+	game->wall.is_x_or_y = distance_x < distance_y;
+	return distance_x < distance_y ? distance_x : distance_y;
 }
 
 int		check_wall(t_game * game, double x, double y)

@@ -28,4 +28,20 @@ void	init(t_game *game)
 	game->wall.y = 0;
 	game->wall.angle = 0;
 	game->wall.distance = 0;
+	game->wall.is_x_or_y = -1;
+	
+	game->ray.vertx = 0;
+	game->ray.verty = 0;
+	game->ray.horzx = 0;
+	game->ray.horzy = 0;
+	game->ray.xintercept = 0;
+	game->ray.yintercept = 0;
+	game->ray.xstep = 0;
+	game->ray.ystep = 0;
+	game->ray.foundhorzwallhit = 0;
+	game->ray.foundvertwallhit = 0;
+	game->ray.up_facing = 0;
+	game->ray.down_facing = 0;
+	game->ray.left_facing = 0;
+	game->ray.right_facing = 0;
 }
