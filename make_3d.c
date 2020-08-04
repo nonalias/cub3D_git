@@ -72,7 +72,7 @@ void	make_3d(t_game *game)
 		game->line.origin_x = ((i + game->seek_angle / 2) * game->win.width / game->seek_angle);
 		game->line.origin_y = game->win.height / 2 - (wallstripheight / 2);
 		game->line.target_x = game->line.origin_x;
-		game->line.target_y = wallstripheight;
+		game->line.target_y = game->win.height / 2 + (wallstripheight / 2);
 		//game->line.color = 0xaaaaaa - 0x010101 * (int)(0xaaaaaa / game->seek_distance * distance);
 		if (distance < game->seek_distance / 8 * 1)
 			game->line.color = 0xdadada;
