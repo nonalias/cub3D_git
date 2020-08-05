@@ -57,12 +57,12 @@ double	get_wall_x_y(t_game *game)
 
 int		check_wall(t_game * game, double x, double y)
 {
-	double	coord_x;
-	double	coord_y;
+	int		coord_x;
+	int		coord_y;
 
-	coord_x = x / game->tile_xsize;
-	coord_y = y / game->tile_ysize;
-	if (my_map[(int)(coord_y)][(int)(coord_x)] == 1)
+	coord_x = floor(x / game->tile_xsize);
+	coord_y = floor(y / game->tile_ysize);
+	if (my_map[coord_y][coord_x] == 1)
 		return (1);
 	return (0);
 }

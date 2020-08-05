@@ -57,7 +57,7 @@ void	make_3d(t_game *game)
 			game->wall.angle += 360;
 		else if (game->wall.angle > 360)
 			game->wall.angle -= 360;
-		distance = get_wall_x_y(game) ;
+		distance = get_wall_x_y(game) * cos(TO_RADIAN(i));
 		//distance -= get_remain(distance, 4);
 		// if 24672 no show  (distance infinite)
 		/*
