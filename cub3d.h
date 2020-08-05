@@ -145,6 +145,7 @@ int				mini_check_wall(t_game *game, double x, double y);
 int				check_wall(t_game *game, double x, double y);
 
 int				hook_action(t_game *game);
+void			key_matching(t_game *game);
 
 void			init(t_game *game);
 
@@ -160,6 +161,7 @@ int				to_coord(t_game *game, double x, double y);
 
 void			debug_process(t_game *game);
 void			arg_parse(t_game *game, int argc, char **argv);
+void			free_process(t_game *game);
 
 double			raycasting_vert(t_game *game);
 double			raycasting_horz(t_game *game);

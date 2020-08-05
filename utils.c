@@ -43,3 +43,15 @@ void	debug_process(t_game *game)
 	y += 15;
 	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.rot_angle_str);
 }
+
+void	free_process(t_game *game)
+{
+	free(game->debug.map_str);
+	free(game->debug.x_str);
+	free(game->debug.y_str);
+	free(game->debug.rot_angle_str);
+	game->debug.map_str = NULL;
+	game->debug.x_str = NULL;
+	game->debug.y_str = NULL;
+	game->debug.rot_angle_str = NULL;
+}
