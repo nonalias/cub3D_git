@@ -48,6 +48,10 @@ void	ray_init(t_game *game)
 	game->ray.down_facing = 0;
 	game->ray.left_facing = 0;
 	game->ray.right_facing = 0;
+	game->ray.nexthorztouchx = 0;
+	game->ray.nexthorztouchy = 0;
+	game->ray.nextverttouchx = 0;
+	game->ray.nextverttouchy = 0;
 }
 
 void	init(t_game *game)

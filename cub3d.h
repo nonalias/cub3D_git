@@ -79,6 +79,10 @@ typedef struct	s_ray
 	double		yintercept;
 	double		xstep;
 	double		ystep;
+	double		nexthorztouchx;
+	double		nexthorztouchy;
+	double		nextverttouchx;
+	double		nextverttouchy;
 	int			foundhorzwallhit;
 	int			foundvertwallhit;
 	int			up_facing;
