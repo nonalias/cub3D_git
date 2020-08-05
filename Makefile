@@ -16,6 +16,7 @@ SRCS	=	./cub3d.c \
 			./raycasting_horz.c \
 			./make_ceil.c \
 			./make_floor.c \
+			./utils.c \
 
 
 all:

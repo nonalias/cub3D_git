@@ -159,6 +159,7 @@ void			move_d(t_game *game);
 int				to_coord(t_game *game, double x, double y);
 
 void			debug_process(t_game *game);
+void			arg_parse(t_game *game, int argc, char **argv);
 
 double			raycasting_vert(t_game *game);
 double			raycasting_horz(t_game *game);
