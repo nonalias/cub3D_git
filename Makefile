@@ -21,7 +21,7 @@ SRCS	=	./cub3d.c \
 
 
 all:
-	gcc -L ./mlx -L ./ -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./
+	gcc -L ./mlx -L ./libft -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./
 	./a.out abc.cub --save --debug
 
 # save랑 debug 딱 맞는지 체크해줘야함. (debugs 같은것도 debug로 인식)

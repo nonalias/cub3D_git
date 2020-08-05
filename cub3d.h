@@ -2,7 +2,7 @@
 
 # define __CUB3D_H
 # include "./mlx/mlx.h"
-# include "./libft.h"
+# include "./libft/libft.h"
 # include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
