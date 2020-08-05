@@ -47,8 +47,8 @@ double	get_wall_x_y(t_game *game)
 	double	distance_x;
 	double	distance_y;
 
-	distance_y = raycasting_y(game);
-	distance_x = raycasting_x(game);
+	distance_y = raycasting_horz(game);
+	distance_x = raycasting_vert(game);
 	game->wall.x = distance_x < distance_y ? game->ray.vertx : game->ray.horzx;
 	game->wall.y = distance_x < distance_y ? game->ray.verty : game->ray.horzy;
 	game->wall.is_x_or_y = distance_x < distance_y;

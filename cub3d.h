@@ -160,6 +160,6 @@ int				to_coord(t_game *game, double x, double y);
 
 void			debug_process(t_game *game);
 
-double			raycasting_x(t_game *game);
-double			raycasting_y(t_game *game);
+double			raycasting_vert(t_game *game);
+double			raycasting_horz(t_game *game);
 #endif

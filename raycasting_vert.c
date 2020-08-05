@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-double	raycasting_x(t_game *game)
+double	raycasting_vert(t_game *game)
 {
 	double nextverttouchx;
 	double nextverttouchy;

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-double	raycasting_y(t_game *game)
+double	raycasting_horz(t_game *game)
 {
 	double	nexthorztouchx;
 	double	nexthorztouchy;
