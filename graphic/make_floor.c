@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 /*
 
 void	make_floor(t_game *game)

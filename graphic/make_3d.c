@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*
 int		get_wall_distance(t_game *game)

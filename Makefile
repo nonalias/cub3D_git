@@ -1,23 +1,23 @@
 SRCS	=	./cub3d.c \
-			./init.c \
-			./init2.c \
-			./callback.c \
-			./hookaction.c \
-			./move_w.c \
-			./move_s.c \
-			./move_a.c \
-			./move_d.c \
-			./wall.c \
-			./view.c \
-			./make_2d.c \
-			./make_3d.c \
-			./make_rader.c \
-			./make_player.c \
-			./raycasting_vert.c \
-			./raycasting_horz.c \
-			./make_ceil.c \
-			./make_floor.c \
-			./utils.c \
+			./engine/init.c \
+			./engine/init2.c \
+			./engine/callback.c \
+			./engine/hookaction.c \
+			./engine/move_w.c \
+			./engine/move_s.c \
+			./engine/move_a.c \
+			./engine/move_d.c \
+			./engine/wall.c \
+			./graphic/view.c \
+			./graphic/make_2d.c \
+			./graphic/make_3d.c \
+			./graphic/make_rader.c \
+			./graphic/make_player.c \
+			./engine/raycasting_vert.c \
+			./engine/raycasting_horz.c \
+			./graphic/make_ceil.c \
+			./graphic/make_floor.c \
+			./engine/utils.c \
 
 
 all:

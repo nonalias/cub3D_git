@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int		my_map[11][11] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},

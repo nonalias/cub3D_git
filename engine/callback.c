@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int		key_press_callback(int keycode, t_game *game)
 {
