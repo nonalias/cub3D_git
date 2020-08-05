@@ -148,6 +148,12 @@ int				hook_action(t_game *game);
 void			key_matching(t_game *game);
 
 void			init(t_game *game);
+void			win_init(t_game *game);
+void			game_init(t_game *game);
+void			player_init(t_game *game);
+void			ray_init(t_game *game);
+void			wall_init(t_game *game);
+void			flag_init(t_game *game);
 
 void			move_w_a(t_game *game);
 void			move_w_d(t_game *game);

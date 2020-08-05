@@ -1,5 +1,6 @@
 SRCS	=	./cub3d.c \
 			./init.c \
+			./init2.c \
 			./callback.c \
 			./hookaction.c \
 			./move_w.c \
