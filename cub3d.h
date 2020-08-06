@@ -3,6 +3,7 @@
 # define __CUB3D_H
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
+# include "./get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
