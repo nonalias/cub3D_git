@@ -55,10 +55,10 @@ void	map_print(t_game *game)
 
 	printf("\n");
 	i = 0;
-	while (i < game->map_xlength)
+	while (i < game->map.xlength)
 	{
 		j = 0;
-		while (j < game->map_ylength)
+		while (j < game->map.ylength)
 		{
 			printf("%d ", my_map[i][j]);
 			j++;
@@ -94,10 +94,10 @@ void	make_2d(t_game *game)
 	int		j;
 
 	i = 0;
-	while (i < game->map_xlength)
+	while (i < game->map.xlength)
 	{
 		j = 0;
-		while (j < game->map_ylength)
+		while (j < game->map.ylength)
 		{
 			if (my_map[i][j] == 1)
 				make_tile(game, i, j, COLOR_WALL);

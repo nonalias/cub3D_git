@@ -9,6 +9,8 @@
 # include <math.h>
 # include "const.h"
 # include <float.h>
+# include <fcntl.h>
+# include <unistd.h>
 # define TO_RADIAN(x) (((M_PI) / (180)) * (x))
 # define TWO_POINT_DISTANCE(x1, y1, x2, y2) (sqrt(((x1) - (x2)) * ((x1) - (x2)) + ((y1) - (y2)) * ((y1) - (y2))))
 # define X_SIDE 1
@@ -91,11 +93,18 @@ typedef struct	s_ray
 	int			right_facing;
 }				t_ray;
 
+typedef struct	s_map
+{
+	int			xlength;
+	int			ylength;
+	int			fd;
+	char		*name;
+}				t_map;
+
 typedef struct	s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	char		*map_name;
 	t_window	win;
 	t_img		img;
 	t_player	player;
@@ -104,13 +113,12 @@ typedef struct	s_game
 	t_debug		debug;
 	t_wall		wall;
 	t_ray		ray;
+	t_map		map;
 	int			seek_angle;
 	int			seek_distance;
 	double		tile_xsize;
 	double		tile_ysize;
 	int			key_check[300];
-	int			map_xlength;
-	int			map_ylength;
 }				t_game;
 
 int		my_map[11][11];

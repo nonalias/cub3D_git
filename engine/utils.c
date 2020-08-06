@@ -6,7 +6,7 @@ void	arg_parse(t_game *game, int argc, char **argv)
 
 	if (argc == 1)
 		return ;
-	game->map_name = argv[1];
+	game->map.name = argv[1];
 	i = 2;
 	while (i < argc)
 	{
@@ -26,7 +26,7 @@ void	debug_process(t_game *game)
 	if (game->flags.debug == 0)
 		return ;
 	game->debug.map_str = ft_strdup("MAP NAME : ");
-	game->debug.map_str = ft_strjoin(game->debug.map_str, game->map_name);
+	game->debug.map_str = ft_strjoin(game->debug.map_str, game->map.name);
 	game->debug.x_str = ft_strdup("PLAYER POSITION (X) : ");
 	game->debug.x_str = ft_strjoin(game->debug.x_str, ft_itoa((int)game->player.cur_x));
 	game->debug.y_str = ft_strdup("PLAYER POSITION (Y) : ");
