@@ -1,19 +1,4 @@
 #include "../cub3d.h"
-/*
-int		my_map[11][11] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1},
-	{1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1},
-	{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-};
-*/
 
 int		to_coord(t_game *game, double x, double y)
 {
@@ -94,10 +79,10 @@ void	make_2d(t_game *game)
 	int		j;
 
 	i = 0;
-	while (i < game->map.xlength)
+	while (i < game->map.ylength)
 	{
 		j = 0;
-		while (j < game->map.ylength)
+		while (j < game->map.xlength)
 		{
 			if (my_map[i][j] == 1)
 				make_tile(game, i, j, COLOR_WALL);
