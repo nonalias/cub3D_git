@@ -39,13 +39,13 @@ void	shopping_draw(t_game *game, double lineheight)
 		drawend = game->win.height;
 	if (y < 0)
 		y = 0;
-	int texX = (int)(game->line.origin_x * TEX_WIDTH / game->win.width);
-	while (y < drawend - 1)
+	int texX = (int)(game->wall.x * TEX_WIDTH / game->win.width);
+	while (y < drawend)
 	{
 		//int texY = (int)texPos & (TEX_HEIGHT - 1);
 		// height : wally = texheight : texY
 		// wally * texwidith / height
-		int texY = (int)(y * TEX_HEIGHT / game->win.height);
+		int texY = (int)((y - drawstart) * TEX_HEIGHT / (drawend - drawstart));
 		//texPos += step;
 		//printf("texnum : %d\n", texnum);
 		int color = game->tex.texture[texnum][TEX_HEIGHT * texY + texX];
