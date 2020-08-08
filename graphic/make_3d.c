@@ -23,6 +23,7 @@ void	shopping_draw(t_game *game, double lineheight)
 	int	drawstart = game->line.origin_y;
 	int	drawend = game->line.target_y;
 	int	texnum = game->wall.cardinal;
+	/*
 	double	wallX = game->wall.x;
 	wallX -= floor(wallX);
 
@@ -32,15 +33,20 @@ void	shopping_draw(t_game *game, double lineheight)
 	double step = 1.0 * TEX_HEIGHT / lineheight;
 	double texPos = (drawstart - game->win.height / 2 + lineheight / 2) * step;
 	//printf("texPos : %f\n", texPos);
+	*/
 	double y = drawstart;
 	if (drawend > game->win.height)
 		drawend = game->win.height;
 	if (y < 0)
 		y = 0;
+	int texX = (int)(game->line.origin_x * TEX_WIDTH / game->win.width);
 	while (y < drawend - 1)
 	{
-		int texY = (int)texPos & (TEX_HEIGHT - 1);
-		texPos += step;
+		//int texY = (int)texPos & (TEX_HEIGHT - 1);
+		// height : wally = texheight : texY
+		// wally * texwidith / height
+		int texY = (int)(y * TEX_HEIGHT / game->win.height);
+		//texPos += step;
 		//printf("texnum : %d\n", texnum);
 		int color = game->tex.texture[texnum][TEX_HEIGHT * texY + texX];
 		// 어둡게 하는 코드
