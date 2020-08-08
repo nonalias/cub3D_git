@@ -70,6 +70,7 @@ typedef	struct	s_wall
 	double		angle;
 	double		distance;
 	int			is_x_or_y;
+	int			cardinal;
 }				t_wall;
 
 typedef struct	s_ray
@@ -102,6 +103,12 @@ typedef struct	s_map
 	char		*name;
 }				t_map;
 
+typedef struct	s_tex
+{
+	int			texture[4][TEX_WIDTH * TEX_HEIGHT];
+	int			**cart;
+}				t_tex;
+
 typedef struct	s_game
 {
 	void		*mlx_ptr;
@@ -115,6 +122,7 @@ typedef struct	s_game
 	t_wall		wall;
 	t_ray		ray;
 	t_map		map;
+	t_tex		tex;
 	int			seek_angle;
 	int			seek_distance;
 	double		tile_xsize;
@@ -167,6 +175,7 @@ void			player_init(t_game *game);
 void			ray_init(t_game *game);
 void			wall_init(t_game *game);
 void			flag_init(t_game *game);
+void			cart_init(t_game *game);
 
 void			move_w_a(t_game *game);
 void			move_w_d(t_game *game);

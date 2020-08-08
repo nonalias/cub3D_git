@@ -1,40 +1,54 @@
 #include "../cub3d.h"
 
-/*
-int		get_wall_distance(t_game *game)
+void	check_cardinal(t_game *game)
 {
-	double	dx; double	dy;
-	double	step;
-dx = game->line.target_x - game->line.origin_x; dy = game->line.target_y - game->line.origin_y;
-	step = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
-	dx /= step;
-	dy /= step;
-	while (fabs(game->line.target_x - game->line.origin_x) > 1
-			|| fabs(game->line.target_y - game->line.origin_y) > 1)
-	{ 
-		if (check_wall(game, game->line.origin_x, game->line.origin_y))
-		{ dx = game->player.cur_x - game->line.origin_x;
-			dy = game->player.cur_y - game->line.origin_y;
-			return sqrt(dx * dx + dy * dy);
-		}
-		if (game->line.origin_x < 0 || game->line.origin_x >= game->win.width
-				|| game->line.origin_y < 0 || game->line.origin_y >= game->win.height)
-		{
-			game->line.origin_x += dx;
-			game->line.origin_y += dy;
-			continue;
-		}
-		game->line.origin_x += dx;
-		game->line.origin_y += dy;
+	if (game->wall.is_x_or_y == X_SIDE)
+	{
+		if (game->wall.angle > 90 && game->wall.angle < 270)
+			game->wall.cardinal = WEST;
+		else
+			game->wall.cardinal = EAST;
+	}
+	else if (game->wall.is_x_or_y == Y_SIDE)
+	{
+		if (game->wall.angle > 0 && game->wall.angle < 180)
+			game->wall.cardinal = SOUTH;
+		else
+			game->wall.cardinal = NORTH;
 	}
 }
-*/
 
-double	get_remain(double distance, int operator)
+void	shopping_draw(t_game *game, double lineheight)
 {
-	while (distance - operator > 0)
-		distance -= operator;
-	return (distance);
+	int	drawstart = game->line.origin_y;
+	int	drawend = game->line.target_y;
+	int	texnum = game->wall.cardinal;
+	double	wallX = game->wall.x;
+	wallX -= floor(wallX);
+
+	int texX = (int)(wallX * (double)TEX_WIDTH);
+	texX = TEX_WIDTH - texX - 1;
+
+	double step = 1.0 * TEX_HEIGHT / lineheight;
+	double texPos = (drawstart - game->win.height / 2 + lineheight / 2) * step;
+	//printf("texPos : %f\n", texPos);
+	double y = drawstart;
+	if (drawend > game->win.height)
+		drawend = game->win.height;
+	if (y < 0)
+		y = 0;
+	while (y < drawend - 1)
+	{
+		int texY = (int)texPos & (TEX_HEIGHT - 1);
+		texPos += step;
+		//printf("texnum : %d\n", texnum);
+		int color = game->tex.texture[texnum][TEX_HEIGHT * texY + texX];
+		// 어둡게 하는 코드
+		if (game->wall.is_x_or_y == X_SIDE)
+			color = (color >> 1) & 8355711;
+		game->img.data[to_coord(game, game->line.origin_x, y)] = color;
+		y += 1;
+	}
 }
 
 //TODO: rader도 seekangle부분 수정하기
@@ -58,15 +72,6 @@ void	make_3d(t_game *game)
 		else if (game->wall.angle > 360)
 			game->wall.angle -= 360;
 		distance = get_wall_x_y(game) * cos(TO_RADIAN(i));
-		//distance -= get_remain(distance, 4);
-		// if 24672 no show  (distance infinite)
-		/*
-		if (distance < 0 || distance > game->seek_distance)
-		{
-			i += 0.1;
-			continue;
-		}
-		*/
 		double	distanceprojectionplane = (game->win.width / 2) / tan(M_PI / 180 * game->seek_angle / 2);
 		double	wallstripheight = (game->tile_ysize / distance) * distanceprojectionplane;
 		game->line.origin_x = ((i + game->seek_angle / 2) * game->win.width / game->seek_angle);
@@ -88,47 +93,9 @@ void	make_3d(t_game *game)
 		game->line.target_x = game->line.origin_x;
 		game->line.target_y = game->win.height / 2 + (wallstripheight / 2);
 		//game->line.color = 0xaaaaaa - 0x010101 * (int)(0xaaaaaa / game->seek_distance * distance);
-		if (game->wall.is_x_or_y == X_SIDE)
-		{
-			if (game->wall.angle > 90 && game->wall.angle < 270)
-			{
-				game->line.color = 0xe96187; //ㅃㅏㄹ강
-			}
-			else
-			{
-				game->line.color = 0xa0d995; // 초록
-			}
-		}
-		else if (game->wall.is_x_or_y == Y_SIDE)
-		{
-			if (game->wall.angle > 0 && game->wall.angle < 180)
-			{
-				game->line.color = 0x0a1172; //네이비
-			}
-			else
-				game->line.color = 0xdcd9f8; //연분
-		}
-		/*
-		if (distance < game->seek_distance / 8 * 1)
-			game->line.color = 0xdadada;
-		else if (distance < game->seek_distance / 8 * 2)
-			game->line.color = 0xdadada - 0x141414; // 20
-		else if (distance < game->seek_distance / 8 * 3)
-			game->line.color = 0xdadada - 0x282828; // 40
-		else if (distance < game->seek_distance / 8 * 4)
-			game->line.color = 0xdadada  - 0x3c3c3c; // 60
-		else if (distance < game->seek_distance / 8 * 5)
-			game->line.color = 0xdadada - 0x505050;
-		else if (distance < game->seek_distance / 8 * 6)
-			game->line.color = 0xdadada - 0x646464;
-		else if (distance < game->seek_distance / 8 * 7)
-			game->line.color = 0xdadada - 0x787878;
-		else if (distance < game->seek_distance / 8 * 8)
-			game->line.color = 0xdadada - 0x8c8c8c;
-		else
-			game->line.color = 0xdadada - 0xa0a0a0;
-			*/
-		make_line(game);
+		check_cardinal(game);
+		shopping_draw(game, wallstripheight);
+		//make_line(game);
 		i += 0.06;
 	}
 }

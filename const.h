@@ -19,5 +19,11 @@
 # define COLOR_WHITE 0xffffff
 # define COLOR_GREEN 0x00ff00
 # define MINIMAP_RATIO 5
+# define EAST 0
+# define WEST 1
+# define SOUTH 2
+# define NORTH 3
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 #endif
