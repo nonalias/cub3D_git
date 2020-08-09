@@ -49,7 +49,8 @@ void	shopping_draw(t_game *game, double lineheight)
 		y = 0;
 	while (y < drawend)
 	{
-		int texY = (int)texPos & (TEX_HEIGHT - 1);
+		//int texY = (int)texPos & (TEX_HEIGHT - 1);
+		int texY = y / (game->line.target_y - game->line.origin_y) * TEX_HEIGHT;
 		int color = game->tex.img[texnum].data[TEX_HEIGHT * texY + texX];
 		// 어둡게 하는 코드
 		if (game->wall.is_x_or_y == X_SIDE)
@@ -102,7 +103,7 @@ void	make_3d(t_game *game)
 		game->line.target_y = game->win.height / 2 + (wallstripheight / 2);
 		//game->line.color = 0xaaaaaa - 0x010101 * (int)(0xaaaaaa / game->seek_distance * distance);
 		check_cardinal(game);
-		shopping_draw(game, distance / cos(TO_RADIAN(i)));
+		shopping_draw(game, wallstripheight);
 		//make_line(game);
 		i += 0.06;
 	}
