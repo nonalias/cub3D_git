@@ -50,7 +50,7 @@ void	shopping_draw(t_game *game, double lineheight)
 	while (y < drawend)
 	{
 		//int texY = (int)texPos & (TEX_HEIGHT - 1);
-		int texY = y / (game->line.target_y - game->line.origin_y) * TEX_HEIGHT;
+		int texY = y / drawend * TEX_HEIGHT;
 		int color = game->tex.img[texnum].data[TEX_HEIGHT * texY + texX];
 		// 어둡게 하는 코드
 		if (game->wall.is_x_or_y == X_SIDE)
