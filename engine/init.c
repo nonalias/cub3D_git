@@ -52,6 +52,7 @@ void	ray_init(t_game *game)
 	game->ray.nexthorztouchy = 0;
 	game->ray.nextverttouchx = 0;
 	game->ray.nextverttouchy = 0;
+	game->ray.angle = 0;
 }
 
 void	init(t_game *game)

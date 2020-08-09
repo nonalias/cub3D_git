@@ -31,13 +31,12 @@ void	make_rader_line(t_game *game, t_pos origin, t_pos target)
 
 void	make_rader(t_game *game)
 {
-	double		i;
 	t_pos		pos[2];
 
-	i = game->seek_angle / 2 * -1;
-	while (i < game->seek_angle / 2)
+	game->ray.angle = game->seek_angle / 2 * -1;
+	while (game->ray.angle < game->seek_angle / 2)
 	{
-		game->wall.angle = game->player.rot_angle + i;
+		game->wall.angle = game->player.rot_angle + game->ray.angle;
 		if (game->wall.angle < 0)
 			game->wall.angle += 360;
 		else if (game->wall.angle > 360)
@@ -48,6 +47,6 @@ void	make_rader(t_game *game)
 		game->line.color = 0x0000a1;
 		make_line(game, pos[0], pos[1]);
 		//make_rader_line(game);
-		i += 0.06;
+		game->ray.angle += 0.06;
 	}
 }

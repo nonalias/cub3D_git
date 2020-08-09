@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/09 21:40:16 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/09 21:49:50 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef	struct	s_wall
 
 typedef struct	s_ray
 {
+	double		angle;
 	double		vertx;
 	double		verty;
 	double		horzx;

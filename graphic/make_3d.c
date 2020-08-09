@@ -24,31 +24,31 @@ void	shopping_draw(t_game *game, double wallheight)
 }
 */
 
-void	make_ceil(t_game *game, double i, double wall_height)
+void	make_ceil(t_game *game, double wall_height)
 {
 	t_pos	pos[2];
 
-	set_pos(&pos[0], ((i + game->seek_angle / 2) * game->win.width / game->seek_angle), 0);
+	set_pos(&pos[0], ((game->ray.angle + game->seek_angle / 2) * game->win.width / game->seek_angle), 0);
 	set_pos(&pos[1], pos[0].x, game->win.height / 2 - (wall_height / 2));
 	game->line.color = 0x50bcdf;
 	make_line(game, pos[0], pos[1]);
 }
 
-void	make_floor(t_game *game, double i, double wall_height)
+void	make_floor(t_game *game, double wall_height)
 {
 	t_pos	pos[2];
 
-	set_pos(&pos[0], ((i + game->seek_angle / 2) * game->win.width / game->seek_angle), game->win.height / 2 + (wall_height / 2) - 1);
+	set_pos(&pos[0], ((game->ray.angle + game->seek_angle / 2) * game->win.width / game->seek_angle), game->win.height / 2 + (wall_height / 2) - 1);
 	set_pos(&pos[1], pos[0].x, game->win.height);
 	game->line.color = 0xf0ecdd;
 	make_line(game, pos[0], pos[1]);
 }
 
-void	make_wall(t_game *game, double i, double wall_height)
+void	make_wall(t_game *game, double wall_height)
 {
 	t_pos	pos[2];
 
-	set_pos(&pos[0], ((i + game->seek_angle / 2) * game->win.width / game->seek_angle), game->win.height / 2 - (wall_height / 2));
+	set_pos(&pos[0], ((game->ray.angle + game->seek_angle / 2) * game->win.width / game->seek_angle), game->win.height / 2 - (wall_height / 2));
 	set_pos(&pos[1], pos[0].x, game->win.height / 2 + (wall_height / 2));
 	check_cardinal(game);
 	if (game->wall.cardinal == WEST)
@@ -68,23 +68,22 @@ void	make_3d(t_game *game)
 {
 	double	distance;
 	double	wallheight;
-	double	i;
 	t_pos	pos[2];
 
-	i = game->seek_angle / 2 * -1;
-	while (i < game->seek_angle / 2)
+	game->ray.angle = -1 * game->seek_angle / 2;
+	while (game->ray.angle < game->seek_angle / 2)
 	{ 
-		game->wall.angle = game->player.rot_angle + i;
+		game->wall.angle = game->player.rot_angle + game->ray.angle;
 		if (game->wall.angle < 0)
 			game->wall.angle += 360;
 		else if (game->wall.angle > 360)
 			game->wall.angle -= 360;
-		distance = get_wall_x_y(game) * cos(TO_RADIAN(i));
+		distance = get_wall_x_y(game) * cos(TO_RADIAN(game->ray.angle));
 		double	distanceprojectionplane = (game->win.width / 2) / tan(M_PI / 180 * game->seek_angle / 2);
 		double	wallstripheight = (game->tile_ysize / distance) * distanceprojectionplane;
-		make_ceil(game, i, wallstripheight);
-		make_floor(game, i, wallstripheight);
-		make_wall(game, i, wallstripheight);
-		i += 0.06;
+		make_ceil(game, wallstripheight);
+		make_floor(game, wallstripheight);
+		make_wall(game, wallstripheight);
+		game->ray.angle += 0.06;
 	}
 }
