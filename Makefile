@@ -16,9 +16,9 @@ SRCS	=	./cub3d.c \
 			./engine/raycasting_vert.c \
 			./engine/raycasting_horz.c \
 			./engine/utils.c \
+			./engine/pos.c \
 			./get_next_line/get_next_line.c \
 			./get_next_line/get_next_line_utils.c \
-			./pos.c \
 
 all:
 	gcc -L ./mlx -L ./libft -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./ -I ./get_next_line
