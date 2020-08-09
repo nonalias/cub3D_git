@@ -35,10 +35,10 @@ double	raycasting_horz(t_game *game)
 	game->ray.up_facing = !game->ray.down_facing;
 	game->ray.left_facing = game->wall.angle > 90 && game->wall.angle < 270;
 	game->ray.right_facing = !game->ray.left_facing;
-	game->ray.yintercept = floor(game->player.cur_y / game->tile_ysize) * game->tile_ysize;
+	game->ray.yintercept = floor(game->player.y / game->tile_ysize) * game->tile_ysize;
 	if (game->ray.down_facing)
 		game->ray.yintercept += game->tile_ysize;
-	game->ray.xintercept = game->player.cur_x + (game->ray.yintercept - game->player.cur_y) / tan(TO_RADIAN(game->wall.angle));
+	game->ray.xintercept = game->player.x + (game->ray.yintercept - game->player.y) / tan(TO_RADIAN(game->wall.angle));
 	game->ray.ystep = game->tile_ysize;
 	if (game->ray.up_facing)
 		game->ray.ystep *= -1;
@@ -47,8 +47,8 @@ double	raycasting_horz(t_game *game)
 	game->ray.xstep *= (game->ray.right_facing && game->ray.xstep < 0) ? -1 : 1;
 	raycasting_horz2(game);
 	return game->ray.foundhorzwallhit
-		? (TWO_POINT_DISTANCE(game->player.cur_x,
-							game->player.cur_y,
+		? (TWO_POINT_DISTANCE(game->player.x,
+							game->player.y,
 							game->ray.horzx,
 							game->ray.horzy))
 		: game->win.width * game->win.height;

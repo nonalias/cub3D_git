@@ -25,8 +25,8 @@ void	game_init(t_game *game)
 
 void	player_init(t_game *game)
 {
-	game->player.cur_x = game->win.width / 2;
-	game->player.cur_y = game->win.height / 2;
+	game->player.x = game->win.width / 2;
+	game->player.y = game->win.height / 2;
 	game->player.rot_angle = 0;
 	game->player.rot_speed = 4;
 	game->player.move_speed = 4;

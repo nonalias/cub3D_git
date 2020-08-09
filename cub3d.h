@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/09 21:34:22 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/09 21:40:16 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct	s_img {
 
 typedef struct	s_player
 {
-	double		cur_x;
-	double		cur_y;
+	double		x;
+	double		y;
 	double		rot_angle;
 	double		rot_speed;
 	int			move_speed;

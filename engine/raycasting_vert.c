@@ -35,9 +35,9 @@ double	raycasting_vert(t_game *game)
 	game->ray.up_facing = !game->ray.down_facing;
 	game->ray.right_facing = game->wall.angle < 90 || game->wall.angle > 270;
 	game->ray.left_facing = !game->ray.right_facing;
-	game->ray.xintercept = floor(game->player.cur_x / game->tile_xsize) * game->tile_xsize;
+	game->ray.xintercept = floor(game->player.x / game->tile_xsize) * game->tile_xsize;
 	game->ray.xintercept += game->ray.right_facing ? game->tile_xsize : 0;
-	game->ray.yintercept = game->player.cur_y + (game->ray.xintercept - game->player.cur_x) * tan(TO_RADIAN(game->wall.angle));
+	game->ray.yintercept = game->player.y + (game->ray.xintercept - game->player.x) * tan(TO_RADIAN(game->wall.angle));
 	game->ray.xstep = game->tile_xsize;
 	game->ray.xstep *= game->ray.left_facing ? -1 : 1;
 	game->ray.ystep = game->tile_xsize * tan(TO_RADIAN(game->wall.angle));
@@ -45,8 +45,8 @@ double	raycasting_vert(t_game *game)
 	game->ray.ystep *= (game->ray.down_facing && game->ray.ystep < 0) ? -1 : 1;
 	raycasting_vert2(game);
 	return game->ray.foundvertwallhit
-		? (TWO_POINT_DISTANCE(game->player.cur_x,
-					game->player.cur_y,
+		? (TWO_POINT_DISTANCE(game->player.x,
+					game->player.y,
 					game->ray.vertx,
 					game->ray.verty))
 		: game->win.width * game->win.height;

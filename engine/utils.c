@@ -28,9 +28,9 @@ void	debug_process(t_game *game)
 	game->debug.map_str = ft_strdup("MAP NAME : ");
 	game->debug.map_str = ft_strjoin(game->debug.map_str, game->map.name);
 	game->debug.x_str = ft_strdup("PLAYER POSITION (X) : ");
-	game->debug.x_str = ft_strjoin(game->debug.x_str, ft_itoa((int)game->player.cur_x));
+	game->debug.x_str = ft_strjoin(game->debug.x_str, ft_itoa((int)game->player.x));
 	game->debug.y_str = ft_strdup("PLAYER POSITION (Y) : ");
-	game->debug.y_str = ft_strjoin(game->debug.y_str, ft_itoa((int)game->player.cur_y));
+	game->debug.y_str = ft_strjoin(game->debug.y_str, ft_itoa((int)game->player.y));
 	game->debug.rot_angle_str = ft_strdup("ROTATION ANGLE : ");
 	game->debug.rot_angle_str = ft_strjoin(game->debug.rot_angle_str, ft_itoa((int)game->player.rot_angle));
 	x = (int)(game->win.width / 1.6);
