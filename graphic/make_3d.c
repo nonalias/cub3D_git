@@ -23,38 +23,34 @@ void	shopping_draw(t_game *game, double lineheight)
 	int	drawstart = game->line.origin_y;
 	int	drawend = game->line.target_y;
 	int	texnum = game->wall.cardinal;
-	/*
-	double	wallX = game->wall.x;
-	wallX -= floor(wallX);
 
+	double wallX;
+	if (game->wall.is_x_or_y == Y_SIDE)
+	{
+		wallX = game->wall.x;
+		wallX = ((int)wallX % (int)game->tile_xsize) / 64;
+	}
+	else
+	{
+		wallX = game->wall.y;
+		wallX = ((int)wallX % (int)game->tile_ysize) / 64;
+	}
+	//wallX -= floor(wallX);
 	int texX = (int)(wallX * (double)TEX_WIDTH);
-	texX = TEX_WIDTH - texX - 1;
+	if (texnum == WEST || texnum == SOUTH)
+		texX = TEX_WIDTH - texX - 1;
 
 	double step = 1.0 * TEX_HEIGHT / lineheight;
 	double texPos = (drawstart - game->win.height / 2 + lineheight / 2) * step;
-	//printf("texPos : %f\n", texPos);
-	*/
 	double y = drawstart;
 	if (drawend > game->win.height)
 		drawend = game->win.height;
 	if (y < 0)
 		y = 0;
-	int texX = (int)(game->wall.x * TEX_WIDTH / game->win.width);
-	/*
-return (*(int*)(tex->ptr
-			+ (4 * tex->width * (int)pos->y)
-			+ (4 * (int)pos->x)));
-			*/
 	while (y < drawend)
 	{
-		//int texY = (int)texPos & (TEX_HEIGHT - 1);
-		// height : wally = texheight : texY
-		// wally * texwidith / height
-		int texY = (int)((y - drawstart) * TEX_HEIGHT / (drawend - drawstart));
-		//texPos += step;
-		//printf("texnum : %d\n", texnum);
-		//int color = game->tex.texture[texnum][TEX_HEIGHT * texY + texX];
-		int color = *(int*)(game->tex.img[texnum].data) + (4 * TEX_WIDTH * (int)game->player.cur_y) + (4 * (int)game->player.cur_x);
+		int texY = (int)texPos & (TEX_HEIGHT - 1);
+		int color = game->tex.img[texnum].data[TEX_HEIGHT * texY + texX];
 		// 어둡게 하는 코드
 		if (game->wall.is_x_or_y == X_SIDE)
 			color = (color >> 1) & 8355711;
