@@ -38,6 +38,36 @@ void	make_floor(t_game *game, double wall_height)
 	make_line(game, pos[0], pos[1]);
 }
 
+void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
+{
+	int		texX;
+	int		texY;
+	double	x, y;
+
+	//수직선에 부딪혔다면
+	if (game->wall.is_x_or_y == Y_SIDE)
+		texX = (int)(fmod(game->wall.y, game->tile_ysize) * TEX_HEIGHT / game->tile_ysize);
+	else
+		texX = (int)(fmod(game->wall.x, game->tile_xsize) * TEX_WIDTH / game->tile_xsize);
+	//텍스쳐의 x좌표는 수직선에 부딪혔을 경우 부딪힌 y좌표에 의해 결정되고, 수평선에 부딪혔을 경우 부딪힌 x좌표에 의해 결정된다.
+	
+	// 선을 긋기 위해서 시작좌표와 끝좌표를 알아야 한다.
+	x = pos[0].x; // pos[1].x 도 상관없다.
+	y = pos[0].y;
+	if (y < 0)
+		y = 0;
+	if (y > game->win.height)
+		y = game->win.height;
+	// 시작과 끝 : pos[0].y, pos[1].y 
+	while (y < pos[1].y)
+	{
+		texY = TEX_HEIGHT * (y - pos[0].y) / (pos[1].y - pos[0].y);
+		int color = game->tex.img[game->wall.cardinal].data[texY * TEX_HEIGHT + texX];
+		game->img.data[to_coord(game, x, y)] = color;
+		y += 1;
+	}
+}
+
 void	make_wall(t_game *game, double wall_height)
 {
 	t_pos	pos[2];
@@ -56,7 +86,7 @@ void	make_wall(t_game *game, double wall_height)
 		game->line.color = 0x0f0f0f;
 	make_line(game, pos[0], pos[1]);
 	*/
-	make_wall_by_image(game, wallstripheight);
+	make_wall_by_image(game, wall_height, pos);
 }
 
 //TODO: rader도 seekangle부분 수정하기
