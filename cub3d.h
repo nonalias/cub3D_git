@@ -1,5 +1,4 @@
 #ifndef __CUB3D_H
-
 # define __CUB3D_H
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
@@ -23,6 +22,8 @@ typedef struct	s_img {
 	int			size_l;
 	int			bpp;
 	int			endian;
+	int			height;
+	int			width;
 }				t_img;
 
 typedef struct	s_player
@@ -105,7 +106,7 @@ typedef struct	s_map
 
 typedef struct	s_tex
 {
-	int			texture[4][TEX_WIDTH * TEX_HEIGHT];
+	t_img		img[4];
 	int			**cart;
 }				t_tex;
 

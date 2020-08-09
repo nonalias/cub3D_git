@@ -40,6 +40,11 @@ void	shopping_draw(t_game *game, double lineheight)
 	if (y < 0)
 		y = 0;
 	int texX = (int)(game->wall.x * TEX_WIDTH / game->win.width);
+	/*
+return (*(int*)(tex->ptr
+			+ (4 * tex->width * (int)pos->y)
+			+ (4 * (int)pos->x)));
+			*/
 	while (y < drawend)
 	{
 		//int texY = (int)texPos & (TEX_HEIGHT - 1);
@@ -48,7 +53,8 @@ void	shopping_draw(t_game *game, double lineheight)
 		int texY = (int)((y - drawstart) * TEX_HEIGHT / (drawend - drawstart));
 		//texPos += step;
 		//printf("texnum : %d\n", texnum);
-		int color = game->tex.texture[texnum][TEX_HEIGHT * texY + texX];
+		//int color = game->tex.texture[texnum][TEX_HEIGHT * texY + texX];
+		int color = *(int*)(game->tex.img[texnum].data) + (4 * TEX_WIDTH * (int)game->player.cur_y) + (4 * (int)game->player.cur_x);
 		// 어둡게 하는 코드
 		if (game->wall.is_x_or_y == X_SIDE)
 			color = (color >> 1) & 8355711;
