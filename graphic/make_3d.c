@@ -18,7 +18,7 @@ void	check_cardinal(t_game *game)
 	}
 }
 
-void	shopping_draw(t_game *game, double lineheight)
+void	shopping_draw(t_game *game, double wallheight)
 {
 	int	drawstart = game->line.origin_y;
 	int	drawend = game->line.target_y;
@@ -28,30 +28,40 @@ void	shopping_draw(t_game *game, double lineheight)
 	if (game->wall.is_x_or_y == Y_SIDE)
 	{
 		wallX = game->wall.x;
-		wallX = ((int)wallX % (int)game->tile_xsize) / 64;
+		wallX = (int)fmod(wallX, game->tile_xsize) / 64;
 	}
 	else
 	{
 		wallX = game->wall.y;
-		wallX = ((int)wallX % (int)game->tile_ysize) / 64;
+		wallX = (int)fmod(wallX, game->tile_ysize) / 64;
 	}
 	//wallX -= floor(wallX);
 	int texX = (int)(wallX * (double)TEX_WIDTH);
-	if (texnum == WEST || texnum == SOUTH)
-		texX = TEX_WIDTH - texX - 1;
+	//if (texnum == WEST || texnum == SOUTH)
+		//texX = TEX_WIDTH - texX - 1;
 
-	double step = 1.0 * TEX_HEIGHT / lineheight;
-	double texPos = (drawstart - game->win.height / 2 + lineheight / 2) * step;
+	double step = 1.0 * TEX_HEIGHT / wallheight;
+	double texPos = (drawstart - game->win.height / 2 + wallheight / 2) * step;
 	double y = drawstart;
 	if (drawend > game->win.height)
 		drawend = game->win.height;
 	if (y < 0)
 		y = 0;
+	double a = game->win.width / 2 - wallheight / 2 - 1;
+	if (a < 0)
+		a = 0;
 	while (y < drawend)
 	{
 		//int texY = (int)texPos & (TEX_HEIGHT - 1);
-		int texY = y / drawend * TEX_HEIGHT;
-		int color = game->tex.img[texnum].data[TEX_HEIGHT * texY + texX];
+		texPos += step;
+		//int texY = (y - drawstart) / (drawend - drawstart) * TEX_HEIGHT;
+		int	texY = (game->win.height - (a / 2 - wallheight / 2)) / wallheight * TEX_HEIGHT;
+		int color;
+		if (texX >= 0 && texX <= game->win.width && texY >= 0 && texY <= game->win.height)
+			color = (*(game->tex.img[texnum].data + ((int)TEX_WIDTH * (int)texY + (int)texX)));
+			//color = game->tex.img[texnum].data[TEX_HEIGHT * texY + texX];
+		else color = 0x0;
+		
 		// 어둡게 하는 코드
 		if (game->wall.is_x_or_y == X_SIDE)
 			color = (color >> 1) & 8355711;

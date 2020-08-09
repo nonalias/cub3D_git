@@ -6,10 +6,9 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 14:49:13 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/09 14:56:37 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/09 18:02:56 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -24,43 +23,6 @@ int		valid_check(t_game *game)
 	game->map.fd = open(game->map.name, O_RDONLY);
 	if (fd < 2)
 		printf("MAP ERROR");
-}
-*/
-
-/* tex.texture 수정으로 인해 사용 불가능
-void	set_texture(t_game *game)
-{
-	int		x;
-	int		y;
-
-	x = 0;
-	while (x < 4)
-	{
-		y = 0;
-		while (y < TEX_HEIGHT * TEX_WIDTH)
-		{
-			game->tex.texture[x][y] = 0x000000;
-			y++;
-		}
-		x++;
-	}
-	x = 0;
-	while (x < TEX_WIDTH)
-	{
-		y = 0;
-		while (y < TEX_HEIGHT)
-		{
-			int xorcolor = (x * 256 / TEX_WIDTH) ^ (y * 256 / TEX_HEIGHT);
-			int ycolor = y * 256 / TEX_HEIGHT;
-			int xycolor = y * 128 / TEX_HEIGHT + x * 128 / TEX_WIDTH;
-			game->tex.texture[0][TEX_WIDTH * y + x] = 65536 * 254 * (x != y && x != TEX_WIDTH - y);
-			game->tex.texture[1][TEX_WIDTH * y + x] = xycolor + 256 * xycolor + 65536 * xycolor;
-			game->tex.texture[2][TEX_WIDTH * y + x] = 256 * xycolor + 65536 * xycolor;
-			game->tex.texture[3][TEX_WIDTH * y + x] = xorcolor + 256 * xorcolor + 65536 * xorcolor;
-			y++;
-		}
-		x++;
-	}
 }
 */
 

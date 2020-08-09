@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   const.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/09 18:02:03 by taehkim           #+#    #+#             */
+/*   Updated: 2020/08/09 18:02:05 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef __CONST_H
 # define __CONST_H
 
 # define KEY_PRESSED 2
 # define KEY_RELEASED 3
 # define WIN_WIDTH 1000
-# define WIN_HEIGHT	1000 
+# define WIN_HEIGHT	1000
 # define MAP_XLENGTH 15
 # define MAP_YLENGTH 11
 # define LEFT_ARROW 123
