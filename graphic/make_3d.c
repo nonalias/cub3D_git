@@ -102,7 +102,7 @@ void	make_3d(t_game *game)
 		game->line.target_y = game->win.height / 2 + (wallstripheight / 2);
 		//game->line.color = 0xaaaaaa - 0x010101 * (int)(0xaaaaaa / game->seek_distance * distance);
 		check_cardinal(game);
-		shopping_draw(game, wallstripheight);
+		shopping_draw(game, distance / cos(TO_RADIAN(i)));
 		//make_line(game);
 		i += 0.06;
 	}
