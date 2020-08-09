@@ -15,11 +15,10 @@ SRCS	=	./cub3d.c \
 			./graphic/make_player.c \
 			./engine/raycasting_vert.c \
 			./engine/raycasting_horz.c \
-			./graphic/make_ceil.c \
-			./graphic/make_floor.c \
 			./engine/utils.c \
 			./get_next_line/get_next_line.c \
 			./get_next_line/get_next_line_utils.c \
+			./pos.c \
 
 all:
 	gcc -L ./mlx -L ./libft -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./ -I ./get_next_line

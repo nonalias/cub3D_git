@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/09 18:03:26 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/09 21:34:22 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ typedef struct	s_player
 typedef	struct	s_line
 {
 	int			color;
+	/*
 	double		origin_x;
 	double		origin_y;
 	double		target_x;
 	double		target_y;
+	*/
 }				t_line;
 
 typedef struct	s_window
@@ -122,6 +124,12 @@ typedef struct	s_tex
 	int			**cart;
 }				t_tex;
 
+typedef	struct	s_pos
+{
+	double		x;
+	double		y;
+}				t_pos;
+
 typedef struct	s_game
 {
 	void		*mlx_ptr;
@@ -163,10 +171,10 @@ int		my_map[11][11] = {
 
 void			make_2d(t_game *game);
 void			make_rader(t_game *game);
-void			make_rader_line(t_game *game);
+void			make_rader_line(t_game *game, t_pos origin, t_pos target);
 void			make_3d(t_game *game);
 void			make_player(t_game *game);
-void			make_line(t_game *game); // TODO: line 매개변수로 넣을지 game 단에서 처리할지 결정
+void			make_line(t_game *game, t_pos origin, t_pos target); // TODO: line 매개변수로 넣을지 game 단에서 처리할지 결정
 void			make_view(t_game *game);
 void			make_tile(t_game *game, int i, int j, int color);
 
@@ -189,6 +197,8 @@ void			ray_init(t_game *game);
 void			wall_init(t_game *game);
 void			flag_init(t_game *game);
 void			cart_init(t_game *game);
+
+void			set_pos(t_pos *pos, double x, double y);
 
 void			move_w_a(t_game *game);
 void			move_w_d(t_game *game);
