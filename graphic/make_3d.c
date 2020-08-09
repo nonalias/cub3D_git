@@ -18,12 +18,6 @@ void	check_cardinal(t_game *game)
 	}
 }
 
-/*
-void	shopping_draw(t_game *game, double wallheight)
-{
-}
-*/
-
 void	make_ceil(t_game *game, double wall_height)
 {
 	t_pos	pos[2];
@@ -51,6 +45,7 @@ void	make_wall(t_game *game, double wall_height)
 	set_pos(&pos[0], ((game->ray.angle + game->seek_angle / 2) * game->win.width / game->seek_angle), game->win.height / 2 - (wall_height / 2));
 	set_pos(&pos[1], pos[0].x, game->win.height / 2 + (wall_height / 2));
 	check_cardinal(game);
+	/*
 	if (game->wall.cardinal == WEST)
 		game->line.color = 0xff0000;
 	if (game->wall.cardinal == EAST)
@@ -60,7 +55,8 @@ void	make_wall(t_game *game, double wall_height)
 	if (game->wall.cardinal == NORTH)
 		game->line.color = 0x0f0f0f;
 	make_line(game, pos[0], pos[1]);
-	//shopping_draw(game, wallstripheight);
+	*/
+	make_wall_by_image(game, wallstripheight);
 }
 
 //TODO: rader도 seekangle부분 수정하기
