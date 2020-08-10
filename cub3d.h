@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/09 21:49:50 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/10 15:31:56 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <unistd.h>
 # define TO_RADIAN(x) (((M_PI) / (180)) * (x))
 # define TWO_POINT_DISTANCE(x1, y1, x2, y2) (sqrt(((x1) - (x2)) * ((x1) - (x2)) + ((y1) - (y2)) * ((y1) - (y2))))
-# define X_SIDE 1
-# define Y_SIDE 0
+# define HORZ_HIT 0
+# define VERT_HIT 1
 
 typedef struct	s_img {
 	void		*img_ptr;
