@@ -22,6 +22,14 @@ void	key_matching(t_game *game)
 		move_a(game);
 	else if (game->key_check[KEY_D])
 		move_d(game);
+	else if (game->key_check[KEY_1])
+		game->player.move_speed -= 0.5;
+	else if (game->key_check[KEY_2])
+		game->player.move_speed += 0.5;
+	else if (game->key_check[KEY_3])
+		game->player.rot_speed -= 0.3;
+	else if (game->key_check[KEY_4])
+		game->player.rot_speed += 0.3;
 }
 
 int		hook_action(t_game *game)
@@ -32,7 +40,7 @@ int		hook_action(t_game *game)
 	else if (game->player.rot_angle < 0)
 		game->player.rot_angle += 360;
 	make_view(game);
-	debug_process(game);
+	status_show(game);
 	free_process(game);
 	return (1);
 }

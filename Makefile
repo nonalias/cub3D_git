@@ -17,6 +17,7 @@ SRCS	=	./cub3d.c \
 			./engine/raycasting_horz.c \
 			./engine/utils.c \
 			./engine/pos.c \
+			./engine/status.c \
 			./get_next_line/get_next_line.c \
 			./get_next_line/get_next_line_utils.c \
 

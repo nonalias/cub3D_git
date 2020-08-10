@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/10 15:56:05 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/10 21:10:13 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct	s_player
 	double		y;
 	double		rot_angle;
 	double		rot_speed;
-	int			move_speed;
+	double		move_speed;
 }				t_player;
 
 typedef	struct	s_line
@@ -76,6 +76,8 @@ typedef struct	s_debug
 	char		*x_str;
 	char		*y_str;
 	char		*rot_angle_str;
+	char		*move_speed_str;
+	char		*rot_speed_str;
 }				t_debug; //TODO : 끝날 때 free 해 주어야 함.
 
 typedef	struct	s_wall
@@ -212,7 +214,7 @@ void			move_a(t_game *game);
 void			move_d(t_game *game);
 int				to_coord(t_game *game, double x, double y);
 
-void			debug_process(t_game *game);
+void			status_show(t_game *game);
 void			arg_parse(t_game *game, int argc, char **argv);
 void			free_process(t_game *game);
 
