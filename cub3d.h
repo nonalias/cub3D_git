@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/10 21:35:58 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/10 21:51:50 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ typedef struct	s_img {
 
 typedef struct	s_player
 {
-	double		x;
-	double		y;
-	double		rot_angle;
-	double		rot_speed;
-	double		move_speed;
+	float		x;
+	float		y;
+	float		rot_angle;
+	float		rot_speed;
+	float		move_speed;
 }				t_player;
 
 typedef	struct	s_line
@@ -181,6 +181,8 @@ void			make_player(t_game *game);
 void			make_line(t_game *game, t_pos origin, t_pos target); // TODO: line 매개변수로 넣을지 game 단에서 처리할지 결정
 void			make_view(t_game *game);
 void			make_tile(t_game *game, int i, int j, int color);
+void			make_crosshair(t_game *game);
+void			make_rectangle(t_game *game, t_pos pos[2], int color);
 
 int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);

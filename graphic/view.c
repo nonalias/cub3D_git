@@ -10,6 +10,7 @@ void	make_view(t_game *game)
 	make_2d(game);
 	make_rader(game);
 	make_player(game);
+	make_crosshair(game);
 	/*
 	game->line.color = 0x00ff00;
 	game->line.origin_x = game->win.width / 2;

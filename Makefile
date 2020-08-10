@@ -13,6 +13,8 @@ SRCS	=	./cub3d.c \
 			./graphic/make_3d.c \
 			./graphic/make_rader.c \
 			./graphic/make_player.c \
+			./graphic/make_rectangle.c \
+			./graphic/make_crosshair.c \
 			./engine/raycasting_vert.c \
 			./engine/raycasting_horz.c \
 			./engine/utils.c \
