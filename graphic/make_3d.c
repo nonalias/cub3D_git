@@ -51,11 +51,12 @@ void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
 		texX = (int)(fmod(game->wall.x, game->tile_xsize) * TEX_WIDTH / game->tile_xsize);
 	//텍스쳐의 x좌표는 수직선에 부딪혔을 경우 부딪힌 y좌표에 의해 결정되고, 수평선에 부딪혔을 경우 부딪힌 x좌표에 의해 결정된다.
 	
-	if (wallstripheight > game->win.height)
+	game->temp = wallstripheight;
+	if (wallstripheight >= game->win.height)
 	{
-		game->temp = wallstripheight - game->win.height;
-		pos[0].y += game->temp;
-		pos[1].y -= game->temp;
+		wallstripheight = game->win.height - 1;
+		pos[0].y = 0;
+		pos[1].y = game->win.height;
 	}
 	// 선을 긋기 위해서 시작좌표와 끝좌표를 알아야 한다.
 	x = pos[0].x; // pos[1].x 도 상관없다.
@@ -68,19 +69,30 @@ void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
 		x = game->win.width - 1;
 	if (x < 0) 
 		x = 0;
-	if (wallstripheight > game->win.height)
-		printf("pos[0].y : %f, pos[1].y : %f\n", pos[0].y, pos[1].y);
+	//if (wallstripheight > game->win.height)
+		//printf("pos[0].y : %f, pos[1].y : %f\n", pos[0].y, pos[1].y);
 	// 시작과 끝 : pos[0].y, pos[1].y 
+	double y2 = game->temp / 2;
 	while (y < pos[1].y)
 	{
 		//texY = (int)texPos & (TEX_HEIGHT - 1);
 		texY = TEX_HEIGHT * (y - pos[0].y) / (pos[1].y - pos[0].y);
+		double temp_origin;
+		double temp_target;
+		temp_origin = game->temp / 2;
+		temp_target = game->win.height - game->temp / 2;
+		if (game->temp > game->win.height)
+		{
+		texY =  (((y / (double)game->win.height)) * (wallstripheight / game->temp)* (double)TEX_HEIGHT) +  (TEX_HEIGHT * ((game->temp - wallstripheight) / 2.0) / game->temp);
+		//printf(" : %f\n",64 * (game->temp - wallstripheight) / 2.0 / game->temp);
+		}
 		if (texY >= 64)
 			texY = 63;
 		else if (texY <= 0)
 			texY = 0;
 		int color = game->tex.img[game->wall.cardinal].data[texY * TEX_HEIGHT + texX];
 		game->img.data[to_coord(game, x, y)] = color;
+		y2 += (1 / (temp_target - temp_origin));
 		y += 1;
 	}
 }
