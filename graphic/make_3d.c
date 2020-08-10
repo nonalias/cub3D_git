@@ -2,14 +2,14 @@
 
 void	check_cardinal(t_game *game)
 {
-	if (game->wall.is_x_or_y == VERT_HIT)
+	if (game->wall.what_hit == VERT_HIT)
 	{
 		if (game->wall.angle > 90 && game->wall.angle < 270)
 			game->wall.cardinal = WEST;
 		else
 			game->wall.cardinal = EAST;
 	}
-	else if (game->wall.is_x_or_y == HORZ_HIT)
+	else if (game->wall.what_hit == HORZ_HIT)
 	{
 		if (game->wall.angle > 0 && game->wall.angle < 180)
 			game->wall.cardinal = SOUTH;
@@ -45,7 +45,7 @@ void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
 	double	x, y;
 
 	//수직선에 부딪혔다면
-	if (game->wall.is_x_or_y == VERT_HIT)
+	if (game->wall.what_hit == VERT_HIT)
 		texX = (int)(fmod(game->wall.y, game->tile_ysize) * TEX_HEIGHT / game->tile_ysize);
 	else
 		texX = (int)(fmod(game->wall.x, game->tile_xsize) * TEX_WIDTH / game->tile_xsize);

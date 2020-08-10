@@ -6,7 +6,7 @@ void	wall_init(t_game *game)
 	game->wall.y = 0;
 	game->wall.angle = 0;
 	game->wall.distance = 0;
-	game->wall.is_x_or_y = -1;
+	game->wall.what_hit = -1;
 	game->wall.cardinal = -1;
 }
 
