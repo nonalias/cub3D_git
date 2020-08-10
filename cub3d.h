@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/10 15:32:43 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/10 15:56:05 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef struct	s_game
 	t_ray		ray;
 	t_map		map;
 	t_tex		tex;
+	double		temp;
 	int			seek_angle;
 	int			seek_distance;
 	double		tile_xsize;
