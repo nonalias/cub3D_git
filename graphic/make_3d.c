@@ -45,7 +45,7 @@ void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
 	double	x, y;
 
 	//수직선에 부딪혔다면
-	if (game->wall.is_x_or_y == Y_SIDE)
+	if (game->wall.is_x_or_y == X_SIDE)
 		texX = (int)(fmod(game->wall.y, game->tile_ysize) * TEX_HEIGHT / game->tile_ysize);
 	else
 		texX = (int)(fmod(game->wall.x, game->tile_xsize) * TEX_WIDTH / game->tile_xsize);
@@ -57,11 +57,20 @@ void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
 	if (y < 0)
 		y = 0;
 	if (y > game->win.height)
-		y = game->win.height;
+		y = game->win.height - 1;
+	if (x > game->win.width)
+		x = game->win.width - 1;
+	if (x < 0) 
+		x = 0;
 	// 시작과 끝 : pos[0].y, pos[1].y 
 	while (y < pos[1].y)
 	{
+		//texY = (int)texPos & (TEX_HEIGHT - 1);
 		texY = TEX_HEIGHT * (y - pos[0].y) / (pos[1].y - pos[0].y);
+		if (texY >= 64)
+			texY = 63;
+		else if (texY <= 0)
+			texY = 0;
 		int color = game->tex.img[game->wall.cardinal].data[texY * TEX_HEIGHT + texX];
 		game->img.data[to_coord(game, x, y)] = color;
 		y += 1;
