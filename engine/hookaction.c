@@ -5,12 +5,14 @@ void	key_matching2(t_game *game)
 	if (game->key_check[KEY_1]
 			&& game->player.move_speed - 0.5 > 0)
 		game->player.move_speed -= 0.5;
-	else if (game->key_check[KEY_2])
+	else if (game->key_check[KEY_2]
+			&& game->player.move_speed + 0.5 < 40)
 		game->player.move_speed += 0.5;
 	else if (game->key_check[KEY_3]
 			&& game->player.rot_speed - 0.3 > 0)
 		game->player.rot_speed -= 0.3;
-	else if (game->key_check[KEY_4])
+	else if (game->key_check[KEY_4]
+			&& game->player.rot_speed + 0.3 < 25)
 		game->player.rot_speed += 0.3;
 }
 
