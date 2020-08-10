@@ -42,13 +42,13 @@ void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
 {
 	int		texX;
 	int		texY;
-	double	x, y;
+	double	y;
 
 	//수직선에 부딪혔다면
 	if (game->wall.what_hit == VERT_HIT)
-		texX = (int)(fmod(game->wall.y, game->tile_ysize) * TEX_HEIGHT / game->tile_ysize);
+		texX = (int)(fmod(game->wall.y, game->tile_ysize) / game->tile_ysize * TEX_HEIGHT);
 	else
-		texX = (int)(fmod(game->wall.x, game->tile_xsize) * TEX_WIDTH / game->tile_xsize);
+		texX = (int)(fmod(game->wall.x, game->tile_xsize) / game->tile_xsize * TEX_WIDTH);
 	//텍스쳐의 x좌표는 수직선에 부딪혔을 경우 부딪힌 y좌표에 의해 결정되고, 수평선에 부딪혔을 경우 부딪힌 x좌표에 의해 결정된다.
 	
 	game->temp = wallstripheight;
@@ -59,40 +59,18 @@ void	make_wall_by_image(t_game *game, double wallstripheight, t_pos pos[2])
 		pos[1].y = game->win.height;
 	}
 	// 선을 긋기 위해서 시작좌표와 끝좌표를 알아야 한다.
-	x = pos[0].x; // pos[1].x 도 상관없다.
 	y = pos[0].y;
 	if (y < 0)
 		y = 0;
-	if (y > game->win.height)
-		y = game->win.height - 1;
-	if (x > game->win.width)
-		x = game->win.width - 1;
-	if (x < 0) 
-		x = 0;
-	//if (wallstripheight > game->win.height)
-		//printf("pos[0].y : %f, pos[1].y : %f\n", pos[0].y, pos[1].y);
 	// 시작과 끝 : pos[0].y, pos[1].y 
-	double y2 = game->temp / 2;
 	while (y < pos[1].y)
 	{
-		//texY = (int)texPos & (TEX_HEIGHT - 1);
 		texY = TEX_HEIGHT * (y - pos[0].y) / (pos[1].y - pos[0].y);
-		double temp_origin;
-		double temp_target;
-		temp_origin = game->temp / 2;
-		temp_target = game->win.height - game->temp / 2;
 		if (game->temp > game->win.height)
-		{
-		texY =  (((y / (double)game->win.height)) * (wallstripheight / game->temp)* (double)TEX_HEIGHT) +  (TEX_HEIGHT * ((game->temp - wallstripheight) / 2.0) / game->temp);
-		//printf(" : %f\n",64 * (game->temp - wallstripheight) / 2.0 / game->temp);
-		}
-		if (texY >= 64)
-			texY = 63;
-		else if (texY <= 0)
-			texY = 0;
-		int color = game->tex.img[game->wall.cardinal].data[texY * TEX_HEIGHT + texX];
-		game->img.data[to_coord(game, x, y)] = color;
-		y2 += (1 / (temp_target - temp_origin));
+			texY =  (((y / (double)game->win.height)) * (wallstripheight / game->temp) * (double)TEX_HEIGHT) +  (TEX_HEIGHT * ((game->temp - wallstripheight) / 2.0) / game->temp);
+		int color = game->tex.img[game->wall.cardinal]
+			.data[texY * TEX_HEIGHT + texX];
+		game->img.data[to_coord(game, pos[0].x, y)] = color;
 		y += 1;
 	}
 }
