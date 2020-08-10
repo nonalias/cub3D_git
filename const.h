@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:02:03 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/09 18:02:05 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/10 17:35:52 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@
 # define NORTH 3
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
+# define WALL_BOUNDARY 20
 
 #endif
