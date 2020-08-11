@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/11 21:46:21 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/11 22:14:33 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct	s_map
 
 typedef struct	s_tex
 {
-	t_img		img[4];
+	t_img		img[5];
 	int			**cart;
 	int			tex_x;
 	int			tex_y;
@@ -231,4 +231,6 @@ double			raycasting_vert(t_game *game);
 double			raycasting_horz(t_game *game);
 
 void			reset_player(t_game *game);
+
+int				is_sprite(t_game *game);
 #endif

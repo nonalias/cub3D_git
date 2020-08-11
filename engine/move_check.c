@@ -11,8 +11,8 @@ int		move_check(t_game *game)
 	while (angle < 360)
 	{
 		if (check_wall(game,
-					pos.x + 10 * cos(TO_RADIAN(angle)),
-					pos.y + 10 * sin(TO_RADIAN(angle))))
+					pos.x + 50 * cos(TO_RADIAN(angle)),
+					pos.y + 50 * sin(TO_RADIAN(angle))))
 			return (0);
 		angle += 0.5;
 	}

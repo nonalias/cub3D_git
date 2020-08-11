@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 21:05:13 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/11 21:44:57 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/11 22:01:34 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	key_matching2(t_game *game)
 {
-	if (game->key_check[KEY_1]
+	if (game->key_check[KEY_N])
+		reset_player(game);
+	else if (game->key_check[KEY_1]
 			&& game->player.move_speed - 0.5 > 0)
 		game->player.move_speed -= 0.5;
 	else if (game->key_check[KEY_2]
@@ -50,8 +52,6 @@ void	key_matching(t_game *game)
 		move_a(game);
 	else if (game->key_check[KEY_D])
 		move_d(game);
-	else if (game->key_check[KEY_N])
-		reset_player(game);
 	key_matching2(game);
 }
 

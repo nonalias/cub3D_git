@@ -10,6 +10,7 @@ SRCS	=	./cub3d.c \
 			./engine/move_check.c \
 			./engine/wall.c \
 			./engine/reset_player.c \
+			./engine/sprite.c \
 			./graphic/view.c \
 			./graphic/make_2d.c \
 			./graphic/make_3d.c \

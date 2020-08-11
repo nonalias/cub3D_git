@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 14:49:13 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/11 18:16:55 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/11 22:09:34 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ void	get_texture(t_game *game)
 	game->tex.img[NORTH].data = (int*)mlx_get_data_addr(
 			game->tex.img[NORTH].img_ptr, &game->tex.img[NORTH].bpp,
 			&game->tex.img[NORTH].size_l, &game->tex.img[NORTH].endian);
+	game->tex.img[SPRITE].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			"./textures/sprite_1.xpm",
+			&game->tex.img[SPRITE].width, &game->tex.img[SPRITE].height);
+	game->tex.img[SPRITE].data = (int*)mlx_get_data_addr(
+			game->tex.img[SPRITE].img_ptr, &game->tex.img[SPRITE].bpp,
+			&game->tex.img[SPRITE].size_l, &game->tex.img[SPRITE].endian);
 }
 
 int		main(int argc, char **argv)
