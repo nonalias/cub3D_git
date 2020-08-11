@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:02:03 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/10 21:59:36 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/11 21:47:19 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define KEY_PRESSED 2
 # define KEY_RELEASED 3
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT	1080
+# define WIN_WIDTH 500
+# define WIN_HEIGHT	500
 # define MAP_XLENGTH 15
 # define MAP_YLENGTH 11
 # define LEFT_ARROW 123
@@ -26,6 +26,7 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_R 15
+# define KEY_N 45
 # define KEY_1 18
 # define KEY_2 19
 # define KEY_3 20

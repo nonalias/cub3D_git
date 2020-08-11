@@ -7,12 +7,15 @@ SRCS	=	./cub3d.c \
 			./engine/move_s.c \
 			./engine/move_a.c \
 			./engine/move_d.c \
+			./engine/move_check.c \
 			./engine/wall.c \
+			./engine/reset_player.c \
 			./graphic/view.c \
 			./graphic/make_2d.c \
 			./graphic/make_3d.c \
 			./graphic/make_rader.c \
 			./graphic/make_player.c \
+			./graphic/make_ceil_floor.c \
 			./graphic/make_rectangle.c \
 			./graphic/make_crosshair.c \
 			./engine/raycasting_vert.c \

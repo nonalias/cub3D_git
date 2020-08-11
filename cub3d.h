@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/11 18:24:02 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/11 21:46:21 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,9 @@ typedef struct	s_tex
 {
 	t_img		img[4];
 	int			**cart;
+	int			tex_x;
+	int			tex_y;
+	double		y_iter;
 }				t_tex;
 
 typedef	struct	s_pos
@@ -184,13 +187,15 @@ void			make_view(t_game *game);
 void			make_tile(t_game *game, int i, int j, int color);
 void			make_crosshair(t_game *game);
 void			make_rectangle(t_game *game, t_pos pos[2], int color);
+void			make_floor(t_game *game);
+void			make_ceil(t_game *game);
 
 int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
 
 int				get_wall_distance(t_game *game);
 double			get_wall_x_y(t_game *game);
-int				mini_check_wall(t_game *game, double x, double y);
+void			check_cardinal(t_game *game);
 int				check_wall(t_game *game, double x, double y);
 
 int				hook_action(t_game *game);
@@ -215,6 +220,7 @@ void			move_s_d(t_game *game);
 void			move_s(t_game *game);
 void			move_a(t_game *game);
 void			move_d(t_game *game);
+int				move_check(t_game *game);
 int				to_coord(t_game *game, double x, double y);
 
 void			status_show(t_game *game);
@@ -223,4 +229,6 @@ void			free_process(t_game *game);
 
 double			raycasting_vert(t_game *game);
 double			raycasting_horz(t_game *game);
+
+void			reset_player(t_game *game);
 #endif

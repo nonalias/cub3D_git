@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 21:44:56 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/10 21:58:43 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/11 20:43:29 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,16 @@ void	make_crosshair(t_game *game)
 
 	centerx = game->win.width / 2;
 	centery = game->win.height / 2;
-	set_pos(&pos[0], centerx - 1, centery - 1);
-	set_pos(&pos[1], centerx + 1, centery + 1);
+	set_pos(&pos[0], centerx - 10, centery - 1);
+	set_pos(&pos[1], centerx - 4, centery + 1);
 	make_rectangle(game, pos, COLOR_GREEN);
-	set_pos(&pos[0], centerx - 13, centery - 1);
-	set_pos(&pos[1], centerx - 7, centery + 1);
+	set_pos(&pos[0], centerx + 4, centery - 1);
+	set_pos(&pos[1], centerx + 10, centery + 1);
 	make_rectangle(game, pos, COLOR_GREEN);
-	set_pos(&pos[0], centerx + 7, centery - 1);
-	set_pos(&pos[1], centerx + 13, centery + 1);
+	set_pos(&pos[0], centerx - 1, centery - 10);
+	set_pos(&pos[1], centerx + 1, centery - 4);
 	make_rectangle(game, pos, COLOR_GREEN);
-	set_pos(&pos[0], centerx - 1, centery - 13);
-	set_pos(&pos[1], centerx + 1, centery - 7);
-	make_rectangle(game, pos, COLOR_GREEN);
-	set_pos(&pos[0], centerx - 1, centery + 7);
-	set_pos(&pos[1], centerx + 1, centery + 13);
+	set_pos(&pos[0], centerx - 1, centery + 4);
+	set_pos(&pos[1], centerx + 1, centery + 10);
 	make_rectangle(game, pos, COLOR_GREEN);
 }
