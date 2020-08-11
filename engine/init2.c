@@ -8,6 +8,7 @@ void	wall_init(t_game *game)
 	game->wall.distance = 0;
 	game->wall.what_hit = -1;
 	game->wall.cardinal = -1;
+	game->wall.realheight = 0;
 }
 
 void	flag_init(t_game *game)

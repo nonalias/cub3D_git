@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/10 21:51:50 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/11 18:24:02 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef	struct	s_wall
 	double		y;
 	double		angle;
 	double		distance;
+	double		realheight;
 	int			what_hit;
 	int			cardinal;
 }				t_wall;
