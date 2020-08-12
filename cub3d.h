@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/11 22:14:33 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/08/12 15:50:30 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # define TO_RADIAN(x) (((M_PI) / (180)) * (x))
+# define TO_DEGREE(x) ((x) * (180) / (M_PI))
 # define TWO_POINT_DISTANCE(x1, y1, x2, y2) (sqrt(((x1) - (x2)) * ((x1) - (x2)) + ((y1) - (y2)) * ((y1) - (y2))))
 # define HORZ_HIT 0
 # define VERT_HIT 1
@@ -137,6 +138,14 @@ typedef	struct	s_pos
 	double		y;
 }				t_pos;
 
+typedef	struct	s_sprite
+{
+	double		x;
+	double		y;
+	double		angle;
+	double		distance;
+}				t_sprite;
+
 typedef struct	s_game
 {
 	void		*mlx_ptr;
@@ -151,6 +160,7 @@ typedef struct	s_game
 	t_ray		ray;
 	t_map		map;
 	t_tex		tex;
+	t_sprite	spr;
 	double		temp;
 	int			seek_angle;
 	int			seek_distance;
@@ -233,4 +243,5 @@ double			raycasting_horz(t_game *game);
 void			reset_player(t_game *game);
 
 int				is_sprite(t_game *game);
+void			make_sprite(t_game *game);
 #endif

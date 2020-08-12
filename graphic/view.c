@@ -5,6 +5,7 @@ void	make_view(t_game *game)
 	game->img.img_ptr = mlx_new_image(game->mlx_ptr, game->win.width, game->win.height);
 	game->img.data = (int *)mlx_get_data_addr(game->img.img_ptr, &game->img.bpp, &game->img.size_l, &game->img.endian);
 	make_3d(game);
+	make_sprite(game);
 	make_2d(game);
 	make_rader(game);
 	make_player(game);

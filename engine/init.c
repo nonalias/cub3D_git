@@ -63,4 +63,5 @@ void	init(t_game *game)
 	ray_init(game);
 	wall_init(game);
 	flag_init(game);
+	sprite_init(game);
 }
