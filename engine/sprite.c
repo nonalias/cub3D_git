@@ -14,11 +14,11 @@ int		is_sprite(t_game *game)
 
 void	get_sprite_angle(t_game *game)
 {
-	double	dx = game->spr.x - game->player.x;
-	double	dy = game->spr.y - game->player.y;
+	double	dx = game->player.x - game->spr.x;
+	double	dy = game->player.y - game->spr.y;
 
 	game->spr.angle = TO_DEGREE(atan2(dx, dy));
-	game->spr.angle = 270 - game->spr.angle;
+	//game->spr.angle = 90 - game->spr.angle;
 	if (game->spr.angle > 360)
 		game->spr.angle -= 360;
 	else if (game->spr.angle < 0)
@@ -41,6 +41,7 @@ void	get_sprite_angle(t_game *game)
 	printf("end : %f\n", end);
 	*/
 }
+
 void	make_sprite_by_image(t_game *game)
 {
 }
