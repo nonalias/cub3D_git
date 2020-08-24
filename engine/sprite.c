@@ -17,12 +17,10 @@ void	get_sprite_angle(t_game *game)
 	double	dx = game->player.x - game->spr.x;
 	double	dy = game->player.y - game->spr.y;
 
-	game->spr.angle = TO_DEGREE(atan2(dx, dy));
+	game->spr.angle = TO_DEGREE(atan2(dy, dx));
 	//game->spr.angle = 90 - game->spr.angle;
-	if (game->spr.angle > 360)
-		game->spr.angle -= 360;
-	else if (game->spr.angle < 0)
-		game->spr.angle += 360;
+	if (game->spr.angle < 180)
+		game->spr.angle += 180;
 	game->spr.distance = TWO_POINT_DISTANCE(
 			game->player.x,
 			game->player.y,

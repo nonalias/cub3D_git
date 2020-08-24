@@ -189,6 +189,7 @@ int		my_map[11][11] = {
 
 void			make_2d(t_game *game);
 void			make_rader(t_game *game);
+void			make_one_rader(t_game *game);
 void			make_rader_line(t_game *game, t_pos origin, t_pos target);
 void			make_3d(t_game *game);
 void			make_player(t_game *game);

@@ -27,7 +27,7 @@ int		valid_check(t_game *game)
 */
 
 void	get_texture(t_game *game)
-
+{
 	game->tex.img[EAST].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./textures/wall_1.xpm",
 			&game->tex.img[EAST].width, &game->tex.img[EAST].height);

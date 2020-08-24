@@ -85,6 +85,8 @@ void	make_2d(t_game *game)
 		{
 			if (my_map[i][j] == 1)
 				make_tile(game, i, j, COLOR_WALL);
+			else if (my_map[i][j] == 2)
+				make_tile(game, i, j, 0xff0000);
 			else
 				make_tile(game, i, j, COLOR_ROAD);
 			j++;

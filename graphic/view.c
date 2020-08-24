@@ -7,7 +7,8 @@ void	make_view(t_game *game)
 	make_3d(game);
 	make_sprite(game);
 	make_2d(game);
-	make_rader(game);
+	make_one_rader(game);
+	//make_rader(game);
 	make_player(game);
 	make_crosshair(game);
 	/*
