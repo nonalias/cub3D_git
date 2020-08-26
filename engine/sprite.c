@@ -23,11 +23,12 @@ int		check_sprite(t_game *game, double x, double y)
 void	get_sprite_config(t_game *game)
 {
 	if (game->spr.what_hit == HORZ_HIT)
+	{
 		set_pos(&game->spr.hit, game->spr.horz_x, game->spr.horz_y);
+		printf("hit.x : %f, hit.y : %f\n", game->spr.hit.x, game->spr.hit.y);
+	}
 	else if (game->spr.what_hit == VERT_HIT)
 		set_pos(&game->spr.hit, game->spr.vert_x, game->spr.vert_y);
-	printf("spr.what_hit : %d\n", game->spr.what_hit);
-	printf("horz_x : %f, horz_y : %f\n", game->spr.horz_x, game->spr.horz_y);
 	game->spr.coord_x = (int)(game->spr.hit.x / game->tile_xsize);
 	game->spr.coord_y = (int)(game->spr.hit.y / game->tile_ysize);
 	if (game->ray.left_facing && game->spr.what_hit == VERT_HIT)
@@ -58,10 +59,10 @@ void	get_sprite_hit(t_game *game)
 	double	dx;
 	double	dy;
 
-	game->spr.horz_dist = hypot(game->player.x - game->spr.horz_x,
-			game->player.y - game->spr.horz_y); 
-	game->spr.vert_dist = hypot(game->player.x - game->spr.vert_x,
-			game->player.y - game->spr.vert_y); 
+	game->spr.horz_dist = game->spr.horz_hit ? hypot(game->player.x - game->spr.horz_x,
+			game->player.y - game->spr.horz_y) : 1000000000; 
+	game->spr.vert_dist = game->spr.vert_hit ? hypot(game->player.x - game->spr.vert_x,
+			game->player.y - game->spr.vert_y) : 1000000000; 
 	game->spr.what_hit = game->spr.vert_dist < game->spr.horz_dist;
 	dx = game->spr.what_hit ? game->player.x - game->spr.vert_x
 		: game->player.x - game->spr.horz_x;

@@ -2,6 +2,7 @@
 
 void	set_sprite_horz_hit(t_game *game, double x, double y)
 {
+	printf("horz x : %f, y : %f\n", x, y);
 	game->spr.horz_x = x;
 	game->spr.horz_y = y;
 	if (game->ray.up_facing)
