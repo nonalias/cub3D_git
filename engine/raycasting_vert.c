@@ -29,7 +29,7 @@ void	raycasting_vert2(t_game *game)
 				touched.x += 1;
 			game->ray.vertx = touched.x;
 			game->ray.verty = touched.y;
-			break;
+			return ;
 		}
 		if (check_sprite(game, touched.x, touched.y)
 				&& game->spr.vert_x == -1 && game->spr.vert_y == -1)

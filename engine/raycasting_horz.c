@@ -29,7 +29,7 @@ void	raycasting_horz2(t_game *game)
 			if (game->ray.up_facing)
 				touched.y += 1;
 			game->ray.horzy = touched.y;
-			break;
+			return ;
 		}
 		if (check_sprite(game, touched.x, touched.y)
 			&& game->spr.horz_x == -1 && game->spr.horz_y == -1)

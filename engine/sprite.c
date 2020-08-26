@@ -5,8 +5,16 @@ int		check_sprite(t_game *game, double x, double y)
 	int		coord_x;
 	int		coord_y;
 
-	coord_x = (int)(x / game->tile_xsize);
-	coord_y = (int)(y / game->tile_ysize);
+	coord_x = floor(x / game->tile_xsize);
+	coord_y = floor(y / game->tile_ysize);
+	if (coord_x < 0)
+		coord_x = 0;
+	if (coord_y < 0)
+		coord_y = 0;
+	if (coord_x > game->map.xlength - 1)
+		coord_x = game->map.xlength - 1;
+	if (coord_y > game->map.ylength - 1)
+		coord_y = game->map.ylength - 1;
 	if (my_map[coord_y][coord_x] == 2)
 		return (1);
 	return (0);
@@ -61,13 +69,21 @@ void	get_sprite_hit(t_game *game)
 
 void	make_sprite_by_image(t_game *game, t_pos pos[2])
 {
+	double tex_start;
+
+	tex_start = (TEX_HEIGHT * ((game->temp - game->spr.realheight) / 2.0) / game->temp);
 	game->tex.y_iter = pos[0].y;
 	while (game->tex.y_iter < pos[1].y)
 	{
 		game->tex.tex_y = TEX_HEIGHT * (game->tex.y_iter - pos[0].y) /
 			(pos[1].y - pos[0].y);
+		if (game->temp > game->win.height)
+			game->tex.tex_y = ((game->tex.y_iter / (double)game->win.height) *
+					(game->spr.realheight / game->temp) * (double)TEX_HEIGHT)
+				+ tex_start;
 		int color = game->tex.img[SPRITE]
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
+		//game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
 		color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color : 0;
 		game->tex.y_iter += 1;
 	}
@@ -78,8 +94,6 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 // 중심사이의 거리와
 // 현재 각도에서 스프라이트의 왼쪽 끝 사이의 각도와
 // 현재 각도에서 스프라이트의 오른쪽 끝 사이의 각도가 필요
-
-
 
 void	make_sprite(t_game *game)
 {
@@ -93,5 +107,14 @@ void	make_sprite(t_game *game)
 			game->win.height / 2 - (game->spr.realheight / 2));
 	set_pos(&pos[1], pos[0].x,
 			game->win.height / 2 + (game->spr.realheight / 2));
+	game->temp = game->spr.realheight;
+	if (game->spr.realheight >= game->win.height)
+	{
+		game->spr.realheight = game->win.height - 1;
+		pos[0].y = 0;
+		pos[1].y = game->win.height;
+	}
+	if (game->wall.distance < game->spr.distance)
+		return ;
 	make_sprite_by_image(game, pos);
 }
