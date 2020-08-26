@@ -4,8 +4,7 @@
 /*   make_3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/11 18:25:11 by taehkim           #+#    #+#             */
+/*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2020/08/11 18:25:11 by taehkim           #+#    #+#             */
 /*   Updated: 2020/08/11 22:30:29 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -78,12 +77,10 @@ void	make_3d(t_game *game)
 	game->ray.angle = -1 * game->seek_angle / 2;
 	while (game->ray.angle < game->seek_angle / 2)
 	{ 
+		sprite_reinit(game);
 		game->wall.angle = game->player.rot_angle + game->ray.angle;
-		if (game->wall.angle < 0)
-			game->wall.angle += 360;
-		else if (game->wall.angle > 360)
-			game->wall.angle -= 360;
-		game->wall.distance = get_wall_x_y(game) *
+		specify_angle(&game->wall.angle);
+		game->wall.distance = shoot_ray(game) *
 			cos(TO_RADIAN(game->ray.angle));
 		dist_opt = (game->win.width / 2) /
 			tan(TO_RADIAN(game->seek_angle / 2));
@@ -92,6 +89,7 @@ void	make_3d(t_game *game)
 		make_ceil(game);
 		make_floor(game);
 		make_wall(game);
+		make_sprite(game);
 		game->ray.angle += 0.06;
 	}
 }

@@ -17,3 +17,11 @@ void	arg_parse(t_game *game, int argc, char **argv)
 		i++;
 	}
 }
+
+void	specify_angle(double *angle)
+{
+	if (*angle < 0)
+		*angle += 360;
+	else if (*angle > 360)
+		*angle -= 360;
+}

@@ -1,30 +1,41 @@
 #include "../cub3d.h"
 
+void	set_sprite_vert_hit(t_game *game, double x, double y)
+{
+	game->spr.vert_x = x;
+	if (game->ray.left_facing)
+		game->spr.vert_x += 1;
+	game->spr.vert_y = y;
+	game->spr.vert_hit = 1;
+}
+
 void	raycasting_vert2(t_game *game)
 {
-	game->ray.nextverttouchx = game->ray.xintercept;
-	game->ray.nextverttouchy = game->ray.yintercept;
+	t_pos	touched;
+
+	touched.x = game->ray.xintercept;
+	touched.y = game->ray.yintercept;
 	if (game->ray.left_facing)
-		game->ray.nextverttouchx -= 1;
-	while (game->ray.nextverttouchx >= 0
-			&& game->ray.nextverttouchx <= game->win.width
-			&& game->ray.nextverttouchy >= 0
-			&& game->ray.nextverttouchy <= game->win.height)
+		touched.x -= 1;
+	while (touched.x >= 0
+			&& touched.x <= game->win.width
+			&& touched.y >= 0
+			&& touched.y <= game->win.height)
 	{
-		if (check_wall(game, game->ray.nextverttouchx, game->ray.nextverttouchy))
+		if (check_wall(game, touched.x, touched.y))
 		{
 			game->ray.foundvertwallhit = 1;
 			if (game->ray.left_facing)
-				game->ray.nextverttouchx += 1;
-			game->ray.vertx = game->ray.nextverttouchx;
-			game->ray.verty = game->ray.nextverttouchy;
+				touched.x += 1;
+			game->ray.vertx = touched.x;
+			game->ray.verty = touched.y;
 			break;
 		}
-		else
-		{
-			game->ray.nextverttouchx += game->ray.xstep;
-			game->ray.nextverttouchy += game->ray.ystep;
-		}
+		if (check_sprite(game, touched.x, touched.y)
+				&& game->spr.vert_x == -1 && game->spr.vert_y == -1)
+			set_sprite_vert_hit(game, touched.x, touched.y);
+		touched.x += game->ray.xstep;
+		touched.y += game->ray.ystep;
 	}
 }
 

@@ -58,10 +58,7 @@ void	key_matching(t_game *game)
 int		hook_action(t_game *game)
 {
 	key_matching(game);
-	if (game->player.rot_angle > 360)
-		game->player.rot_angle -= 360;
-	else if (game->player.rot_angle < 0)
-		game->player.rot_angle += 360;
+	specify_angle(&game->player.rot_angle);
 	make_view(game);
 	status_show(game);
 	free_process(game);

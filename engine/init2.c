@@ -44,8 +44,20 @@ void	sprite_init(t_game *game)
 	t_pos	pos;
 
 	pos = find_sprite(game);
-	game->spr.x = (int)pos.x * game->tile_xsize + game->tile_xsize / 2;
-	game->spr.y = (int)pos.y * game->tile_ysize + game->tile_ysize / 2;
+	game->spr.center_x = (int)pos.x * game->tile_xsize + game->tile_xsize / 2;
+	game->spr.center_y = (int)pos.y * game->tile_ysize + game->tile_ysize / 2;
 	game->spr.angle = 0;
-	game->spr.distance = 0;
+}
+
+void	sprite_reinit(t_game *game)
+{
+	game->spr.horz_x = -1;
+	game->spr.horz_y = -1;
+	game->spr.vert_x = -1;
+	game->spr.vert_y = -1;
+	game->spr.vert_hit = 0;
+	game->spr.horz_hit = 0;
+	game->spr.angle = 0;
+	game->spr.vert_dist = -1;
+	game->spr.horz_dist = -1;
 }

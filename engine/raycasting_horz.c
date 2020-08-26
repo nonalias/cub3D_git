@@ -1,30 +1,41 @@
 #include "../cub3d.h"
 
+void	set_sprite_horz_hit(t_game *game, double x, double y)
+{
+	game->spr.horz_x = x;
+	game->spr.horz_y = y;
+	if (game->ray.up_facing)
+		game->spr.horz_y += 1;
+	game->spr.horz_hit = 1;
+}
+
 void	raycasting_horz2(t_game *game)
 {
-	game->ray.nexthorztouchx = game->ray.xintercept;
-	game->ray.nexthorztouchy = game->ray.yintercept;
+	t_pos	touched;
+
+	touched.x = game->ray.xintercept;
+	touched.y = game->ray.yintercept;
 	if (game->ray.up_facing)
-		game->ray.nexthorztouchy -= 1;
-	while (game->ray.nexthorztouchx >= 0
-			&& game->ray.nexthorztouchx <= game->win.width
-			&& game->ray.nexthorztouchy >= 0
-			&& game->ray.nexthorztouchy <= game->win.height)
+		touched.y -= 1;
+	while (touched.x >= 0
+			&& touched.x <= game->win.width
+			&& touched.y >= 0
+			&& touched.y <= game->win.height)
 	{
-		if (check_wall(game, game->ray.nexthorztouchx, game->ray.nexthorztouchy))
+		if (check_wall(game, touched.x, touched.y))
 		{
 			game->ray.foundhorzwallhit = 1;
-			game->ray.horzx = game->ray.nexthorztouchx;
+			game->ray.horzx = touched.x;
 			if (game->ray.up_facing)
-				game->ray.nexthorztouchy += 1;
-			game->ray.horzy = game->ray.nexthorztouchy;
+				touched.y += 1;
+			game->ray.horzy = touched.y;
 			break;
 		}
-		else
-		{
-			game->ray.nexthorztouchx += game->ray.xstep;
-			game->ray.nexthorztouchy += game->ray.ystep;
-		}
+		if (check_sprite(game, touched.x, touched.y)
+			&& game->spr.horz_x == -1 && game->spr.horz_y == -1)
+			set_sprite_horz_hit(game, touched.x, touched.y);
+		touched.x += game->ray.xstep;
+		touched.y += game->ray.ystep;
 	}
 }
 

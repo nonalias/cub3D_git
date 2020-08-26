@@ -1,63 +1,97 @@
 #include "../cub3d.h"
 
-int		is_sprite(t_game *game)
+int		check_sprite(t_game *game, double x, double y)
 {
-	int		x;
-	int		y;
+	int		coord_x;
+	int		coord_y;
 
-	x = (int)(game->wall.x / game->tile_xsize);
-	y = (int)(game->wall.y / game->tile_ysize);
-	if (my_map[y][x] == 2)
+	coord_x = (int)(x / game->tile_xsize);
+	coord_y = (int)(y / game->tile_ysize);
+	if (my_map[coord_y][coord_x] == 2)
 		return (1);
 	return (0);
 }
 
-void	get_sprite_angle(t_game *game)
+void	get_sprite_config(t_game *game)
 {
-	double	dx = game->player.x - game->spr.x;
-	double	dy = game->player.y - game->spr.y;
-
-	game->spr.angle = TO_DEGREE(atan2(dy, dx));
-	//game->spr.angle = 90 - game->spr.angle;
-	if (game->spr.angle < 180)
-		game->spr.angle += 180;
-	game->spr.distance = TWO_POINT_DISTANCE(
-			game->player.x,
-			game->player.y,
-			game->spr.x,
-			game->spr.y);
-	printf("game->spr.angle : %f\n", game->spr.angle);
-	printf("game->spr.distance : %f\n", game->spr.distance);
-	/*
-	double start = game->player.rot_angle - game->spr.angle;
-	double end = game->player.rot_angle + game->spr.angle;
-	if (start < 0)
-		start += 360;
-	if (end > 360)
-		end -= 360;
-	printf("start : %f\n", start);
-	printf("end : %f\n", end);
-	*/
+	if (game->spr.what_hit == HORZ_HIT)
+		set_pos(&game->spr.hit, game->spr.horz_x, game->spr.horz_y);
+	else if (game->spr.what_hit == VERT_HIT)
+		set_pos(&game->spr.hit, game->spr.vert_x, game->spr.vert_y);
+	game->spr.coord_x = (int)(game->spr.hit.x / game->tile_xsize);
+	game->spr.coord_y = (int)(game->spr.hit.y / game->tile_ysize);
+	if (game->ray.left_facing && game->spr.what_hit == VERT_HIT)
+		game->spr.coord_x -= 1;
+	if (game->ray.up_facing && game->spr.what_hit == HORZ_HIT)
+		game->spr.coord_y -= 1;
+	game->spr.center_x = (game->spr.coord_x + 0.5) * game->tile_xsize;
+	game->spr.center_y = (game->spr.coord_y + 0.5) * game->tile_ysize;
+	game->spr.center_angle = atan2(game->player.y - game->spr.center_y,
+			game->player.x - game->spr.center_x);
+	game->spr.distance = hypot(game->player.y - game->spr.center_y,
+			game->player.x - game->spr.center_x);
+	game->spr.min_angle = game->spr.center_angle - atan2(32, game->spr.distance);
+	game->spr.max_angle = game->spr.center_angle + atan2(32, game->spr.distance);
+	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
+		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH - 0.0001;
+	game->spr.dist_opt = (game->win.width / 2) /
+		tan(TO_RADIAN(game->seek_angle / 2));
+	game->spr.realheight = (game->tile_ysize /
+			game->spr.distance) * game->spr.dist_opt;
 }
 
-void	make_sprite_by_image(t_game *game)
+// 여기서 distance와 왼쪽 끝 앵글, 오른쪽 끝 앵글을 정해주면 될듯
+void	get_sprite_hit(t_game *game)
 {
+	double	dx;
+	double	dy;
+
+	game->spr.horz_dist = hypot(game->player.x - game->spr.horz_x,
+			game->player.y - game->spr.horz_y); 
+	game->spr.vert_dist = hypot(game->player.x - game->spr.vert_x,
+			game->player.y - game->spr.vert_y); 
+	game->spr.what_hit = game->spr.vert_dist < game->spr.horz_dist;
+	dx = game->spr.what_hit ? game->player.x - game->spr.vert_x
+		: game->player.x - game->spr.horz_x;
+	dy = game->spr.what_hit ? game->player.y - game->spr.vert_y
+		: game->player.y - game->spr.horz_y;
+	game->spr.angle = atan2(dy, dx);
+	get_sprite_config(game);
 }
+
+void	make_sprite_by_image(t_game *game, t_pos pos[2])
+{
+	game->tex.y_iter = pos[0].y;
+	while (game->tex.y_iter < pos[1].y)
+	{
+		game->tex.tex_y = TEX_HEIGHT * (game->tex.y_iter - pos[0].y) /
+			(pos[1].y - pos[0].y);
+		int color = game->tex.img[SPRITE]
+			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
+		color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color : 0;
+		game->tex.y_iter += 1;
+	}
+}
+
+// 필요한 것 : ray를 쐈을 때 스프라이트이면 
+// 그 스프라이트의 중심좌표와 
+// 중심사이의 거리와
+// 현재 각도에서 스프라이트의 왼쪽 끝 사이의 각도와
+// 현재 각도에서 스프라이트의 오른쪽 끝 사이의 각도가 필요
+
+
 
 void	make_sprite(t_game *game)
 {
-	double	raystart;
-	double	rayend;
+	t_pos	pos[2];
 
-	get_sprite_angle(game);
-	raystart = game->player.rot_angle - game->seek_angle / 2;
-	rayend = game->player.rot_angle + game->seek_angle / 2;
-	/*
-	if (raystart < 0)
-		raystart += 360;
-	if (rayend > 360)
-		rayend -= 360;
-		*/
-	//if (raystart < game->spr.angle && rayend > game->spr.angle)
-		//make_sprite_by_image(game);
+	if (!game->spr.horz_hit && !game->spr.vert_hit)
+		return ;
+	get_sprite_hit(game);
+	set_pos(&pos[0], ((game->ray.angle + game->seek_angle / 2) *
+				game->win.width / game->seek_angle),
+			game->win.height / 2 - (game->spr.realheight / 2));
+	set_pos(&pos[1], pos[0].x,
+			game->win.height / 2 + (game->spr.realheight / 2));
+	make_sprite_by_image(game, pos);
 }

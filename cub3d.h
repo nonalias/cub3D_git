@@ -41,11 +41,11 @@ typedef struct	s_img {
 
 typedef struct	s_player
 {
-	float		x;
-	float		y;
-	float		rot_angle;
-	float		rot_speed;
-	float		move_speed;
+	double		x;
+	double		y;
+	double		rot_angle;
+	double		rot_speed;
+	double		move_speed;
 }				t_player;
 
 typedef	struct	s_line
@@ -103,10 +103,6 @@ typedef struct	s_ray
 	double		yintercept;
 	double		xstep;
 	double		ystep;
-	double		nexthorztouchx;
-	double		nexthorztouchy;
-	double		nextverttouchx;
-	double		nextverttouchy;
 	int			foundhorzwallhit;
 	int			foundvertwallhit;
 	int			up_facing;
@@ -140,8 +136,25 @@ typedef	struct	s_pos
 
 typedef	struct	s_sprite
 {
-	double		x;
-	double		y;
+	int			what_hit;
+	double		vert_x;
+	double		vert_y;
+	double		horz_x;
+	double		horz_y;
+	double		vert_dist;
+	double		horz_dist;
+	int			horz_hit;
+	int			vert_hit;
+	double		center_x;
+	double		center_y;
+	t_pos		hit;
+	int			coord_x;
+	int			coord_y;
+	double		center_angle;
+	double		min_angle;
+	double		max_angle;
+	double		dist_opt;
+	double		realheight;
 	double		angle;
 	double		distance;
 }				t_sprite;
@@ -205,7 +218,7 @@ int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
 
 int				get_wall_distance(t_game *game);
-double			get_wall_x_y(t_game *game);
+double			shoot_ray(t_game *game);
 void			check_cardinal(t_game *game);
 int				check_wall(t_game *game, double x, double y);
 
@@ -220,6 +233,8 @@ void			ray_init(t_game *game);
 void			wall_init(t_game *game);
 void			flag_init(t_game *game);
 void			cart_init(t_game *game);
+void			sprite_init(t_game *game);
+void			sprite_reinit(t_game *game);
 
 void			set_pos(t_pos *pos, double x, double y);
 
@@ -236,6 +251,7 @@ int				to_coord(t_game *game, double x, double y);
 
 void			status_show(t_game *game);
 void			arg_parse(t_game *game, int argc, char **argv);
+void			specify_angle(double *angle);
 void			free_process(t_game *game);
 
 double			raycasting_vert(t_game *game);
@@ -243,6 +259,6 @@ double			raycasting_horz(t_game *game);
 
 void			reset_player(t_game *game);
 
-int				is_sprite(t_game *game);
+int				check_sprite(t_game *game, double x, double y);
 void			make_sprite(t_game *game);
 #endif
