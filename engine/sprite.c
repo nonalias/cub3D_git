@@ -23,10 +23,7 @@ int		check_sprite(t_game *game, double x, double y)
 void	get_sprite_config(t_game *game)
 {
 	if (game->spr.what_hit == HORZ_HIT)
-	{
 		set_pos(&game->spr.hit, game->spr.horz_x, game->spr.horz_y);
-		printf("hit.x : %f, hit.y : %f\n", game->spr.hit.x, game->spr.hit.y);
-	}
 	else if (game->spr.what_hit == VERT_HIT)
 		set_pos(&game->spr.hit, game->spr.vert_x, game->spr.vert_y);
 	game->spr.coord_x = (int)(game->spr.hit.x / game->tile_xsize);
@@ -35,7 +32,6 @@ void	get_sprite_config(t_game *game)
 		game->spr.coord_x -= 1;
 	if (game->ray.up_facing && game->spr.what_hit == HORZ_HIT)
 		game->spr.coord_y -= 1;
-	printf("coord_x : %d, coord_y : %d\n", game->spr.coord_x, game->spr.coord_y);
 	game->spr.center_x = (game->spr.coord_x + 0.5) * game->tile_xsize;
 	game->spr.center_y = (game->spr.coord_y + 0.5) * game->tile_ysize;
 	game->spr.center_angle = atan2(game->player.y - game->spr.center_y,
@@ -43,6 +39,8 @@ void	get_sprite_config(t_game *game)
 	game->spr.distance = hypot(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
 	//printf("center.x : %f, center.y : %f\n", game->spr.center_x, game->spr.center_y);
+	if (game->spr.center_angle == 0)
+	printf("%f\n", game->spr.center_angle);
 	game->spr.min_angle = game->spr.center_angle - atan2(TEX_WIDTH / 2, game->spr.distance);
 	game->spr.max_angle = game->spr.center_angle + atan2(TEX_WIDTH / 2, game->spr.distance);
 	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /

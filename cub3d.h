@@ -182,7 +182,7 @@ typedef struct	s_game
 	int			key_check[300];
 }				t_game;
 
-int		my_map[11][15];
+int		my_map[64][64];
 
 /*
 int		my_map[11][11] = {
