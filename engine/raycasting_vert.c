@@ -2,6 +2,7 @@
 
 void	set_sprite_vert_hit(t_game *game, double x, double y)
 {
+	printf("x : %f\n", x);
 	game->spr.vert_x = x;
 	if (game->ray.left_facing)
 		game->spr.vert_x += 1;

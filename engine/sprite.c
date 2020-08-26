@@ -26,22 +26,26 @@ void	get_sprite_config(t_game *game)
 		set_pos(&game->spr.hit, game->spr.horz_x, game->spr.horz_y);
 	else if (game->spr.what_hit == VERT_HIT)
 		set_pos(&game->spr.hit, game->spr.vert_x, game->spr.vert_y);
+	printf("spr.what_hit : %d\n", game->spr.what_hit);
+	printf("horz_x : %f, horz_y : %f\n", game->spr.horz_x, game->spr.horz_y);
 	game->spr.coord_x = (int)(game->spr.hit.x / game->tile_xsize);
 	game->spr.coord_y = (int)(game->spr.hit.y / game->tile_ysize);
 	if (game->ray.left_facing && game->spr.what_hit == VERT_HIT)
 		game->spr.coord_x -= 1;
 	if (game->ray.up_facing && game->spr.what_hit == HORZ_HIT)
 		game->spr.coord_y -= 1;
+	printf("coord_x : %d, coord_y : %d\n", game->spr.coord_x, game->spr.coord_y);
 	game->spr.center_x = (game->spr.coord_x + 0.5) * game->tile_xsize;
 	game->spr.center_y = (game->spr.coord_y + 0.5) * game->tile_ysize;
 	game->spr.center_angle = atan2(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
 	game->spr.distance = hypot(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
-	game->spr.min_angle = game->spr.center_angle - atan2(32, game->spr.distance);
-	game->spr.max_angle = game->spr.center_angle + atan2(32, game->spr.distance);
+	//printf("center.x : %f, center.y : %f\n", game->spr.center_x, game->spr.center_y);
+	game->spr.min_angle = game->spr.center_angle - atan2(TEX_WIDTH / 2, game->spr.distance);
+	game->spr.max_angle = game->spr.center_angle + atan2(TEX_WIDTH / 2, game->spr.distance);
 	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
-		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH - 0.0001;
+		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH - 4;
 	game->spr.dist_opt = (game->win.width / 2) /
 		tan(TO_RADIAN(game->seek_angle / 2));
 	game->spr.realheight = (game->tile_ysize /

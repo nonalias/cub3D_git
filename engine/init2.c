@@ -57,6 +57,7 @@ void	sprite_reinit(t_game *game)
 	game->spr.vert_y = -1;
 	game->spr.vert_hit = 0;
 	game->spr.horz_hit = 0;
+	game->spr.what_hit = -1;
 	game->spr.angle = 0;
 	game->spr.vert_dist = -1;
 	game->spr.horz_dist = -1;
