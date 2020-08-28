@@ -57,9 +57,7 @@ double	raycasting_vert(t_game *game)
 	game->ray.ystep *= (game->ray.down_facing && game->ray.ystep < 0) ? -1 : 1;
 	raycasting_vert2(game);
 	return game->ray.foundvertwallhit
-		? (TWO_POINT_DISTANCE(game->player.x,
-					game->player.y,
-					game->ray.vertx,
-					game->ray.verty))
+		? (hypot(game->player.x - game->ray.vertx,
+					game->player.y - game->ray.verty))
 		: game->win.width * game->win.height;
 }

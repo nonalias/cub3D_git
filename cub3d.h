@@ -25,7 +25,6 @@
 # include <unistd.h>
 # define TO_RADIAN(x) (((M_PI) / (180)) * (x))
 # define TO_DEGREE(x) ((x) * (180) / (M_PI))
-# define TWO_POINT_DISTANCE(x1, y1, x2, y2) (sqrt(((x1) - (x2)) * ((x1) - (x2)) + ((y1) - (y2)) * ((y1) - (y2))))
 # define HORZ_HIT 0
 # define VERT_HIT 1
 

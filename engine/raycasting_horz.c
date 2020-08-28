@@ -59,9 +59,7 @@ double	raycasting_horz(t_game *game)
 	game->ray.xstep *= (game->ray.right_facing && game->ray.xstep < 0) ? -1 : 1;
 	raycasting_horz2(game);
 	return game->ray.foundhorzwallhit
-		? (TWO_POINT_DISTANCE(game->player.x,
-							game->player.y,
-							game->ray.horzx,
-							game->ray.horzy))
+		? (hypot(game->player.x - game->ray.horzx,
+					game->player.y - game->ray.horzy))
 		: game->win.width * game->win.height;
 }
