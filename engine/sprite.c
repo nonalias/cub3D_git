@@ -41,10 +41,18 @@ void	get_sprite_config(t_game *game)
 	//printf("center.x : %f, center.y : %f\n", game->spr.center_x, game->spr.center_y);
 	if (game->spr.center_angle == 0)
 	printf("%f\n", game->spr.center_angle);
-	game->spr.min_angle = game->spr.center_angle - atan2(TEX_WIDTH / 2, game->spr.distance);
-	game->spr.max_angle = game->spr.center_angle + atan2(TEX_WIDTH / 2, game->spr.distance);
+	game->spr.min_angle = game->spr.center_angle - atan2(game->tile_xsize / 2, game->spr.distance);
+	game->spr.max_angle = game->spr.center_angle + atan2(game->tile_xsize / 2, game->spr.distance);
+	if (game->spr.min_angle > M_PI)
+		game->spr.min_angle -= 2 * M_PI;
+	if (game->spr.min_angle < -M_PI)
+		game->spr.min_angle += 2 * M_PI;
+	if (game->spr.max_angle > M_PI)
+		game->spr.max_angle -= 2 * M_PI;
+	if (game->spr.max_angle < -M_PI)
+		game->spr.max_angle += 2 * M_PI;
 	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
-		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH - 4;
+		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH;
 	game->spr.dist_opt = (game->win.width / 2) /
 		tan(TO_RADIAN(game->seek_angle / 2));
 	game->spr.realheight = (game->tile_ysize /
@@ -86,8 +94,8 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 				+ tex_start;
 		int color = game->tex.img[SPRITE]
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
-		//game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
-		color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color : 0;
+		game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
+		//color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color : 0;
 		game->tex.y_iter += 1;
 	}
 }
