@@ -13,12 +13,12 @@ void	game_init(t_game *game)
 	i = 0;
 	while (i < 300)
 		game->key_check[i++] = 0;
-	game->map.xlength = MAP_XLENGTH;
-	game->map.ylength = MAP_YLENGTH;
+	game->map.columns = MAP_COLUMNS;
+	game->map.rows = MAP_ROWS;
 	game->mlx_ptr = mlx_init();
 	game->win_ptr = mlx_new_window(game->mlx_ptr, game->win.width, game->win.height, "ModyHoon");
-	game->tile_xsize = game->win.width / game->map.xlength;
-	game->tile_ysize = game->win.height / game->map.ylength;
+	game->tile_xsize = game->win.width / game->map.columns;
+	game->tile_ysize = game->win.height / game->map.rows;
 	game->seek_angle = 66;
 	game->seek_distance = game->win.width / 3;
 }

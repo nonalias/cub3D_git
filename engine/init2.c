@@ -23,10 +23,10 @@ t_pos	find_sprite(t_game *game)
 	t_pos	pos;
 
 	i = 0;
-	while (i < game->map.ylength)
+	while (i < game->map.rows)
 	{
 		j = 0;
-		while (j < game->map.xlength)
+		while (j < game->map.columns)
 		{
 			if (my_map[i][j] == 2)
 			{

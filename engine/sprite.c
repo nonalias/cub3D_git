@@ -11,10 +11,10 @@ int		check_sprite(t_game *game, double x, double y)
 		coord_x = 0;
 	if (coord_y < 0)
 		coord_y = 0;
-	if (coord_x > game->map.xlength - 1)
-		coord_x = game->map.xlength - 1;
-	if (coord_y > game->map.ylength - 1)
-		coord_y = game->map.ylength - 1;
+	if (coord_x > game->map.columns - 1)
+		coord_x = game->map.columns - 1;
+	if (coord_y > game->map.rows - 1)
+		coord_y = game->map.rows - 1;
 	if (my_map[coord_y][coord_x] == 2)
 		return (1);
 	return (0);
