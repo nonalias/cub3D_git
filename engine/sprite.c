@@ -34,31 +34,29 @@ void	get_sprite_config(t_game *game)
 		game->spr.coord_y -= 1;
 	game->spr.center_x = (game->spr.coord_x + 0.5) * game->tile_xsize;
 	game->spr.center_y = (game->spr.coord_y + 0.5) * game->tile_ysize;
-	if (game->spr.center_x != 429.0 || game->spr.center_y != 202.5)
-	printf("spr.center_x : %f, spr.center_y : %f\n", game->spr.center_x, game->spr.center_y);
 	game->spr.center_angle = atan2(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
+	specify_radian(&game->spr.center_angle);
 	game->spr.distance = hypot(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
-	//printf("center.x : %f, center.y : %f\n", game->spr.center_x, game->spr.center_y);
-	if (game->spr.center_angle == 0)
-	printf("%f\n", game->spr.center_angle);
-	game->spr.min_angle = game->spr.center_angle - atan2(game->tile_xsize / 2, game->spr.distance);
-	game->spr.max_angle = game->spr.center_angle + atan2(game->tile_xsize / 2, game->spr.distance);
-	if (game->spr.min_angle > M_PI)
+	game->spr.min_angle = game->spr.center_angle - atan2(32, game->spr.distance);
+	game->spr.max_angle = game->spr.center_angle + atan2(32, game->spr.distance);
+	specify_radian(&game->spr.min_angle);
+	specify_radian(&game->spr.max_angle);
+	if (game->spr.min_angle > game->spr.angle)
 		game->spr.min_angle -= 2 * M_PI;
-	if (game->spr.min_angle < -M_PI)
-		game->spr.min_angle += 2 * M_PI;
-	if (game->spr.max_angle > M_PI)
+	if (game->spr.max_angle < game->spr.angle)
 		game->spr.max_angle -= 2 * M_PI;
-	if (game->spr.max_angle < -M_PI)
-		game->spr.max_angle += 2 * M_PI;
-	if (game->spr.angle < game->spr.min_angle)
-		game->spr.angle = game->spr.min_angle;
-	if (game->spr.angle > game->spr.max_angle)
-		game->spr.angle = game->spr.max_angle;
+	if (game->spr.angle < 0)
+		game->spr.angle += 2 * M_PI;
+	else if (game->spr.angle > 2 * M_PI)
+		game->spr.angle -= 2 * M_PI;
 	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
 		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH;
+	if (game->tex.tex_x < 0)
+		game->tex.tex_x = 0;
+	else if (game->tex.tex_x >= 64)
+		game->tex.tex_x = 63;
 	game->spr.dist_opt = (game->win.width / 2) /
 		tan(TO_RADIAN(game->seek_angle / 2));
 	game->spr.realheight = (game->tile_ysize /
@@ -81,6 +79,7 @@ void	get_sprite_hit(t_game *game)
 	dy = game->spr.what_hit ? game->player.y - game->spr.vert_y
 		: game->player.y - game->spr.horz_y;
 	game->spr.angle = atan2(dy, dx);
+	specify_radian(&game->spr.angle);
 	get_sprite_config(game);
 }
 

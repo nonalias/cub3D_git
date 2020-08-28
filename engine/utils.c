@@ -25,3 +25,11 @@ void	specify_angle(double *angle)
 	else if (*angle > 360)
 		*angle -= 360;
 }
+
+void	specify_radian(double *radian)
+{
+	if (*radian < 0)
+		*radian += 2 * M_PI;
+	else if (*radian > 2 * M_PI)
+		*radian -= 2 * M_PI;
+}
