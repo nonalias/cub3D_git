@@ -15,8 +15,8 @@
 
 # define KEY_PRESSED 2
 # define KEY_RELEASED 3
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT	1080
+# define WIN_WIDTH 500
+# define WIN_HEIGHT	500
 # define MAP_COLUMNS 15
 # define MAP_ROWS 11
 # define LEFT_ARROW 123

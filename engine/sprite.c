@@ -43,14 +43,13 @@ void	get_sprite_config(t_game *game)
 	game->spr.max_angle = game->spr.center_angle + atan2(32, game->spr.distance);
 	specify_radian(&game->spr.min_angle);
 	specify_radian(&game->spr.max_angle);
+	// 이 코드가 없으면 180도에서 아예 사라짐
+	// 있으면 반 잘려서 나옴
 	if (game->spr.min_angle > game->spr.angle)
 		game->spr.min_angle -= 2 * M_PI;
+	// max_angle을 +해줌으로써 반 잘리는 현상 해결, but 가까이 갔을 경우 양 사이드에 잔상 남는 현상 해결해야함.
 	if (game->spr.max_angle < game->spr.angle)
-		game->spr.max_angle -= 2 * M_PI;
-	if (game->spr.angle < 0)
-		game->spr.angle += 2 * M_PI;
-	else if (game->spr.angle > 2 * M_PI)
-		game->spr.angle -= 2 * M_PI;
+		game->spr.max_angle += 2 * M_PI;
 	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
 		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH;
 	if (game->tex.tex_x < 0)
@@ -79,6 +78,7 @@ void	get_sprite_hit(t_game *game)
 	dy = game->spr.what_hit ? game->player.y - game->spr.vert_y
 		: game->player.y - game->spr.horz_y;
 	game->spr.angle = atan2(dy, dx);
+	//스프라이트에 부딪힌 각도
 	specify_radian(&game->spr.angle);
 	get_sprite_config(game);
 }
@@ -99,8 +99,8 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 				+ tex_start;
 		int color = game->tex.img[SPRITE]
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
-		//game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
-		color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color : 0;
+		game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
+		//color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color : 0;
 		game->tex.y_iter += 1;
 	}
 }
