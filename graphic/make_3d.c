@@ -90,6 +90,6 @@ void	make_3d(t_game *game)
 		make_floor(game);
 		make_wall(game);
 		make_sprite(game);
-		game->ray.angle += 0.06;
+		game->ray.angle += game->ray_term;
 	}
 }

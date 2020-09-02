@@ -21,6 +21,7 @@ void	game_init(t_game *game)
 	game->tile_ysize = game->win.height / game->map.rows;
 	game->seek_angle = 66;
 	game->seek_distance = game->win.width / 3;
+	game->ray_term = (1000 * 0.065) / game->win.width;
 }
 
 void	player_init(t_game *game)

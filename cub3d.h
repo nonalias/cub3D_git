@@ -178,6 +178,7 @@ typedef struct	s_game
 	int			seek_distance;
 	double		tile_xsize;
 	double		tile_ysize;
+	double		ray_term;
 	int			key_check[300];
 }				t_game;
 
