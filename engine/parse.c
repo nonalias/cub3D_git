@@ -95,12 +95,12 @@ void	option_parsing(t_game *game)
 	}
 }
 
-void	one_line_to_map(t_game *game, int row)
+void	one_line_to_map(t_game *game, int row, int columns)
 {
 	int		i;
 
 	i = 0;
-	while (i < game->map.columns)
+	while (i < columns)
 	{
 		if (game->map.line[i] == ' ')
 			my_map[row][i] = 1;
@@ -137,6 +137,7 @@ void	map_parsing(t_game *game)
 	int		temp;
 
 	i = 0;
+	game->map.columns = 0;
 	while (1)
 	{
 		while (ft_strlen(game->map.line) < 3)
@@ -148,8 +149,9 @@ void	map_parsing(t_game *game)
 		}
 		if ((temp = ft_strlen(game->map.line)) >= 3)
 		{
-			game->map.columns = temp;
-			one_line_to_map(game, i);
+			if (game->map.columns < temp)
+				game->map.columns = temp;
+			one_line_to_map(game, i, temp);
 			i++;
 		}
 		if ((get_next_line(game->map.fd, &game->map.line) <= 0))
@@ -158,8 +160,27 @@ void	map_parsing(t_game *game)
 	game->map.rows = i;
 }
 
+void	map_init(t_game *game)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < MAX_MAP_SIZE)
+	{
+		j = 0;
+		while (j < MAX_MAP_SIZE)
+		{
+			my_map[i][j] = 1;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	parse(t_game *game)
 {
+	map_init(game);
 	game->map.fd = open(game->map.name, O_RDONLY);
 	if (game->map.fd < 0)
 		error_exit(MAP_ERROR);

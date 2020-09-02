@@ -191,7 +191,7 @@ typedef struct	s_game
 	int			key_check[300];
 }				t_game;
 
-int		my_map[100][100];
+int		my_map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 
 /*
 int		my_map[11][11] = {

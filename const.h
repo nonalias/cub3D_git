@@ -45,5 +45,6 @@
 # define TEX_HEIGHT 64
 # define WALL_BOUNDARY 20
 # define MAP_ERROR 1
+# define MAX_MAP_SIZE 100
 
 #endif

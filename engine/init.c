@@ -46,6 +46,8 @@ void	ray_init(t_game *game)
 	game->ray.angle = 0;
 }
 
+
+
 void	init(t_game *game)
 {
 	game_init(game);
