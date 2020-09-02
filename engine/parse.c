@@ -79,6 +79,8 @@ void	option_parsing(t_game *game)
 			game->map.floor = str_to_color(splited[1]);
 		else if (!ft_strncmp(splited[0], "C", 1))
 			game->map.ceil = str_to_color(splited[1]);
+		else if (splited[0][0] == 'S' && splited[0][1] == '\0')
+			game->map.sprite = ft_strdup(splited[1]);
 		free_splited(&splited);
 		free_line(&line);
 		get_next_line(game->map.fd, &line);
@@ -101,6 +103,7 @@ void	map_parse(t_game *game)
 	printf("%s\n", game->map.south);
 	printf("%s\n", game->map.west);
 	printf("%s\n", game->map.east);
+	printf("%s\n", game->map.sprite);
 	printf("%x\n", game->map.floor);
 	printf("%x\n", game->map.ceil);
 	//map_parsing(game);

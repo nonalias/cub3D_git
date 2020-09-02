@@ -119,6 +119,7 @@ typedef struct	s_map
 	char		*south;
 	char		*east;
 	char		*west;
+	char		*sprite;
 	int			floor;
 	int			ceil;
 	char		*name;
