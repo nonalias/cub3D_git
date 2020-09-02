@@ -115,6 +115,12 @@ typedef struct	s_map
 	int			columns;
 	int			rows;
 	int			fd;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	int			floor;
+	int			ceil;
 	char		*name;
 }				t_map;
 
@@ -182,7 +188,7 @@ typedef struct	s_game
 	int			key_check[300];
 }				t_game;
 
-int		my_map[11][15];
+int		my_map[100][100];
 
 /*
 int		my_map[11][11] = {
@@ -226,8 +232,8 @@ int				hook_action(t_game *game);
 void			key_matching(t_game *game);
 
 void			init(t_game *game);
-void			win_init(t_game *game);
 void			game_init(t_game *game);
+void			win_init(t_game *game);
 void			player_init(t_game *game);
 void			ray_init(t_game *game);
 void			wall_init(t_game *game);
@@ -251,6 +257,8 @@ int				to_coord(t_game *game, double x, double y);
 
 void			status_show(t_game *game);
 void			arg_parse(t_game *game, int argc, char **argv);
+void			error_exit(int error_code);
+void			map_parse(t_game *game);
 void			specify_angle(double *angle);
 void			specify_radian(double *radian);
 void			free_process(t_game *game);

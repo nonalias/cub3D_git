@@ -1,11 +1,5 @@
 #include "../cub3d.h"
 
-void	win_init(t_game *game)
-{
-	game->win.width = WIN_WIDTH;
-	game->win.height = WIN_HEIGHT;
-}
-
 void	game_init(t_game *game)
 {
 	int		i;
@@ -54,7 +48,6 @@ void	ray_init(t_game *game)
 
 void	init(t_game *game)
 {
-	win_init(game);
 	game_init(game);
 	player_init(game);
 	ray_init(game);

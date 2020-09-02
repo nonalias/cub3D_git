@@ -67,12 +67,14 @@ int		main(int argc, char **argv)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (1);
-	init(game);
 	arg_parse(game, argc, argv);
+	map_parse(game);
+	init(game);
 	//if (!valid_check(game))
 		//return (1);
 	//valid_check(game);
 	//flag_process(game);
+	//validation(game);
 	get_texture(game);
 	mlx_hook(game->win_ptr, KEY_PRESSED, 0, &key_press_callback, game);
 	mlx_hook(game->win_ptr, KEY_RELEASED, 0, &key_release_callback, game);
