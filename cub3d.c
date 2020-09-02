@@ -68,7 +68,7 @@ int		main(int argc, char **argv)
 	if (!game)
 		return (1);
 	arg_parse(game, argc, argv);
-	map_parse(game);
+	parse(game);
 	init(game);
 	//if (!valid_check(game))
 		//return (1);

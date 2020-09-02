@@ -93,18 +93,11 @@ void	map_parsing(t_game *game)
 }
 */
 
-void	map_parse(t_game *game)
+void	parse(t_game *game)
 {
 	game->map.fd = open(game->map.name, O_RDONLY);
 	if (game->map.fd < 0)
 		error_exit(MAP_ERROR);
 	option_parsing(game);
-	printf("%s\n", game->map.north);
-	printf("%s\n", game->map.south);
-	printf("%s\n", game->map.west);
-	printf("%s\n", game->map.east);
-	printf("%s\n", game->map.sprite);
-	printf("%x\n", game->map.floor);
-	printf("%x\n", game->map.ceil);
 	//map_parsing(game);
 }
