@@ -34,7 +34,7 @@ int		is_option(char c)
 {
 	if (c == 'R' || c == 'N' || c == 'S'
 			|| c == 'W' || c == 'E' || c == 'F'
-			|| c == 'C')
+			|| c == 'C' || c == '\n')
 		return (1);
 	return (0);
 }
@@ -55,29 +55,41 @@ int		str_to_color(char *str)
 	return (color);
 }
 
+void	option_parsing2(t_game *game)
+{
+	game->map.splited = ft_split(game->map.line, ' ');
+	if (!ft_strncmp(game->map.splited[0], "R", 1))
+		resolution_parse(game, game->map.splited);
+	else if (!ft_strncmp(game->map.splited[0], "NO", 2))
+		game->map.north = ft_strdup(game->map.splited[1]);
+	else if (!ft_strncmp(game->map.splited[0], "SO", 2))
+		game->map.south = ft_strdup(game->map.splited[1]);
+	else if (!ft_strncmp(game->map.splited[0], "WE", 2))
+		game->map.west = ft_strdup(game->map.splited[1]);
+	else if (!ft_strncmp(game->map.splited[0], "EA", 2))
+		game->map.east = ft_strdup(game->map.splited[1]);
+	else if (!ft_strncmp(game->map.splited[0], "F", 1))
+		game->map.floor = str_to_color(game->map.splited[1]);
+	else if (!ft_strncmp(game->map.splited[0], "C", 1))
+		game->map.ceil = str_to_color(game->map.splited[1]);
+	else if (!ft_strncmp(game->map.splited[0], "S", 2))
+		game->map.sprite = ft_strdup(game->map.splited[1]);
+	free_splited(&game->map.splited);
+}
+
 void	option_parsing(t_game *game)
 {
+	int		i;
+
+	i = 0;
 	get_next_line(game->map.fd, &game->map.line);
-	while (is_option(game->map.line[0]) && game->map.line)
+	while (i < 8)
 	{
-		game->map.splited = ft_split(game->map.line, ' ');
-		if (!ft_strncmp(game->map.splited[0], "R", 1))
-			resolution_parse(game, game->map.splited);
-		else if (!ft_strncmp(game->map.splited[0], "NO", 2))
-			game->map.north = ft_strdup(game->map.splited[1]);
-		else if (!ft_strncmp(game->map.splited[0], "SO", 2))
-			game->map.south = ft_strdup(game->map.splited[1]);
-		else if (!ft_strncmp(game->map.splited[0], "WE", 2))
-			game->map.west = ft_strdup(game->map.splited[1]);
-		else if (!ft_strncmp(game->map.splited[0], "EA", 2))
-			game->map.east = ft_strdup(game->map.splited[1]);
-		else if (!ft_strncmp(game->map.splited[0], "F", 1))
-			game->map.floor = str_to_color(game->map.splited[1]);
-		else if (!ft_strncmp(game->map.splited[0], "C", 1))
-			game->map.ceil = str_to_color(game->map.splited[1]);
-		else if (!ft_strncmp(game->map.splited[0], "S", 2))
-			game->map.sprite = ft_strdup(game->map.splited[1]);
-		free_splited(&game->map.splited);
+		if (ft_strlen(game->map.line) >= 3)
+		{
+			option_parsing2(game);
+			i++;
+		}
 		free_line(&game->map.line);
 		get_next_line(game->map.fd, &game->map.line);
 	}
@@ -103,6 +115,7 @@ void	show_map(t_game *game)
 	int		i;
 	int		j;
 
+	printf("-----mapstart-----\n");
 	i = 0;
 	while (i < game->map.rows)
 	{
@@ -115,11 +128,13 @@ void	show_map(t_game *game)
 		printf("\n");
 		i++;
 	}
+	printf("-----mapend-----\n");
 }
 
 void	map_parsing(t_game *game)
 {
 	int		i;
+	int		temp;
 
 	i = 0;
 	while (1)
@@ -127,16 +142,20 @@ void	map_parsing(t_game *game)
 		while (ft_strlen(game->map.line) < 3)
 		{
 			free_line(&game->map.line);
-			get_next_line(game->map.fd, &game->map.line);
+			temp = get_next_line(game->map.fd, &game->map.line);
+			if (temp <= 0)
+				break ;
 		}
-		game->map.columns = ft_strlen(game->map.line);
-		one_line_to_map(game, i);
-		i++;
+		if ((temp = ft_strlen(game->map.line)) >= 3)
+		{
+			game->map.columns = temp;
+			one_line_to_map(game, i);
+			i++;
+		}
 		if ((get_next_line(game->map.fd, &game->map.line) <= 0))
 			break ;
 	}
 	game->map.rows = i;
-	show_map(game);
 }
 
 void	parse(t_game *game)
@@ -146,4 +165,5 @@ void	parse(t_game *game)
 		error_exit(MAP_ERROR);
 	option_parsing(game);
 	map_parsing(game);
+	show_map(game);
 }
