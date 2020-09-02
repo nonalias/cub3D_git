@@ -57,33 +57,29 @@ int		str_to_color(char *str)
 
 void	option_parsing(t_game *game)
 {
-	// 일단 line 구조체안에 넣어야함. 마지막줄은 map parsing에서 써먹음
-	char	*line;
-	char	**splited;
-
-	get_next_line(game->map.fd, &line);
-	while (is_option(line[0]) && line)
+	get_next_line(game->map.fd, &game->map.line);
+	while (is_option(game->map.line[0]) && game->map.line)
 	{
-		splited = ft_split(line, ' ');
-		if (!ft_strncmp(splited[0], "R", 1))
-			resolution_parse(game, splited);
-		else if (!ft_strncmp(splited[0], "NO", 2))
-			game->map.north = ft_strdup(splited[1]);
-		else if (!ft_strncmp(splited[0], "SO", 2))
-			game->map.south = ft_strdup(splited[1]);
-		else if (!ft_strncmp(splited[0], "WE", 2))
-			game->map.west = ft_strdup(splited[1]);
-		else if (!ft_strncmp(splited[0], "EA", 2))
-			game->map.east = ft_strdup(splited[1]);
-		else if (!ft_strncmp(splited[0], "F", 1))
-			game->map.floor = str_to_color(splited[1]);
-		else if (!ft_strncmp(splited[0], "C", 1))
-			game->map.ceil = str_to_color(splited[1]);
-		else if (splited[0][0] == 'S' && splited[0][1] == '\0')
-			game->map.sprite = ft_strdup(splited[1]);
-		free_splited(&splited);
-		free_line(&line);
-		get_next_line(game->map.fd, &line);
+		game->map.splited = ft_split(game->map.line, ' ');
+		if (!ft_strncmp(game->map.splited[0], "R", 1))
+			resolution_parse(game, game->map.splited);
+		else if (!ft_strncmp(game->map.splited[0], "NO", 2))
+			game->map.north = ft_strdup(game->map.splited[1]);
+		else if (!ft_strncmp(game->map.splited[0], "SO", 2))
+			game->map.south = ft_strdup(game->map.splited[1]);
+		else if (!ft_strncmp(game->map.splited[0], "WE", 2))
+			game->map.west = ft_strdup(game->map.splited[1]);
+		else if (!ft_strncmp(game->map.splited[0], "EA", 2))
+			game->map.east = ft_strdup(game->map.splited[1]);
+		else if (!ft_strncmp(game->map.splited[0], "F", 1))
+			game->map.floor = str_to_color(game->map.splited[1]);
+		else if (!ft_strncmp(game->map.splited[0], "C", 1))
+			game->map.ceil = str_to_color(game->map.splited[1]);
+		else if (!ft_strncmp(game->map.splited[0], "S", 2))
+			game->map.sprite = ft_strdup(game->map.splited[1]);
+		free_splited(&game->map.splited);
+		free_line(&game->map.line);
+		get_next_line(game->map.fd, &game->map.line);
 	}
 }
 

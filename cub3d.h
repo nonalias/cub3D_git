@@ -115,6 +115,8 @@ typedef struct	s_map
 	int			columns;
 	int			rows;
 	int			fd;
+	char		**splited;
+	char		*line;
 	char		*north;
 	char		*south;
 	char		*east;
