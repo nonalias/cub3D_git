@@ -52,6 +52,7 @@ int		str_to_color(char *str)
 	color = color << 8;
 	color += ft_atoi(splited[2]);
 	free_splited(&splited);
+	return (color);
 }
 
 void	option_parsing(t_game *game)
@@ -80,7 +81,6 @@ void	option_parsing(t_game *game)
 			game->map.ceil = str_to_color(splited[1]);
 		free_splited(&splited);
 		free_line(&line);
-
 		get_next_line(game->map.fd, &line);
 	}
 }

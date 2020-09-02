@@ -21,7 +21,7 @@ void	make_ceil(t_game *game)
 			0);
 	set_pos(&pos[1], pos[0].x,
 			game->win.height / 2 - (game->wall.realheight / 2));
-	game->line.color = 0x50bcdf;
+	game->line.color = game->map.ceil;
 	make_line(game, pos[0], pos[1]);
 }
 
@@ -33,6 +33,6 @@ void	make_floor(t_game *game)
 				game->win.width / game->seek_angle),
 			game->win.height / 2 + (game->wall.realheight / 2) - 1);
 	set_pos(&pos[1], pos[0].x, game->win.height);
-	game->line.color = 0xf0ecdd;
+	game->line.color = game->map.floor;
 	make_line(game, pos[0], pos[1]);
 }
