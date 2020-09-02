@@ -83,11 +83,61 @@ void	option_parsing(t_game *game)
 	}
 }
 
-/*
+void	one_line_to_map(t_game *game, int row)
+{
+	int		i;
+
+	i = 0;
+	while (i < game->map.columns)
+	{
+		if (game->map.line[i] == ' ')
+			my_map[row][i] = 1;
+		else
+			my_map[row][i] = game->map.line[i] - '0';
+		i++;
+	}
+}
+
+void	show_map(t_game *game)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < game->map.rows)
+	{
+		j = 0;
+		while (j < game->map.columns)
+		{
+			printf("%d", my_map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 void	map_parsing(t_game *game)
 {
+	int		i;
+
+	i = 0;
+	while (1)
+	{
+		while (ft_strlen(game->map.line) < 3)
+		{
+			free_line(&game->map.line);
+			get_next_line(game->map.fd, &game->map.line);
+		}
+		game->map.columns = ft_strlen(game->map.line);
+		one_line_to_map(game, i);
+		i++;
+		if ((get_next_line(game->map.fd, &game->map.line) <= 0))
+			break ;
+	}
+	game->map.rows = i;
+	show_map(game);
 }
-*/
 
 void	parse(t_game *game)
 {
@@ -95,5 +145,5 @@ void	parse(t_game *game)
 	if (game->map.fd < 0)
 		error_exit(MAP_ERROR);
 	option_parsing(game);
-	//map_parsing(game);
+	map_parsing(game);
 }
