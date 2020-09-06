@@ -18,13 +18,12 @@ void	arg_parse(t_game *game, int argc, char **argv)
 	}
 }
 
-void	error_exit(int error_code)
+void	error_exit(t_game *game, int code, char *message)
 {
 	printf("ERROR\n");
-	if (error_code == MAP_ERROR)
-		printf("MAP ERROR\n");
+	printf("%s\n", message);
 	//여기에 다른 에러 코드 추가
-	exit(0);
+	exit(code);
 }
 
 void	specify_angle(double *angle)

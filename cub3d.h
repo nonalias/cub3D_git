@@ -256,7 +256,7 @@ int				to_coord(t_game *game, double x, double y);
 
 void			status_show(t_game *game);
 void			arg_parse(t_game *game, int argc, char **argv);
-void			error_exit(int error_code);
+void			error_exit(t_game *game, int code, char *message);
 void			parse(t_game *game);
 void			specify_angle(double *angle);
 void			specify_radian(double *radian);

@@ -192,7 +192,7 @@ void	parse(t_game *game)
 	map_init(game);
 	game->map.fd = open(game->map.name, O_RDONLY);
 	if (game->map.fd < 0)
-		error_exit(MAP_ERROR);
+		error_exit(game, MAP_ERROR, "couldn't open map");
 	option_parsing(game);
 	map_parsing(game);
 	show_map(game);
