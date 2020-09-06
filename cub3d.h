@@ -269,4 +269,6 @@ void			reset_player(t_game *game);
 
 int				check_sprite(t_game *game, double x, double y);
 void			make_sprite(t_game *game);
+
+void			validation(t_game *game);
 #endif

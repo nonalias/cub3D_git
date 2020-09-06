@@ -46,5 +46,7 @@
 # define WALL_BOUNDARY 20
 # define MAP_ERROR 1
 # define MAX_MAP_SIZE 100
+# define OPTION_ERROR 2
+# define TEX_ERROR 3
 
 #endif

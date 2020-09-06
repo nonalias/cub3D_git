@@ -22,6 +22,7 @@ SRCS	=	./cub3d.c \
 			./engine/raycasting_vert.c \
 			./engine/raycasting_horz.c \
 			./engine/utils.c \
+			./engine/validation.c \
 			./engine/pos.c \
 			./engine/status.c \
 			./engine/parse.c \

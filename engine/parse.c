@@ -173,7 +173,11 @@ void	map_init(t_game *game)
 {
 	int		i;
 	int		j;
-
+	
+	game->map.columns = 0;
+	game->map.rows = 0;
+	game->map.floor = 0;
+	game->map.ceil = 0;
 	i = 0;
 	while (i < MAX_MAP_SIZE)
 	{
