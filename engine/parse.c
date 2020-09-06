@@ -61,19 +61,19 @@ void	option_parsing2(t_game *game)
 	if (!ft_strncmp(game->map.splited[0], "R", 1))
 		resolution_parse(game, game->map.splited);
 	else if (!ft_strncmp(game->map.splited[0], "NO", 2))
-		game->map.north = ft_strdup(game->map.splited[1]);
+		game->map.s[NORTH] = ft_strdup(game->map.splited[1]);
 	else if (!ft_strncmp(game->map.splited[0], "SO", 2))
-		game->map.south = ft_strdup(game->map.splited[1]);
+		game->map.s[SOUTH] = ft_strdup(game->map.splited[1]);
 	else if (!ft_strncmp(game->map.splited[0], "WE", 2))
-		game->map.west = ft_strdup(game->map.splited[1]);
+		game->map.s[WEST] = ft_strdup(game->map.splited[1]);
 	else if (!ft_strncmp(game->map.splited[0], "EA", 2))
-		game->map.east = ft_strdup(game->map.splited[1]);
+		game->map.s[EAST] = ft_strdup(game->map.splited[1]);
 	else if (!ft_strncmp(game->map.splited[0], "F", 1))
 		game->map.floor = str_to_color(game->map.splited[1]);
 	else if (!ft_strncmp(game->map.splited[0], "C", 1))
 		game->map.ceil = str_to_color(game->map.splited[1]);
 	else if (!ft_strncmp(game->map.splited[0], "S", 2))
-		game->map.sprite = ft_strdup(game->map.splited[1]);
+		game->map.s[SPRITE] = ft_strdup(game->map.splited[1]);
 	free_splited(&game->map.splited);
 }
 

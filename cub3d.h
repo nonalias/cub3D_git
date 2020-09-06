@@ -117,11 +117,7 @@ typedef struct	s_map
 	int			fd;
 	char		**splited;
 	char		*line;
-	char		*north;
-	char		*south;
-	char		*east;
-	char		*west;
-	char		*sprite;
+	char		*s[5];
 	int			floor;
 	int			ceil;
 	char		*name;

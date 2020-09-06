@@ -28,36 +28,19 @@ int		valid_check(t_game *game)
 
 void	get_texture(t_game *game)
 {
-	game->tex.img[EAST].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->map.east,
-			&game->tex.img[EAST].width, &game->tex.img[EAST].height);
-	game->tex.img[EAST].data = (int*)mlx_get_data_addr(
-			game->tex.img[EAST].img_ptr, &game->tex.img[EAST].bpp,
-			&game->tex.img[EAST].size_l, &game->tex.img[EAST].endian);
-	game->tex.img[WEST].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->map.west,
-			&game->tex.img[WEST].width, &game->tex.img[WEST].height);
-	game->tex.img[WEST].data = (int*)mlx_get_data_addr(
-			game->tex.img[WEST].img_ptr, &game->tex.img[WEST].bpp,
-			&game->tex.img[WEST].size_l, &game->tex.img[WEST].endian);
-	game->tex.img[SOUTH].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->map.south,
-			&game->tex.img[SOUTH].width, &game->tex.img[SOUTH].height);
-	game->tex.img[SOUTH].data = (int*)mlx_get_data_addr(
-			game->tex.img[SOUTH].img_ptr, &game->tex.img[SOUTH].bpp,
-			&game->tex.img[SOUTH].size_l, &game->tex.img[SOUTH].endian);
-	game->tex.img[NORTH].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->map.north,
-			&game->tex.img[NORTH].width, &game->tex.img[NORTH].height);
-	game->tex.img[NORTH].data = (int*)mlx_get_data_addr(
-			game->tex.img[NORTH].img_ptr, &game->tex.img[NORTH].bpp,
-			&game->tex.img[NORTH].size_l, &game->tex.img[NORTH].endian);
-	game->tex.img[SPRITE].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->map.sprite,
-			&game->tex.img[SPRITE].width, &game->tex.img[SPRITE].height);
-	game->tex.img[SPRITE].data = (int*)mlx_get_data_addr(
-			game->tex.img[SPRITE].img_ptr, &game->tex.img[SPRITE].bpp,
-			&game->tex.img[SPRITE].size_l, &game->tex.img[SPRITE].endian);
+	int		i;
+
+	i = 0;
+	while (i < 5)
+	{
+		game->tex.img[i].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+				game->map.s[i],
+				&game->tex.img[i].width, &game->tex.img[i].height);
+		game->tex.img[i].data = (int*)mlx_get_data_addr(
+				game->tex.img[i].img_ptr, &game->tex.img[i].bpp,
+				&game->tex.img[i].size_l, &game->tex.img[i].endian);
+		i++;
+	}
 }
 
 int		main(int argc, char **argv)
@@ -70,18 +53,10 @@ int		main(int argc, char **argv)
 	arg_parse(game, argc, argv);
 	parse(game);
 	init(game);
-	//if (!valid_check(game))
-		//return (1);
-	//valid_check(game);
-	//flag_process(game);
 	//validation(game);
-	printf("map.columns : %d\n", game->map.columns);
-	printf("map.rows : %d\n", game->map.rows);
 	get_texture(game);
-	/*
 	mlx_hook(game->win_ptr, KEY_PRESSED, 0, &key_press_callback, game);
 	mlx_hook(game->win_ptr, KEY_RELEASED, 0, &key_release_callback, game);
 	mlx_loop_hook(game->mlx_ptr, &hook_action, game);
 	mlx_loop(game->mlx_ptr);
-	*/
 }
