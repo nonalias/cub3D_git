@@ -77,6 +77,13 @@ void	option_parsing2(t_game *game)
 	free_splited(&game->map.splited);
 }
 
+int		is_map_element(char c)
+{
+	if (c == '1' || c == '0' || c == ' ')
+		return (1);
+	return (0);
+}
+
 void	option_parsing(t_game *game)
 {
 	int		i;
@@ -85,6 +92,8 @@ void	option_parsing(t_game *game)
 	get_next_line(game->map.fd, &game->map.line);
 	while (i < 8)
 	{
+		if (is_map_element(game->map.line[0]))
+			break ;
 		if (ft_strlen(game->map.line) >= 3)
 		{
 			option_parsing2(game);
