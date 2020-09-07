@@ -18,10 +18,12 @@ void	game_init(t_game *game)
 
 void	player_init(t_game *game)
 {
-	game->player.x = 9 * game->tile_xsize;
-	game->player.y = 2 * game->tile_ysize;
-	game->player.rot_angle = 180;
-	game->player.move_speed = 10;
+	double	option;
+	
+	option = (double)(game->win.width * game->win.height);
+	option = option * 8 * 9;
+	option = option / (500.0 * 500.0 * game->map.rows * game->map.columns);
+	game->player.move_speed = option * 3;
 	game->player.rot_speed = 6;
 }
 
