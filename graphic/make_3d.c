@@ -58,11 +58,9 @@ void	make_wall(t_game *game)
 {
 	t_pos	pos[2];
 
-	set_pos(&pos[0], ((game->ray.angle + game->seek_angle / 2) *
-				game->win.width / game->seek_angle),
-			game->win.height / 2 - (game->wall.realheight / 2));
-	set_pos(&pos[1], pos[0].x,
-			game->win.height / 2 + (game->wall.realheight / 2));
+	set_pos(&pos[0], (game->ray.angle + game->seek_angle / 2) * game->win.width / game->seek_angle, (game->win.height / 2 - (game->wall.realheight / 2)));
+
+	set_pos(&pos[1], pos[0].x, game->win.height / 2 + (game->wall.realheight / 2)) ;
 	check_cardinal(game);
 	make_wall_by_image(game, pos);
 }
