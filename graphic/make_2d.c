@@ -60,12 +60,12 @@ void	make_tile(t_game *game, int i, int j, int color)
 
 	k = 0;
 	//map_print(game);
-	while (k < game->tile_xsize / MINIMAP_RATIO)
+	while (k < game->common_tsize / MINIMAP_RATIO)
 	{
-		set_pos(&pos[0], j * game->tile_xsize / MINIMAP_RATIO + k,
-				i * game->tile_ysize / MINIMAP_RATIO);
-		set_pos(&pos[1], j * game->tile_xsize / MINIMAP_RATIO + k,
-				(i + 1) * game->tile_ysize / MINIMAP_RATIO + 1);
+		set_pos(&pos[0], j * game->common_tsize / MINIMAP_RATIO + k,
+				i * game->common_tsize / MINIMAP_RATIO);
+		set_pos(&pos[1], j * game->common_tsize / MINIMAP_RATIO + k,
+				(i + 1) * game->common_tsize / MINIMAP_RATIO + 1);
 		game->line.color = color;
 		make_line(game, pos[0], pos[1]);
 		k++;

@@ -182,6 +182,7 @@ typedef struct	s_game
 	double		temp;
 	int			seek_angle;
 	int			seek_distance;
+	double		common_tsize;
 	double		tile_xsize;
 	double		tile_ysize;
 	double		ray_term;

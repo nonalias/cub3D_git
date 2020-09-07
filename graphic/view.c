@@ -8,7 +8,6 @@ void	make_view(t_game *game)
 	make_2d(game);
 	//make_one_rader(game);
 	make_rader(game);
-	make_player(game);
 	make_crosshair(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.img_ptr, 0, 0);
 	mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
