@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/12 15:50:30 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/07 14:53:54 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,6 @@ void			win_init(t_game *game);
 void			player_init(t_game *game);
 void			ray_init(t_game *game);
 void			wall_init(t_game *game);
-void			flag_init(t_game *game);
 void			cart_init(t_game *game);
 void			sprite_init(t_game *game);
 void			sprite_reinit(t_game *game);

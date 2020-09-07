@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 21:05:13 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/12 15:46:23 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/07 14:55:18 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ int		hook_action(t_game *game)
 	key_matching(game);
 	specify_angle(&game->player.rot_angle);
 	make_view(game);
-	status_show(game);
-	free_process(game);
+	if (game->flags.debug)
+	{
+		status_show(game);
+		free_process(game);
+	}
 	return (1);
 }

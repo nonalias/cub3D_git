@@ -10,12 +10,6 @@ void	wall_init(t_game *game)
 	game->wall.realheight = 0;
 }
 
-void	flag_init(t_game *game)
-{
-	game->flags.debug = 0;
-	game->flags.save = 0;
-}
-
 t_pos	find_sprite(t_game *game)
 {
 	int		i;

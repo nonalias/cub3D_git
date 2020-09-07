@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 14:49:13 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/11 22:09:34 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/07 14:51:02 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@ void	flag_process(t_game *game)
 {
 	//save_process(game);
 }
-
-/*
-int		valid_check(t_game *game)
-{
-	game->map.fd = open(game->map.name, O_RDONLY);
-	if (fd < 2)
-		printf("MAP ERROR");
-}
-*/
 
 void	get_texture(t_game *game)
 {

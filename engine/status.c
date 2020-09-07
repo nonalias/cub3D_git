@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 21:01:45 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/10 21:32:55 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/07 14:49:30 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	status_show(t_game *game)
 	int		x;
 	int		y;
 
-	if (game->flags.debug == 0)
-		return ;
 	game->debug.map_str = ft_strdup("MAP NAME : ");
 	game->debug.map_str = ft_strjoin(game->debug.map_str, game->map.name);
 	game->debug.x_str = ft_strdup("PLAYER POSITION (X) : ");

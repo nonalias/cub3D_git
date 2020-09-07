@@ -54,6 +54,5 @@ void	init(t_game *game)
 	player_init(game);
 	ray_init(game);
 	wall_init(game);
-	flag_init(game);
 	sprite_init(game);
 }
