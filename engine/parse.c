@@ -121,6 +121,7 @@ void	one_line_to_map(t_game *game, int row, int columns)
 			my_map[row][i] = game->map.line[i] - '0';
 		i++;
 	}
+	free_line(&game->map.line);
 }
 
 void	show_map(t_game *game)
@@ -149,26 +150,22 @@ void	map_parsing(t_game *game)
 	int		i;
 	int		temp;
 
+	while (ft_strlen(game->map.line) < 3)
+	{
+		free_line(&game->map.line);
+		if (get_next_line(game->map.fd, &game->map.line) <= 0)
+			break ;
+	}
 	i = 0;
 	game->map.columns = 0;
-	while (1)
+	while ((temp = ft_strlen(game->map.line)) >= 3)
 	{
-		while (ft_strlen(game->map.line) < 3)
-		{
-			free_line(&game->map.line);
-			temp = get_next_line(game->map.fd, &game->map.line);
-			if (temp <= 0)
-				break ;
-		}
-		if ((temp = ft_strlen(game->map.line)) >= 3)
-		{
-			if (game->map.columns < temp)
-				game->map.columns = temp;
-			one_line_to_map(game, i, temp);
-			i++;
-		}
+		if (game->map.columns < temp)
+			game->map.columns = temp;
+		one_line_to_map(game, i, temp);
 		if ((get_next_line(game->map.fd, &game->map.line) <= 0))
 			break ;
+		i++;
 	}
 	game->map.rows = i;
 }
@@ -204,5 +201,5 @@ void	parse(t_game *game)
 		error_exit(game, MAP_ERROR, "couldn't open map");
 	option_parsing(game);
 	map_parsing(game);
-	show_map(game);
+	//show_map(game);
 }
