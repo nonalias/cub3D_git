@@ -4,6 +4,14 @@ void	resolution_parse(t_game *game, char **splited)
 {
 	game->win.width = ft_atoi(splited[1]);
 	game->win.height = ft_atoi(splited[2]);
+	if (game->win.width > 1920)
+		game->win.width = 1920;
+	else if (game->win.width < 500)
+		game->win.width = 500;
+	if (game->win.height > 1080)
+		game->win.height = 1080;
+	else if (game->win.height < 500)
+		game->win.height = 500;
 }
 
 void	free_splited(char ***splited)
