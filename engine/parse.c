@@ -85,13 +85,6 @@ void	option_parsing2(t_game *game)
 	free_splited(&game->map.splited);
 }
 
-int		is_map_element(char c)
-{
-	if (c == '1' || c == '0' || c == ' ')
-		return (1);
-	return (0);
-}
-
 void	option_parsing(t_game *game)
 {
 	int		i;
@@ -100,7 +93,8 @@ void	option_parsing(t_game *game)
 	get_next_line(game->map.fd, &game->map.line);
 	while (i < 8)
 	{
-		if (is_map_element(game->map.line[0]))
+		if (game->map.line[0] == ' ' || game->map.line[0] == '1'
+				|| game->map.line[0] == '0')
 			break ;
 		if (ft_strlen(game->map.line) >= 3)
 		{
@@ -119,7 +113,9 @@ void	one_line_to_map(t_game *game, int row, int columns)
 	i = 0;
 	while (i < columns)
 	{
-		if (game->map.line[i] == ' ')
+		if (is_map_position(game->map.line[i]))
+			my_map[row][i] = game->map.line[i];
+		else if (game->map.line[i] == ' ')
 			my_map[row][i] = 1;
 		else
 			my_map[row][i] = game->map.line[i] - '0';
@@ -186,6 +182,7 @@ void	map_init(t_game *game)
 	game->map.rows = 0;
 	game->map.floor = 0;
 	game->map.ceil = 0;
+	game->map.had_set_position = 0;
 	i = 0;
 	while (i < MAX_MAP_SIZE)
 	{

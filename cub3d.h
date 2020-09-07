@@ -115,6 +115,7 @@ typedef struct	s_map
 	int			columns;
 	int			rows;
 	int			fd;
+	int			had_set_position;
 	char		**splited;
 	char		*line;
 	char		*s[5];
@@ -270,4 +271,7 @@ int				check_sprite(t_game *game, double x, double y);
 void			make_sprite(t_game *game);
 
 void			validation(t_game *game);
+int				is_map_position(char c);
+
+void			show_map(t_game *game);
 #endif
