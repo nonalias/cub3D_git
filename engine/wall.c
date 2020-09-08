@@ -117,8 +117,8 @@ int		check_wall(t_game * game, double x, double y)
 	int		coord_x;
 	int		coord_y;
 
-	coord_x = floor(x / game->tile_xsize);
-	coord_y = floor(y / game->tile_ysize);
+	coord_x = floor(x / game->common_tsize);
+	coord_y = floor(y / game->common_tsize);
 	if (coord_x < 0)
 		coord_x = 0;
 	if (coord_y < 0)

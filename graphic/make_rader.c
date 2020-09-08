@@ -71,10 +71,10 @@ void	make_rader(t_game *game)
 		else if (game->wall.angle > 360)
 			game->wall.angle -= 360;
 		distance = shoot_ray(game);
-		set_pos(&pos[0], to_proper_coord(game, game->player.x, 0) / MINIMAP_RATIO,
-				to_proper_coord(game, game->player.y, 1) / MINIMAP_RATIO);
-		set_pos(&pos[1], to_proper_coord(game, game->wall.x, 0) / MINIMAP_RATIO,
-				to_proper_coord(game, game->wall.y, 1) / MINIMAP_RATIO);
+		set_pos(&pos[0], game->player.x / MINIMAP_RATIO,
+				 game->player.y / MINIMAP_RATIO);
+		set_pos(&pos[1], game->wall.x / MINIMAP_RATIO,
+				game->wall.y / MINIMAP_RATIO);
 		game->line.color = 0x0000a1;
 		make_line(game, pos[0], pos[1]);
 		//make_rader_line(game);
