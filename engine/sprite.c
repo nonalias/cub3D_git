@@ -5,8 +5,8 @@ int		check_sprite(t_game *game, double x, double y)
 	int		coord_x;
 	int		coord_y;
 
-	coord_x = floor(x / game->tile_xsize);
-	coord_y = floor(y / game->tile_ysize);
+	coord_x = floor(x / game->common_tsize);
+	coord_y = floor(y / game->common_tsize);
 	if (coord_x < 0)
 		coord_x = 0;
 	if (coord_y < 0)
@@ -26,21 +26,21 @@ void	get_sprite_config(t_game *game)
 		set_pos(&game->spr.hit, game->spr.horz_x, game->spr.horz_y);
 	else if (game->spr.what_hit == VERT_HIT)
 		set_pos(&game->spr.hit, game->spr.vert_x, game->spr.vert_y);
-	game->spr.coord_x = (int)(game->spr.hit.x / game->tile_xsize);
-	game->spr.coord_y = (int)(game->spr.hit.y / game->tile_ysize);
+	game->spr.coord_x = (int)(game->spr.hit.x / game->common_tsize);
+	game->spr.coord_y = (int)(game->spr.hit.y / game->common_tsize);
 	if (game->ray.left_facing && game->spr.what_hit == VERT_HIT)
 		game->spr.coord_x -= 1;
 	if (game->ray.up_facing && game->spr.what_hit == HORZ_HIT)
 		game->spr.coord_y -= 1;
-	game->spr.center_x = (game->spr.coord_x + 0.5) * game->tile_xsize;
-	game->spr.center_y = (game->spr.coord_y + 0.5) * game->tile_ysize;
+	game->spr.center_x = (game->spr.coord_x + 0.5) * game->common_tsize;
+	game->spr.center_y = (game->spr.coord_y + 0.5) * game->common_tsize;
 	game->spr.center_angle = atan2(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
 	specify_radian(&game->spr.center_angle);
 	game->spr.distance = hypot(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
-	game->spr.min_angle = game->spr.center_angle - atan2(32, game->spr.distance);
-	game->spr.max_angle = game->spr.center_angle + atan2(32, game->spr.distance);
+	game->spr.min_angle = game->spr.center_angle - atan2(game->common_tsize / 2, game->spr.distance);
+	game->spr.max_angle = game->spr.center_angle + atan2(game->common_tsize / 2, game->spr.distance);
 	specify_radian(&game->spr.min_angle);
 	specify_radian(&game->spr.max_angle);
 	// 이 코드가 없으면 180도에서 아예 사라짐
@@ -58,7 +58,7 @@ void	get_sprite_config(t_game *game)
 		game->tex.tex_x = 63;
 	game->spr.dist_opt = (game->win.width / 2) /
 		tan(TO_RADIAN(game->seek_angle / 2));
-	game->spr.realheight = (game->tile_ysize /
+	game->spr.realheight = (game->common_tsize /
 			game->spr.distance) * game->spr.dist_opt;
 }
 
