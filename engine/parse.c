@@ -164,7 +164,10 @@ void	map_parsing(t_game *game)
 			game->map.columns = temp;
 		one_line_to_map(game, i, temp);
 		if ((get_next_line(game->map.fd, &game->map.line) <= 0))
+		{
+			i++;
 			break ;
+		}
 		i++;
 	}
 	game->map.rows = i;

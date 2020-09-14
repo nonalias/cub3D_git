@@ -62,8 +62,8 @@ int		hook_action(t_game *game)
 	make_view(game);
 	if (game->flags.debug)
 	{
-		status_show(game);
-		free_process(game);
+		//status_show(game);
+		//free_process(game);
 	}
 	return (1);
 }
