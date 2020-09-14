@@ -18,9 +18,9 @@ void	raycasting_horz2(t_game *game)
 	if (game->ray.up_facing)
 		touched.y -= 1;
 	while (touched.x >= 0
-			&& touched.x <= game->win.width
+			&& touched.x <= game->common_tsize * game->map.columns
 			&& touched.y >= 0
-			&& touched.y <= game->win.height)
+			&& touched.y <= game->common_tsize * game->map.rows)
 	{
 		if (check_wall(game, touched.x, touched.y))
 		{

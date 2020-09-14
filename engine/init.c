@@ -11,7 +11,7 @@ void	game_init(t_game *game)
 	game->win_ptr = mlx_new_window(game->mlx_ptr, game->win.width, game->win.height, "ModyHoon");
 	game->tile_xsize = game->win.width / game->map.columns;
 	game->tile_ysize = game->win.height / game->map.rows;
-	game->common_tsize = (game->tile_xsize + game->tile_ysize) / 2;
+	game->common_tsize = 20;
 	game->seek_angle = 66;
 	game->seek_distance = game->win.width / 3;
 	game->ray_term = (1000 * 0.065) / game->win.width;

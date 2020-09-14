@@ -9,8 +9,8 @@ void	move_s_a(t_game *game)
 	new_y = game->player.y - game->player.move_speed * sin(TO_RADIAN((game->player.rot_angle + 45)));
 	if (!check_wall(game, new_x, new_y)
 			&& !check_sprite(game, new_x, new_y)
-			&& new_x < game->win.width
-			&& new_y < game->win.height
+			&& new_x < game->common_tsize * game->map.columns
+			&& new_y < game->common_tsize * game->map.rows
 			&& new_x >= 0 && new_y >= 0)
 	{
 		game->player.x = new_x;
@@ -27,8 +27,8 @@ void	move_s_d(t_game *game)
 	new_y = game->player.y - game->player.move_speed * sin(TO_RADIAN((game->player.rot_angle - 45)));
 	if (!check_wall(game, new_x, new_y)
 			&& !check_sprite(game, new_x, new_y)
-			&& new_x < game->win.width
-			&& new_y < game->win.height
+			&& new_x < game->common_tsize * game->map.columns
+			&& new_y < game->common_tsize * game->map.rows
 			&& new_x >= 0 && new_y >= 0)
 	{
 		game->player.x = new_x;
@@ -45,8 +45,8 @@ void	move_s(t_game *game)
 	new_y = game->player.y - game->player.move_speed * sin(TO_RADIAN((game->player.rot_angle)));
 	if (!check_wall(game, new_x, new_y)
 			&& !check_sprite(game, new_x, new_y)
-			&& new_x < game->win.width
-			&& new_y < game->win.height
+			&& new_x < game->common_tsize * game->map.columns
+			&& new_y < game->common_tsize * game->map.rows
 			&& new_x >= 0 && new_y >= 0)
 	{
 		game->player.x = new_x;

@@ -38,8 +38,8 @@ int		set_map_position(t_game *game, int row, int column)
 	if (game->map.had_set_position == 1)
 		return (0);
 	game->map.had_set_position = 1;
-	game->player.x = column * game->tile_xsize;
-	game->player.y = row * game->tile_ysize;
+	game->player.x = column * game->common_tsize;
+	game->player.y = row * game->common_tsize;
 	if (my_map[row][column] == 'E')
 		game->player.rot_angle = 0;
 	else if (my_map[row][column] == 'S')

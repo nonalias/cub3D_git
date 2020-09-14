@@ -201,5 +201,5 @@ void	parse(t_game *game)
 		error_exit(game, MAP_ERROR, "couldn't open map");
 	option_parsing(game);
 	map_parsing(game);
-	//show_map(game);
+	show_map(game);
 }
