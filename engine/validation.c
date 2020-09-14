@@ -96,8 +96,34 @@ int		is_map_valid(t_game *game)
 	return (is_map_element_valid(game));
 }
 
+char	*ft_subrstr(char *str, int size)
+{
+	int		length;
+	char	*output;
+
+	if (!str)
+		return (NULL);
+	length = ft_strlen(str);
+	output = malloc(sizeof(char) * (size + 1));
+	output[size] = '\0';
+	while (str[length - 1] && size)
+	{
+		output[size - 1] = str[length - 1];
+		length--;
+		size--;
+	}
+	return (output);
+}
+
 void	validation(t_game *game)
 {
+	char	*temp;
+
+	temp = ft_subrstr(game->map.name, 4);
+	if (ft_strncmp(temp, ".cub", 4))
+		error_exit(game, MAP_ERROR, "map is not '.cub' file");
+	if (temp)
+		free(temp);
 	if (!is_option_valid(game))
 		error_exit(game, OPTION_ERROR, "option error");
 	if (!is_map_valid(game))
