@@ -100,7 +100,7 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 		int color = game->tex.img[SPRITE]
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
 		//game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
-		color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color : 0;
+		color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = shading(game->spr.distance, color) : 0;
 		game->tex.y_iter += 1;
 	}
 }

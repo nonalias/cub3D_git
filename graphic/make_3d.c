@@ -28,7 +28,7 @@ void	make_wall_by_image2(t_game *game, t_pos pos[2])
 				+ tex_start;
 		color = game->tex.img[game->wall.cardinal]
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
-		game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
+		game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = shading(game->wall.distance, color);
 		game->tex.y_iter += 1;
 	}
 }

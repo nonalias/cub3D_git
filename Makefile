@@ -38,6 +38,7 @@ SRCS	=	./cub3d.c \
 			./engine/pos.c \
 			./engine/status.c \
 			./engine/parse.c \
+			./engine/shading.c \
 			./get_next_line/get_next_line.c \
 			./get_next_line/get_next_line_utils.c \
 

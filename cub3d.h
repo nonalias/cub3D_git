@@ -276,4 +276,6 @@ int				is_map_position(char c);
 
 void			show_map(t_game *game);
 double	to_proper_coord(t_game *game, double origin, int x_or_y);
+int		shading(double distance, int color);
+
 #endif
