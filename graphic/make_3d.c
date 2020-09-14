@@ -36,11 +36,11 @@ void	make_wall_by_image2(t_game *game, t_pos pos[2])
 void	make_wall_by_image(t_game *game, t_pos pos[2])
 {
 	if (game->wall.what_hit == VERT_HIT)
-		game->tex.tex_x = (int)(fmod(game->wall.y, game->tile_ysize) /
-				game->tile_ysize * TEX_HEIGHT);
+		game->tex.tex_x = (int)(fmod(game->wall.y, game->common_tsize) /
+				game->common_tsize * TEX_HEIGHT);
 	else
-		game->tex.tex_x = (int)(fmod(game->wall.x, game->tile_xsize) /
-				game->tile_xsize * TEX_WIDTH);
+		game->tex.tex_x = (int)(fmod(game->wall.x, game->common_tsize) /
+				game->common_tsize * TEX_WIDTH);
 	game->temp = game->wall.realheight;
 	if (game->wall.realheight >= game->win.height)
 	{
@@ -82,7 +82,7 @@ void	make_3d(t_game *game)
 			cos(TO_RADIAN(game->ray.angle));
 		dist_opt = (game->win.width / 2) /
 			tan(TO_RADIAN(game->seek_angle / 2));
-		game->wall.realheight = (game->tile_ysize /
+		game->wall.realheight = (game->common_tsize /
 				game->wall.distance) * dist_opt;
 		make_ceil(game);
 		make_floor(game);
