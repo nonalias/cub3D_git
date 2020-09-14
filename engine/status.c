@@ -12,45 +12,36 @@
 
 #include "../cub3d.h"
 
-void	status_show(t_game *game)
+void	put_one_status(t_game *game, char *str, double value, t_pos *pos)
 {
-	int		x;
-	int		y;
+	char	*temp;
+	char	*temp2;
 
-	game->debug.map_str = ft_strjoin("MAP NAME : ", game->map.name);
-	game->debug.x_str = ft_strjoin("PLAYER POSITION (X) : ", ft_itoa((int)game->player.x));
-	game->debug.y_str = ft_strjoin("PLAYER POSITION (Y) : ", ft_itoa((int)game->player.y));
-	game->debug.rot_angle_str = ft_strjoin("ROTATION ANGLE : ", ft_itoa((int)game->player.rot_angle));
-	game->debug.move_speed_str = ft_strjoin("MOVE SPEED (0~100) : ", ft_itoa((int)game->player.move_speed));
-	game->debug.rot_speed_str = ft_strjoin("ROTATION SPEED (0~24) : ", ft_itoa((int)game->player.rot_speed));
-	x = (int)(game->win.width / 1.6);
-	y = (int)(game->win.height / 20);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.map_str);
-	y += 15;
-	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.x_str);
-	y += 15;
-	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.y_str);
-	y += 15;
-	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.rot_angle_str);
-	y += 15;
-	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.move_speed_str);
-	y += 15;
-	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, COLOR_GREEN, game->debug.rot_speed_str);
-
+	temp = ft_itoa((int)value);
+	temp2 = ft_strjoin(str, temp);
+	free_line(&temp);
+	mlx_string_put(game->mlx_ptr, game->win_ptr, pos->x, pos->y,
+			COLOR_GREEN, temp2);
+	pos->y += 15;
+	free_line(&temp2);
 }
 
-void	free_process(t_game *game)
+
+void	status_show(t_game *game)
 {
-	free(game->debug.map_str);
-	free(game->debug.x_str);
-	free(game->debug.y_str);
-	free(game->debug.rot_angle_str);
-	free(game->debug.move_speed_str);
-	free(game->debug.rot_speed_str);
-	game->debug.map_str = NULL;
-	game->debug.x_str = NULL;
-	game->debug.y_str = NULL;
-	game->debug.rot_angle_str = NULL;
-	game->debug.move_speed_str = NULL;
-	game->debug.rot_speed_str = NULL;
+	t_pos	pos;
+	char	*temp;
+
+	pos.x = (int)(game->win.width / 1.6);
+	pos.y = (int)(game->win.height / 20);
+	temp = ft_strjoin("MAP NAME : ", game->map.name);
+	mlx_string_put(game->mlx_ptr, game->win_ptr, pos.x, pos.y,
+			COLOR_GREEN, temp);
+	free_line(&temp);
+	pos.y += 15;
+	put_one_status(game, "PLAYER POSITION (X) : ", game->player.x, &pos);
+	put_one_status(game, "PLAYER POSITION (Y) : ", game->player.y, &pos);
+	put_one_status(game, "ROTATION ANGLE : ", game->player.rot_angle, &pos);
+	put_one_status(game, "MOVE SPEED (0~100) : ", game->player.move_speed, &pos);
+	put_one_status(game, "ROTATION SPEED (0~24) : ", game->player.rot_speed, &pos);
 }

@@ -261,7 +261,7 @@ void			error_exit(t_game *game, int code, char *message);
 void			parse(t_game *game);
 void			specify_angle(double *angle);
 void			specify_radian(double *radian);
-void			free_process(t_game *game);
+void			free_line(char **line);
 
 double			raycasting_vert(t_game *game);
 double			raycasting_horz(t_game *game);

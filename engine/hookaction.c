@@ -61,9 +61,6 @@ int		hook_action(t_game *game)
 	specify_angle(&game->player.rot_angle);
 	make_view(game);
 	if (game->flags.debug)
-	{
 		status_show(game);
-		free_process(game);
-	}
 	return (1);
 }
