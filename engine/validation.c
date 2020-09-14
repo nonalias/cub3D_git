@@ -64,10 +64,10 @@ int		is_map_element_valid(t_game *game)
 		while (j < game->map.columns)
 		{
 			if (!is_map_element(my_map[i][j]))
-				return (0);
+				error_exit(game, MAP_ERROR, "if you write map, it can be 'spaces, 1, 0, or player position'");
 			if (is_map_position(my_map[i][j]))
 				if (!set_map_position(game, i, j))
-					return (0);
+					error_exit(game, MAP_ERROR, "you must write single position");
 			j++;
 		}
 		i++;
@@ -127,5 +127,5 @@ void	validation(t_game *game)
 	if (!is_option_valid(game))
 		error_exit(game, OPTION_ERROR, "option error");
 	if (!is_map_valid(game))
-		error_exit(game, MAP_ERROR, "map error");
+		error_exit(game, MAP_ERROR, "there is not player position");
 }

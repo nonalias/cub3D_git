@@ -88,11 +88,14 @@ void	option_parsing2(t_game *game)
 void	option_parsing(t_game *game)
 {
 	int		i;
+	int		code;
 
 	i = 0;
-	get_next_line(game->map.fd, &game->map.line);
+	code = get_next_line(game->map.fd, &game->map.line);
 	while (i < 8)
 	{
+		if (code <= 0)
+			error_exit(game, FILE_ERROR, "map file is not enough to run");
 		if (game->map.line[0] == ' ' || game->map.line[0] == '1'
 				|| game->map.line[0] == '0')
 			break ;
@@ -102,7 +105,7 @@ void	option_parsing(t_game *game)
 			i++;
 		}
 		free_line(&game->map.line);
-		get_next_line(game->map.fd, &game->map.line);
+		code = get_next_line(game->map.fd, &game->map.line);
 	}
 }
 
@@ -204,5 +207,7 @@ void	parse(t_game *game)
 		error_exit(game, MAP_ERROR, "couldn't open map");
 	option_parsing(game);
 	map_parsing(game);
+	if (game->map.rows < 3 || game->map.columns < 3)
+		error_exit(game, MAP_ERROR, "map must be over 3 x 3 matrix");
 	show_map(game);
 }
