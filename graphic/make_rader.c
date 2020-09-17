@@ -14,8 +14,9 @@ void	make_rader_line(t_game *game, t_pos origin, t_pos target)
 	while (fabs(target.x - origin.x) > 1
 			|| fabs(target.y - origin.y) > 1)
 	{
-		if (check_wall(game, origin.x, origin.y))
-			break ;
+		//if (check_wall(game, origin.x * MINIMAP_RATIO, origin.y * MINIMAP_RATIO)
+				//|| check_sprite(game, origin.x * MINIMAP_RATIO, origin.y * MINIMAP_RATIO))
+			//break ;
 		if (origin.x < 0 || origin.x >= game->win.width
 				|| origin.y < 0 || origin.y >= game->win.height)
 		{
@@ -23,7 +24,7 @@ void	make_rader_line(t_game *game, t_pos origin, t_pos target)
 			origin.y += dy;
 			continue;
 		}
-		game->img.data[to_coord(game, origin.x / MINIMAP_RATIO, origin.y / MINIMAP_RATIO)] = game->line.color;
+		game->img.data[to_coord(game, origin.x, origin.y)] = game->line.color;
 		origin.x += dx;
 		origin.y += dy;
 	}
@@ -77,7 +78,7 @@ void	make_rader(t_game *game)
 				game->wall.y / MINIMAP_RATIO);
 		game->line.color = 0x0000a1;
 		make_line(game, pos[0], pos[1]);
-		//make_rader_line(game);
+		//make_rader_line(game, pos[0], pos[1]);
 		game->ray.angle += 0.06;
 	}
 }

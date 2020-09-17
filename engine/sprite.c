@@ -41,15 +41,10 @@ void	get_sprite_config(t_game *game)
 			game->player.x - game->spr.center_x);
 	game->spr.min_angle = game->spr.center_angle - atan2(game->common_tsize / 2, game->spr.distance);
 	game->spr.max_angle = game->spr.center_angle + atan2(game->common_tsize / 2, game->spr.distance);
-	specify_radian(&game->spr.min_angle);
-	specify_radian(&game->spr.max_angle);
-	// 이 코드가 없으면 180도에서 아예 사라짐
-	// 있으면 반 잘려서 나옴
-	if (game->spr.min_angle > game->spr.angle)
-		game->spr.min_angle -= 2 * M_PI;
-	// max_angle을 +해줌으로써 반 잘리는 현상 해결, but 가까이 갔을 경우 양 사이드에 잔상 남는 현상 해결해야함.
-	if (game->spr.max_angle < game->spr.angle)
-		game->spr.max_angle += 2 * M_PI;
+	if (game->spr.angle < game->spr.min_angle)
+		game->spr.angle += 2 * M_PI;
+	if (game->spr.angle > game->spr.max_angle)
+		game->spr.angle -= 2 * M_PI;
 	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
 		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH;
 	if (game->tex.tex_x < 0)
