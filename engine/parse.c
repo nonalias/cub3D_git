@@ -26,39 +26,6 @@ void	resolution_parse(t_game *game, char **splited)
 		game->win.height = 500;
 }
 
-void	free_splited(char ***splited)
-{
-	int		i;
-
-	i = 0;
-	while ((*splited)[i])
-	{
-		if ((*splited)[i])
-			free((*splited)[i]);
-		(*splited)[i] = NULL;
-		i++;
-	}
-	if (*splited)
-		free(*splited);
-	*splited = NULL;
-}
-
-void	free_line(char **line)
-{
-	if (*line)
-		free(*line);
-	*line = NULL;
-}
-
-int		is_option(char c)
-{
-	if (c == 'R' || c == 'N' || c == 'S'
-			|| c == 'W' || c == 'E' || c == 'F'
-			|| c == 'C' || c == '\n')
-		return (1);
-	return (0);
-}
-
 int		str_to_color(char *str)
 {
 	char	**splited;
@@ -73,52 +40,6 @@ int		str_to_color(char *str)
 	color += ft_atoi(splited[2]);
 	free_splited(&splited);
 	return (color);
-}
-
-void	option_parsing2(t_game *game)
-{
-	game->map.splited = ft_split(game->map.line, ' ');
-	if (!ft_strncmp(game->map.splited[0], "R", 1))
-		resolution_parse(game, game->map.splited);
-	else if (!ft_strncmp(game->map.splited[0], "NO", 2))
-		game->map.s[NORTH] = ft_strdup(game->map.splited[1]);
-	else if (!ft_strncmp(game->map.splited[0], "SO", 2))
-		game->map.s[SOUTH] = ft_strdup(game->map.splited[1]);
-	else if (!ft_strncmp(game->map.splited[0], "WE", 2))
-		game->map.s[WEST] = ft_strdup(game->map.splited[1]);
-	else if (!ft_strncmp(game->map.splited[0], "EA", 2))
-		game->map.s[EAST] = ft_strdup(game->map.splited[1]);
-	else if (!ft_strncmp(game->map.splited[0], "F", 1))
-		game->map.floor = str_to_color(game->map.splited[1]);
-	else if (!ft_strncmp(game->map.splited[0], "C", 1))
-		game->map.ceil = str_to_color(game->map.splited[1]);
-	else if (!ft_strncmp(game->map.splited[0], "S", 2))
-		game->map.s[SPRITE] = ft_strdup(game->map.splited[1]);
-	free_splited(&game->map.splited);
-}
-
-void	option_parsing(t_game *game)
-{
-	int		i;
-	int		code;
-
-	i = 0;
-	code = get_next_line(game->map.fd, &game->map.line);
-	while (i < 8)
-	{
-		if (code <= 0)
-			error_exit(game, FILE_ERROR, "map file is not enough to run");
-		if (game->map.line[0] == ' ' || game->map.line[0] == '1'
-				|| game->map.line[0] == '0')
-			break ;
-		if (ft_strlen(game->map.line) >= 3)
-		{
-			option_parsing2(game);
-			i++;
-		}
-		free_line(&game->map.line);
-		code = get_next_line(game->map.fd, &game->map.line);
-	}
 }
 
 void	one_line_to_map(t_game *game, int row, int columns)
@@ -137,27 +58,6 @@ void	one_line_to_map(t_game *game, int row, int columns)
 		i++;
 	}
 	free_line(&game->map.line);
-}
-
-void	show_map(t_game *game)
-{
-	int		i;
-	int		j;
-
-	printf("-----mapstart-----\n");
-	i = 0;
-	while (i < game->map.rows)
-	{
-		j = 0;
-		while (j < game->map.columns)
-		{
-			printf("%d", g_my_map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("-----mapend-----\n");
 }
 
 void	map_parsing(t_game *game)
@@ -186,29 +86,6 @@ void	map_parsing(t_game *game)
 		i++;
 	}
 	game->map.rows = i;
-}
-
-void	map_init(t_game *game)
-{
-	int		i;
-	int		j;
-
-	game->map.columns = 0;
-	game->map.rows = 0;
-	game->map.floor = 0;
-	game->map.ceil = 0;
-	game->map.had_set_position = 0;
-	i = 0;
-	while (i < MAX_MAP_SIZE)
-	{
-		j = 0;
-		while (j < MAX_MAP_SIZE)
-		{
-			g_my_map[i][j] = 1;
-			j++;
-		}
-		i++;
-	}
 }
 
 void	parse(t_game *game)

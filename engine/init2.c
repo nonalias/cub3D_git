@@ -23,40 +23,7 @@ void	wall_init(t_game *game)
 	game->wall.realheight = 0;
 }
 
-t_pos	find_sprite(t_game *game)
-{
-	int		i;
-	int		j;
-	t_pos	pos;
-
-	i = 0;
-	while (i < game->map.rows)
-	{
-		j = 0;
-		while (j < game->map.columns)
-		{
-			if (g_my_map[i][j] == 2)
-			{
-				set_pos(&pos, j, i);
-				return (pos);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
 void	sprite_init(t_game *game)
-{
-	t_pos	pos;
-
-	pos = find_sprite(game);
-	game->spr.center_x = (int)pos.x * game->tile_xsize + game->tile_xsize / 2;
-	game->spr.center_y = (int)pos.y * game->tile_ysize + game->tile_ysize / 2;
-	game->spr.angle = 0;
-}
-
-void	sprite_reinit(t_game *game)
 {
 	game->spr.horz_x = -1;
 	game->spr.horz_y = -1;
@@ -68,4 +35,27 @@ void	sprite_reinit(t_game *game)
 	game->spr.angle = 0;
 	game->spr.vert_dist = -1;
 	game->spr.horz_dist = -1;
+}
+
+void	map_init(t_game *game)
+{
+	int		i;
+	int		j;
+
+	game->map.columns = 0;
+	game->map.rows = 0;
+	game->map.floor = 0;
+	game->map.ceil = 0;
+	game->map.had_set_position = 0;
+	i = 0;
+	while (i < MAX_MAP_SIZE)
+	{
+		j = 0;
+		while (j < MAX_MAP_SIZE)
+		{
+			g_my_map[i][j] = 1;
+			j++;
+		}
+		i++;
+	}
 }

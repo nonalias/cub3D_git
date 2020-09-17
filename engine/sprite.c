@@ -1,23 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/17 21:12:00 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/17 21:14:36 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-int		check_sprite(t_game *game, double x, double y)
+void	get_sprite_config2(t_game *game)
 {
-	int		coord_x;
-	int		coord_y;
-
-	coord_x = floor(x / game->common_tsize);
-	coord_y = floor(y / game->common_tsize);
-	if (coord_x < 0)
-		coord_x = 0;
-	if (coord_y < 0)
-		coord_y = 0;
-	if (coord_x > game->map.columns - 1)
-		coord_x = game->map.columns - 1;
-	if (coord_y > game->map.rows - 1)
-		coord_y = game->map.rows - 1;
-	if (g_my_map[coord_y][coord_x] == 2)
-		return (1);
-	return (0);
+	game->spr.min_angle = game->spr.center_angle
+		- atan2(game->common_tsize / 2, game->spr.distance);
+	game->spr.max_angle = game->spr.center_angle
+		+ atan2(game->common_tsize / 2, game->spr.distance);
+	if (game->spr.angle < game->spr.min_angle)
+		game->spr.angle += 2 * M_PI;
+	if (game->spr.angle > game->spr.max_angle)
+		game->spr.angle -= 2 * M_PI;
+	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
+		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH;
+	if (game->tex.tex_x < 0)
+		game->tex.tex_x = 0;
+	else if (game->tex.tex_x >= 64)
+		game->tex.tex_x = 63;
+	game->spr.dist_opt = (game->win.width / 2) /
+		tan(to_radian(game->seek_angle / 2));
+	game->spr.realheight = (game->common_tsize /
+			game->spr.distance) * game->spr.dist_opt;
 }
 
 void	get_sprite_config(t_game *game)
@@ -39,41 +53,32 @@ void	get_sprite_config(t_game *game)
 	specify_radian(&game->spr.center_angle);
 	game->spr.distance = hypot(game->player.y - game->spr.center_y,
 			game->player.x - game->spr.center_x);
-	game->spr.min_angle = game->spr.center_angle - atan2(game->common_tsize / 2, game->spr.distance);
-	game->spr.max_angle = game->spr.center_angle + atan2(game->common_tsize / 2, game->spr.distance);
-	if (game->spr.angle < game->spr.min_angle)
-		game->spr.angle += 2 * M_PI;
-	if (game->spr.angle > game->spr.max_angle)
-		game->spr.angle -= 2 * M_PI;
-	game->tex.tex_x = (game->spr.angle - game->spr.min_angle) /
-		(game->spr.max_angle - game->spr.min_angle) * TEX_WIDTH;
-	if (game->tex.tex_x < 0)
-		game->tex.tex_x = 0;
-	else if (game->tex.tex_x >= 64)
-		game->tex.tex_x = 63;
-	game->spr.dist_opt = (game->win.width / 2) /
-		tan(to_radian(game->seek_angle / 2));
-	game->spr.realheight = (game->common_tsize /
-			game->spr.distance) * game->spr.dist_opt;
+	get_sprite_config2(game);
 }
 
-// 여기서 distance와 왼쪽 끝 앵글, 오른쪽 끝 앵글을 정해주면 될듯
 void	get_sprite_hit(t_game *game)
 {
 	double	dx;
 	double	dy;
 
-	game->spr.horz_dist = game->spr.horz_hit ? hypot(game->player.x - game->spr.horz_x,
-			game->player.y - game->spr.horz_y) : 1000000000;
-	game->spr.vert_dist = game->spr.vert_hit ? hypot(game->player.x - game->spr.vert_x,
-			game->player.y - game->spr.vert_y) : 1000000000;
+	game->spr.horz_dist = 1000000000;
+	game->spr.vert_dist = 1000000000;
+	if (game->spr.horz_hit)
+	{
+		game->spr.horz_dist = hypot(game->player.x - game->spr.horz_x,
+			game->player.y - game->spr.horz_y);
+	}
+	else if (game->spr.vert_hit)
+	{
+		game->spr.vert_dist = hypot(game->player.x - game->spr.vert_x,
+			game->player.y - game->spr.vert_y);
+	}
 	game->spr.what_hit = game->spr.vert_dist < game->spr.horz_dist;
-	dx = game->spr.what_hit ? game->player.x - game->spr.vert_x
-		: game->player.x - game->spr.horz_x;
-	dy = game->spr.what_hit ? game->player.y - game->spr.vert_y
-		: game->player.y - game->spr.horz_y;
+	dx = game->spr.what_hit ? (game->player.x - game->spr.vert_x)
+		: (game->player.x - game->spr.horz_x);
+	dy = game->spr.what_hit ? (game->player.y - game->spr.vert_y)
+		: (game->player.y - game->spr.horz_y);
 	game->spr.angle = atan2(dy, dx);
-	//스프라이트에 부딪힌 각도
 	specify_radian(&game->spr.angle);
 	get_sprite_config(game);
 }
@@ -81,8 +86,10 @@ void	get_sprite_hit(t_game *game)
 void	make_sprite_by_image(t_game *game, t_pos pos[2])
 {
 	double tex_start;
+	int		color;
 
-	tex_start = (TEX_HEIGHT * ((game->temp - game->spr.realheight) / 2.0) / game->temp);
+	tex_start = (TEX_HEIGHT * ((game->temp - game->spr.realheight) / 2.0)
+		/ game->temp);
 	game->tex.y_iter = pos[0].y;
 	while (game->tex.y_iter < pos[1].y)
 	{
@@ -92,19 +99,16 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 			game->tex.tex_y = ((game->tex.y_iter / (double)game->win.height) *
 					(game->spr.realheight / game->temp) * (double)TEX_HEIGHT)
 				+ tex_start;
-		int color = game->tex.img[SPRITE]
+		color = game->tex.img[SPRITE]
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
-		//game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
-		color ? game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = shading(game->spr.distance, color) : 0;
+		if (color)
+		{
+			game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)]
+			= shading(game->spr.distance, color);
+		}
 		game->tex.y_iter += 1;
 	}
 }
-
-// 필요한 것 : ray를 쐈을 때 스프라이트이면
-// 그 스프라이트의 중심좌표와
-// 중심사이의 거리와
-// 현재 각도에서 스프라이트의 왼쪽 끝 사이의 각도와
-// 현재 각도에서 스프라이트의 오른쪽 끝 사이의 각도가 필요
 
 void	make_sprite(t_game *game)
 {

@@ -24,6 +24,8 @@ void	set_sprite_horz_hit(t_game *game, double x, double y)
 void	raycasting_horz2(t_game *game, t_pos touched)
 {
 	if (game->ray.up_facing)
+		game->ray.ystep *= -1;
+	if (game->ray.up_facing)
 		touched.y -= 1;
 	while (touched.x >= 0
 			&& touched.x <= game->common_tsize * game->map.columns
@@ -61,17 +63,17 @@ double	raycasting_horz(t_game *game)
 	if (game->ray.down_facing)
 		game->ray.yintercept += game->common_tsize;
 	game->ray.xintercept = game->player.x +
-		(game->ray.yintercept - game->player.y) / tan(to_radian(game->wall.angle));
+		(game->ray.yintercept - game->player.y)
+		/ tan(to_radian(game->wall.angle));
 	game->ray.ystep = game->common_tsize;
-	if (game->ray.up_facing)
-		game->ray.ystep *= -1;
 	game->ray.xstep = game->common_tsize / tan(to_radian(game->wall.angle));
 	game->ray.xstep *= (game->ray.left_facing && game->ray.xstep > 0) ? -1 : 1;
 	game->ray.xstep *= (game->ray.right_facing && game->ray.xstep < 0) ? -1 : 1;
 	touched.x = game->ray.xintercept;
 	touched.y = game->ray.yintercept;
 	raycasting_horz2(game, touched);
-	return (game->ray.foundhorzwallhit ? (hypot(game->player.x - game->ray.horzx,
+	return (game->ray.foundhorzwallhit ?
+		(hypot(game->player.x - game->ray.horzx,
 		game->player.y - game->ray.horzy))
 		: game->win.width * game->win.height);
 }

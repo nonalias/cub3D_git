@@ -6,7 +6,7 @@
 #    By: taehkim <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/07 14:44:57 by taehkim           #+#    #+#              #
-#    Updated: 2020/09/17 20:11:08 by taehkim          ###   ########.fr        #
+#    Updated: 2020/09/17 21:18:13 by taehkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRCS	=	./cub3d.c \
 			./graphic/make_2d.c \
 			./graphic/make_3d.c \
 			./graphic/make_rader.c \
-			./graphic/make_player.c \
 			./graphic/make_ceil_floor.c \
 			./graphic/make_rectangle.c \
 			./graphic/make_crosshair.c \
@@ -35,9 +34,12 @@ SRCS	=	./cub3d.c \
 			./engine/utils.c \
 			./engine/utils2.c \
 			./engine/validation.c \
+			./engine/validation2.c \
 			./engine/pos.c \
 			./engine/status.c \
+			./engine/free.c \
 			./engine/parse.c \
+			./engine/option_parse.c \
 			./engine/shading.c \
 			./get_next_line/get_next_line.c \
 			./get_next_line/get_next_line_utils.c \

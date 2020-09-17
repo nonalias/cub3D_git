@@ -12,39 +12,6 @@
 
 #include "../cub3d.h"
 
-int		is_option_valid(t_game *game)
-{
-	int		i;
-
-	i = 0;
-	while (i < 5)
-	{
-		if (game->map.s[i] == NULL)
-			return (0);
-		i++;
-	}
-	if (game->map.ceil == 0 || game->map.floor == 0)
-		return (0);
-	return (1);
-}
-
-int		is_map_element(char c)
-{
-	if (c == 1 || c == 0 || c == ' '
-			|| c == 'N' || c == 'S' || c == 'W'
-			|| c == 'E' || c == 2)
-		return (1);
-	return (0);
-}
-
-int		is_map_position(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W'
-			|| c == 'E')
-		return (1);
-	return (0);
-}
-
 int		set_map_position(t_game *game, int row, int column)
 {
 	if (game->map.had_set_position == 1)
@@ -76,10 +43,12 @@ int		is_map_element_valid(t_game *game)
 		while (j < game->map.columns)
 		{
 			if (!is_map_element(g_my_map[i][j]))
-				error_exit(game, MAP_ERROR, "if you write map, it can be 'spaces, 1, 0, or player position'");
+				error_exit(game, MAP_ERROR,
+				"map can be 'spaces, 1, 0, or player position'");
 			if (is_map_position(g_my_map[i][j]))
 				if (!set_map_position(game, i, j))
-					error_exit(game, MAP_ERROR, "you must write single position");
+					error_exit(game, MAP_ERROR,
+					"you must write single position");
 			j++;
 		}
 		i++;

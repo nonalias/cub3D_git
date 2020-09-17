@@ -188,7 +188,6 @@ void			make_rader(t_game *game);
 void			make_one_rader(t_game *game);
 void			make_rader_line(t_game *game, t_pos origin, t_pos target);
 void			make_3d(t_game *game);
-void			make_player(t_game *game);
 void			make_line(t_game *game, t_pos origin, t_pos target);
 void			make_view(t_game *game);
 void			make_tile(t_game *game, int i, int j, int color);
@@ -216,7 +215,6 @@ void			ray_init(t_game *game);
 void			wall_init(t_game *game);
 void			cart_init(t_game *game);
 void			sprite_init(t_game *game);
-void			sprite_reinit(t_game *game);
 
 void			set_pos(t_pos *pos, double x, double y);
 
@@ -255,9 +253,46 @@ double			to_proper_coord(t_game *game, double origin, int x_or_y);
 int				shading(double distance, int color);
 
 /*
+** parse.c
+*/
+
+void	resolution_parse(t_game *game, char **splited);
+int		str_to_color(char *str);
+
+/*
+** init2.c
+*/
+void	map_init(t_game *game);
+
+/*
 ** utils2.c
 */
 double			to_radian(double x);
 double			to_degree(double x);
+void	show_map(t_game *game);
+int		check_sprite(t_game *game, double x, double y);
+
+/*
+** validation2.c
+*/
+
+int		is_option_valid(t_game *game);
+int		is_map_element(char c);
+int		is_map_position(char c);
+
+/*
+** free.c
+*/
+
+void	free_splited(char ***splited);
+void	free_line(char **line);
+
+/*
+** option_parse.c
+*/
+
+int		is_option(char c);
+void	option_parsing2(t_game *game);
+void	option_parsing(t_game *game);
 
 #endif

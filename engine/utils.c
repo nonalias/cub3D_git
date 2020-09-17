@@ -34,7 +34,7 @@ void	error_exit(t_game *game, int code, char *message)
 {
 	printf("ERROR\n");
 	printf("%s\n", message);
-	//여기에 다른 에러 코드 추가
+	free(game);
 	exit(code);
 }
 

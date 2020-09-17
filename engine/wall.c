@@ -40,10 +40,10 @@ double	shoot_ray(t_game *game)
 	game->wall.x = distance_x < distance_y ? game->ray.vertx : game->ray.horzx;
 	game->wall.y = distance_x < distance_y ? game->ray.verty : game->ray.horzy;
 	game->wall.what_hit = distance_x < distance_y;
-	return distance_x < distance_y ? distance_x : distance_y;
+	return (distance_x < distance_y ? distance_x : distance_y);
 }
 
-int		check_wall(t_game * game, double x, double y)
+int		check_wall(t_game *game, double x, double y)
 {
 	int		coord_x;
 	int		coord_y;

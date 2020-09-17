@@ -68,14 +68,12 @@ void	make_wall(t_game *game)
 //TODO: rader도 seekangle부분 수정하기
 void	make_3d(t_game *game)
 {
-	double	wallheight;
 	double	dist_opt;
-	t_pos	pos[2];
 
 	game->ray.angle = -1 * game->seek_angle / 2;
 	while (game->ray.angle < game->seek_angle / 2)
 	{
-		sprite_reinit(game);
+		sprite_init(game);
 		game->wall.angle = game->player.rot_angle + game->ray.angle;
 		specify_angle(&game->wall.angle);
 		game->wall.distance = shoot_ray(game) *
