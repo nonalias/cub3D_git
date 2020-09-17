@@ -23,8 +23,6 @@
 # include <float.h>
 # include <fcntl.h>
 # include <unistd.h>
-# define TO_RADIAN(x) (((M_PI) / (180)) * (x))
-# define TO_DEGREE(x) ((x) * (180) / (M_PI))
 # define HORZ_HIT 0
 # define VERT_HIT 1
 
@@ -277,5 +275,12 @@ int				is_map_position(char c);
 void			show_map(t_game *game);
 double	to_proper_coord(t_game *game, double origin, int x_or_y);
 int		shading(double distance, int color);
+
+/*
+** utils2.c
+*/
+double	to_radian(double x);
+double  to_degree(double x);
+
 
 #endif

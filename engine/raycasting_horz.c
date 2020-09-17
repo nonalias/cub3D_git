@@ -49,11 +49,11 @@ double	raycasting_horz(t_game *game)
 	game->ray.yintercept = floor(game->player.y / game->common_tsize) * game->common_tsize;
 	if (game->ray.down_facing)
 		game->ray.yintercept += game->common_tsize;
-	game->ray.xintercept = game->player.x + (game->ray.yintercept - game->player.y) / tan(TO_RADIAN(game->wall.angle));
+	game->ray.xintercept = game->player.x + (game->ray.yintercept - game->player.y) / tan(to_radian(game->wall.angle));
 	game->ray.ystep = game->common_tsize;
 	if (game->ray.up_facing)
 		game->ray.ystep *= -1;
-	game->ray.xstep = game->common_tsize / tan(TO_RADIAN(game->wall.angle));
+	game->ray.xstep = game->common_tsize / tan(to_radian(game->wall.angle));
 	game->ray.xstep *= (game->ray.left_facing && game->ray.xstep > 0) ? -1 : 1;
 	game->ray.xstep *= (game->ray.right_facing && game->ray.xstep < 0) ? -1 : 1;
 	raycasting_horz2(game);

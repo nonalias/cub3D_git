@@ -74,14 +74,14 @@ void	make_3d(t_game *game)
 
 	game->ray.angle = -1 * game->seek_angle / 2;
 	while (game->ray.angle < game->seek_angle / 2)
-	{ 
+	{
 		sprite_reinit(game);
 		game->wall.angle = game->player.rot_angle + game->ray.angle;
 		specify_angle(&game->wall.angle);
 		game->wall.distance = shoot_ray(game) *
-			cos(TO_RADIAN(game->ray.angle));
+			cos(to_radian(game->ray.angle));
 		dist_opt = (game->win.width / 2) /
-			tan(TO_RADIAN(game->seek_angle / 2));
+			tan(to_radian(game->seek_angle / 2));
 		game->wall.realheight = (game->common_tsize /
 				game->wall.distance) * dist_opt;
 		make_ceil(game);

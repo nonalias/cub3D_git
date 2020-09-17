@@ -48,10 +48,10 @@ double	raycasting_vert(t_game *game)
 	game->ray.left_facing = !game->ray.right_facing;
 	game->ray.xintercept = floor(game->player.x / game->common_tsize) * game->common_tsize;
 	game->ray.xintercept += game->ray.right_facing ? game->common_tsize : 0;
-	game->ray.yintercept = game->player.y + (game->ray.xintercept - game->player.x) * tan(TO_RADIAN(game->wall.angle));
+	game->ray.yintercept = game->player.y + (game->ray.xintercept - game->player.x) * tan(to_radian(game->wall.angle));
 	game->ray.xstep = game->common_tsize;
 	game->ray.xstep *= game->ray.left_facing ? -1 : 1;
-	game->ray.ystep = game->common_tsize * tan(TO_RADIAN(game->wall.angle));
+	game->ray.ystep = game->common_tsize * tan(to_radian(game->wall.angle));
 	game->ray.ystep *= (game->ray.up_facing && game->ray.ystep > 0) ? -1 : 1;
 	game->ray.ystep *= (game->ray.down_facing && game->ray.ystep < 0) ? -1 : 1;
 	raycasting_vert2(game);

@@ -12,11 +12,6 @@
 
 #include "cub3d.h"
 
-void	flag_process(t_game *game)
-{
-	//save_process(game);
-}
-
 void	get_texture(t_game *game)
 {
 	int		i;

@@ -6,7 +6,7 @@
 #    By: taehkim <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/07 14:44:57 by taehkim           #+#    #+#              #
-#    Updated: 2020/09/07 14:49:59 by taehkim          ###   ########.fr        #
+#    Updated: 2020/09/17 20:11:08 by taehkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ SRCS	=	./cub3d.c \
 			./engine/move_s.c \
 			./engine/move_a.c \
 			./engine/move_d.c \
-			./engine/move_check.c \
 			./engine/wall.c \
 			./engine/reset_player.c \
 			./engine/sprite.c \
@@ -34,6 +33,7 @@ SRCS	=	./cub3d.c \
 			./engine/raycasting_vert.c \
 			./engine/raycasting_horz.c \
 			./engine/utils.c \
+			./engine/utils2.c \
 			./engine/validation.c \
 			./engine/pos.c \
 			./engine/status.c \

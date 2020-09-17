@@ -52,7 +52,7 @@ void	get_sprite_config(t_game *game)
 	else if (game->tex.tex_x >= 64)
 		game->tex.tex_x = 63;
 	game->spr.dist_opt = (game->win.width / 2) /
-		tan(TO_RADIAN(game->seek_angle / 2));
+		tan(to_radian(game->seek_angle / 2));
 	game->spr.realheight = (game->common_tsize /
 			game->spr.distance) * game->spr.dist_opt;
 }
@@ -64,9 +64,9 @@ void	get_sprite_hit(t_game *game)
 	double	dy;
 
 	game->spr.horz_dist = game->spr.horz_hit ? hypot(game->player.x - game->spr.horz_x,
-			game->player.y - game->spr.horz_y) : 1000000000; 
+			game->player.y - game->spr.horz_y) : 1000000000;
 	game->spr.vert_dist = game->spr.vert_hit ? hypot(game->player.x - game->spr.vert_x,
-			game->player.y - game->spr.vert_y) : 1000000000; 
+			game->player.y - game->spr.vert_y) : 1000000000;
 	game->spr.what_hit = game->spr.vert_dist < game->spr.horz_dist;
 	dx = game->spr.what_hit ? game->player.x - game->spr.vert_x
 		: game->player.x - game->spr.horz_x;
@@ -100,8 +100,8 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 	}
 }
 
-// 필요한 것 : ray를 쐈을 때 스프라이트이면 
-// 그 스프라이트의 중심좌표와 
+// 필요한 것 : ray를 쐈을 때 스프라이트이면
+// 그 스프라이트의 중심좌표와
 // 중심사이의 거리와
 // 현재 각도에서 스프라이트의 왼쪽 끝 사이의 각도와
 // 현재 각도에서 스프라이트의 오른쪽 끝 사이의 각도가 필요
