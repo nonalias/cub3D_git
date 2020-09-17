@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shading.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/17 20:21:12 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/17 20:21:13 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int		shading(double distance, int color)
 {
-	double	divide = distance / 32;
+	double	divide;
 
+	divide = distance / 32;
 	if (divide <= 1.)
 		return (color);
 	return (((int)(((0xFF0000 & color) >> 16) / divide) << 16)

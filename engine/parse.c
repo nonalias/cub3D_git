@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/17 20:22:12 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/17 20:22:13 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	resolution_parse(t_game *game, char **splited)
@@ -117,11 +129,11 @@ void	one_line_to_map(t_game *game, int row, int columns)
 	while (i < columns)
 	{
 		if (is_map_position(game->map.line[i]))
-			my_map[row][i] = game->map.line[i];
+			g_my_map[row][i] = game->map.line[i];
 		else if (game->map.line[i] == ' ')
-			my_map[row][i] = 1;
+			g_my_map[row][i] = 1;
 		else
-			my_map[row][i] = game->map.line[i] - '0';
+			g_my_map[row][i] = game->map.line[i] - '0';
 		i++;
 	}
 	free_line(&game->map.line);
@@ -139,7 +151,7 @@ void	show_map(t_game *game)
 		j = 0;
 		while (j < game->map.columns)
 		{
-			printf("%d", my_map[i][j]);
+			printf("%d", g_my_map[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -180,7 +192,7 @@ void	map_init(t_game *game)
 {
 	int		i;
 	int		j;
-	
+
 	game->map.columns = 0;
 	game->map.rows = 0;
 	game->map.floor = 0;
@@ -192,7 +204,7 @@ void	map_init(t_game *game)
 		j = 0;
 		while (j < MAX_MAP_SIZE)
 		{
-			my_map[i][j] = 1;
+			g_my_map[i][j] = 1;
 			j++;
 		}
 		i++;

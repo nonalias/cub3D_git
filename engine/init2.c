@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/17 20:20:10 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/17 20:20:14 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	wall_init(t_game *game)
 {
-	game->wall.x = 0; game->wall.y = 0;
+	game->wall.x = 0;
+	game->wall.y = 0;
 	game->wall.angle = 0;
 	game->wall.distance = 0;
 	game->wall.what_hit = -1;
@@ -22,10 +35,10 @@ t_pos	find_sprite(t_game *game)
 		j = 0;
 		while (j < game->map.columns)
 		{
-			if (my_map[i][j] == 2)
+			if (g_my_map[i][j] == 2)
 			{
 				set_pos(&pos, j, i);
-				return pos;
+				return (pos);
 			}
 			j++;
 		}

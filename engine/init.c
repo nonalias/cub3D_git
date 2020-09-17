@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/17 20:20:19 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/17 20:20:22 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	game_init(t_game *game)
@@ -8,7 +20,8 @@ void	game_init(t_game *game)
 	while (i < 300)
 		game->key_check[i++] = 0;
 	game->mlx_ptr = mlx_init();
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->win.width, game->win.height, "ModyHoon");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, game->win.width,
+		game->win.height, "ModyHoon");
 	game->tile_xsize = game->win.width / game->map.columns;
 	game->tile_ysize = game->win.height / game->map.rows;
 	game->common_tsize = 20;
@@ -20,11 +33,9 @@ void	game_init(t_game *game)
 void	player_init(t_game *game)
 {
 	double	option;
-	
-	//option = (double)(game->win.width * game->win.height);
-	//option = option * 8 * 9;
-	//option = option / (500.0 * 500.0 * game->map.rows * game->map.columns);
-	option = (1.7 * game->map.rows * game->map.columns * game->common_tsize) / (29 * 16 * 20);
+
+	option = (1.7 * game->map.rows * game->map.columns *
+		game->common_tsize) / (29 * 16 * 20);
 	game->player.move_speed = option;
 	game->player.rot_speed = 6;
 }
@@ -47,8 +58,6 @@ void	ray_init(t_game *game)
 	game->ray.right_facing = 0;
 	game->ray.angle = 0;
 }
-
-
 
 void	init(t_game *game)
 {

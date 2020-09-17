@@ -48,12 +48,6 @@ typedef struct	s_player
 typedef	struct	s_line
 {
 	int			color;
-	/*
-	double		origin_x;
-	double		origin_y;
-	double		target_x;
-	double		target_y;
-	*/
 }				t_line;
 
 typedef struct	s_window
@@ -76,7 +70,7 @@ typedef struct	s_debug
 	char		*rot_angle_str;
 	char		*move_speed_str;
 	char		*rot_speed_str;
-}				t_debug; //TODO : 끝날 때 free 해 주어야 함.
+}				t_debug;
 
 typedef	struct	s_wall
 {
@@ -187,23 +181,7 @@ typedef struct	s_game
 	int			key_check[300];
 }				t_game;
 
-int		my_map[MAX_MAP_SIZE][MAX_MAP_SIZE];
-
-/*
-int		my_map[11][11] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1},
-	{1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1},
-	{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-};
-*/
+int		g_my_map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 
 void			make_2d(t_game *game);
 void			make_rader(t_game *game);
@@ -211,7 +189,7 @@ void			make_one_rader(t_game *game);
 void			make_rader_line(t_game *game, t_pos origin, t_pos target);
 void			make_3d(t_game *game);
 void			make_player(t_game *game);
-void			make_line(t_game *game, t_pos origin, t_pos target); // TODO: line 매개변수로 넣을지 game 단에서 처리할지 결정
+void			make_line(t_game *game, t_pos origin, t_pos target);
 void			make_view(t_game *game);
 void			make_tile(t_game *game, int i, int j, int color);
 void			make_crosshair(t_game *game);
@@ -273,14 +251,13 @@ void			validation(t_game *game);
 int				is_map_position(char c);
 
 void			show_map(t_game *game);
-double	to_proper_coord(t_game *game, double origin, int x_or_y);
-int		shading(double distance, int color);
+double			to_proper_coord(t_game *game, double origin, int x_or_y);
+int				shading(double distance, int color);
 
 /*
 ** utils2.c
 */
-double	to_radian(double x);
-double  to_degree(double x);
-
+double			to_radian(double x);
+double			to_degree(double x);
 
 #endif

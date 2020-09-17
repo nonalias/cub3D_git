@@ -10,7 +10,7 @@ void	make_line(t_game *game, t_pos origin, t_pos target)
 	double	dx;
 	double	dy;
 	double	step;
-	
+
 	dx = target.x - origin.x;
 	dy = target.y - origin.y;
 	step = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
@@ -44,7 +44,7 @@ void	map_print(t_game *game)
 		j = 0;
 		while (j < game->map.rows)
 		{
-			printf("%d ", my_map[i][j]);
+			printf("%d ", g_my_map[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -83,9 +83,9 @@ void	make_2d(t_game *game)
 		j = 0;
 		while (j < game->map.columns)
 		{
-			if (my_map[i][j] == 1)
+			if (g_my_map[i][j] == 1)
 				make_tile(game, i, j, COLOR_WALL);
-			else if (my_map[i][j] == 2)
+			else if (g_my_map[i][j] == 2)
 				make_tile(game, i, j, 0xff0000);
 			else
 				make_tile(game, i, j, COLOR_ROAD);

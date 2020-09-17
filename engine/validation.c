@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/17 20:22:00 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/17 20:22:05 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int		is_option_valid(t_game *game)
@@ -40,15 +52,15 @@ int		set_map_position(t_game *game, int row, int column)
 	game->map.had_set_position = 1;
 	game->player.x = (column + 0.5) * game->common_tsize;
 	game->player.y = (row + 0.5) * game->common_tsize;
-	if (my_map[row][column] == 'E')
+	if (g_my_map[row][column] == 'E')
 		game->player.rot_angle = 0;
-	else if (my_map[row][column] == 'S')
+	else if (g_my_map[row][column] == 'S')
 		game->player.rot_angle = 90;
-	else if (my_map[row][column] == 'W')
+	else if (g_my_map[row][column] == 'W')
 		game->player.rot_angle = 180;
-	else if (my_map[row][column] == 'N')
+	else if (g_my_map[row][column] == 'N')
 		game->player.rot_angle = 270;
-	my_map[row][column] = 0;
+	g_my_map[row][column] = 0;
 	return (1);
 }
 
@@ -63,9 +75,9 @@ int		is_map_element_valid(t_game *game)
 		j = 0;
 		while (j < game->map.columns)
 		{
-			if (!is_map_element(my_map[i][j]))
+			if (!is_map_element(g_my_map[i][j]))
 				error_exit(game, MAP_ERROR, "if you write map, it can be 'spaces, 1, 0, or player position'");
-			if (is_map_position(my_map[i][j]))
+			if (is_map_position(g_my_map[i][j]))
 				if (!set_map_position(game, i, j))
 					error_exit(game, MAP_ERROR, "you must write single position");
 			j++;
@@ -82,14 +94,14 @@ int		is_map_valid(t_game *game)
 	i = 0;
 	while (i < game->map.rows)
 	{
-		if (!my_map[i][0] || !my_map[i][game->map.columns - 1])
+		if (!g_my_map[i][0] || !g_my_map[i][game->map.columns - 1])
 			return (0);
 		i++;
 	}
 	i = 0;
 	while (i < game->map.columns)
 	{
-		if (!my_map[0][i] || !my_map[game->map.rows - 1][i])
+		if (!g_my_map[0][i] || !g_my_map[game->map.rows - 1][i])
 			return (0);
 		i++;
 	}
