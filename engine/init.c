@@ -24,7 +24,7 @@ void	player_init(t_game *game)
 	//option = (double)(game->win.width * game->win.height);
 	//option = option * 8 * 9;
 	//option = option / (500.0 * 500.0 * game->map.rows * game->map.columns);
-	option = (1.7 * game->map.rows * game->map.columns) / (29 * 16);
+	option = (1.7 * game->map.rows * game->map.columns * game->common_tsize) / (29 * 16 * 20);
 	game->player.move_speed = option;
 	game->player.rot_speed = 6;
 }
