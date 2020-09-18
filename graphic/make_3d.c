@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 23:03:42 by taehkim           #+#    #+#             */
-/*   Updated: 2020/09/18 23:03:44 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/18 23:23:52 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ void	make_wall_by_image2(t_game *game, t_pos pos[2])
 		game->tex.tex_y = (game->tex.y_iter - pos[0].y) /
 			(pos[1].y - pos[0].y) * TEX_HEIGHT;
 		if (game->temp > game->win.height)
-			game->tex.tex_y =  ((game->tex.y_iter / (double)game->win.height) *
+			game->tex.tex_y = ((game->tex.y_iter / (double)game->win.height) *
 					(game->wall.realheight / game->temp) * (double)TEX_HEIGHT)
 				+ tex_start;
 		color = game->tex.img[game->wall.cardinal]
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
-		game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = shading(game->wall.distance, color);
+		game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] =
+			shading(game->wall.distance, color);
 		game->tex.y_iter += 1;
 	}
 }
@@ -59,9 +60,11 @@ void	make_wall(t_game *game)
 {
 	t_pos	pos[2];
 
-	set_pos(&pos[0], (game->ray.angle + game->seek_angle / 2) * game->win.width / game->seek_angle, (game->win.height / 2 - (game->wall.realheight / 2)));
-
-	set_pos(&pos[1], pos[0].x, game->win.height / 2 + (game->wall.realheight / 2)) ;
+	set_pos(&pos[0], (game->ray.angle + game->seek_angle / 2) *
+			game->win.width / game->seek_angle,
+			(game->win.height / 2 - (game->wall.realheight / 2)));
+	set_pos(&pos[1], pos[0].x,
+			game->win.height / 2 + (game->wall.realheight / 2));
 	check_cardinal(game);
 	make_wall_by_image(game, pos);
 }
