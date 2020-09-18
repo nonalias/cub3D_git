@@ -43,6 +43,7 @@ SRCS	=	./cub3d.c \
 			./engine/shading.c \
 			./get_next_line/get_next_line.c \
 			./get_next_line/get_next_line_utils.c \
+			./bmp.c \
 
 all:
 	gcc -L ./mlx -L ./libft -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./ -I ./get_next_line

@@ -295,4 +295,10 @@ int		is_option(char c);
 void	option_parsing2(t_game *game);
 void	option_parsing(t_game *game);
 
+/*
+** bmp.c
+*/
+
+int		save_bmp(t_game *game);
+
 #endif
