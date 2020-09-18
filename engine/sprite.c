@@ -103,8 +103,8 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 			.data[game->tex.tex_y * TEX_HEIGHT + game->tex.tex_x];
 		if (color)
 		{
-			game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)]
-			= shading(game->spr.distance, color);
+			color = shading(game->spr.distance, color);
+			game->img.data[to_coord(game, pos[0].x, game->tex.y_iter)] = color;
 		}
 		game->tex.y_iter += 1;
 	}
