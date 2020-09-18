@@ -63,15 +63,15 @@ int		is_map_valid(t_game *game)
 	i = 0;
 	while (i < game->map.rows)
 	{
-		if (!g_my_map[i][0] || !g_my_map[i][game->map.columns - 1])
-			return (0);
+		if (g_my_map[i][0] != 1 || g_my_map[i][game->map.columns - 1] != 1)
+			error_exit(game, MAP_ERROR, "Only 1 should be on the edge of the map.");
 		i++;
 	}
 	i = 0;
 	while (i < game->map.columns)
 	{
-		if (!g_my_map[0][i] || !g_my_map[game->map.rows - 1][i])
-			return (0);
+		if (g_my_map[0][i] != 1 || g_my_map[game->map.rows - 1][i] != 1)
+			error_exit(game, MAP_ERROR, "Only 1 should be on the edge of the map.");
 		i++;
 	}
 	return (is_map_element_valid(game));
@@ -108,5 +108,5 @@ void	validation(t_game *game)
 	if (!is_option_valid(game))
 		error_exit(game, OPTION_ERROR, "option error");
 	if (!is_map_valid(game))
-		error_exit(game, MAP_ERROR, "there is not player position");
+		error_exit(game, MAP_ERROR, "Player location does not exist");
 }
