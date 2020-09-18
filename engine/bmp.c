@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bmp.c                                            :+:      :+:    :+:   */
+/*   bmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/17 20:20:10 by taehkim           #+#    #+#             */
-/*   Updated: 2020/09/18 22:44:29 by taehkim          ###   ########.fr       */
+/*   Created: 2020/09/18 22:45:48 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/18 22:46:08 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int
 
 	pad = (4 - ((int)game->win.width * 3) % 4) % 4;
 	filesize = 54 + (3 * ((int)game->win.width + pad) * (int)game->win.height);
-	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, 
-			S_IRUSR | S_IWUSR | S_IXUSR)) < 0)
+	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC,
+		S_IRUSR | S_IWUSR | S_IXUSR)) < 0)
 	{
 		printf("open error\n");
 		return (0);

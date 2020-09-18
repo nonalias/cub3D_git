@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:02:03 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/12 17:18:27 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/18 22:53:17 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # define KEY_PRESSED 2
 # define KEY_RELEASED 3
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 500	
-# define MAP_COLUMNS 15
-# define MAP_ROWS 11
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
 # define KEY_A 0
@@ -45,7 +41,6 @@
 # define SPRITE 4
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define WALL_BOUNDARY 20
 # define MAP_ERROR 1
 # define MAX_MAP_SIZE 100
 # define OPTION_ERROR 2
