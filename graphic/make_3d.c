@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_3d.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2020/08/11 18:25:11 by taehkim           #+#    #+#             */
-/*   Updated: 2020/08/11 22:30:29 by taehkim          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../cub3d.h"
 
 void	make_wall_by_image2(t_game *game, t_pos pos[2])
@@ -65,7 +54,6 @@ void	make_wall(t_game *game)
 	make_wall_by_image(game, pos);
 }
 
-//TODO: rader도 seekangle부분 수정하기
 void	make_3d(t_game *game)
 {
 	double	dist_opt;
