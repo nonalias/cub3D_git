@@ -98,5 +98,4 @@ void	parse(t_game *game)
 	map_parsing(game);
 	if (game->map.rows < 3 || game->map.columns < 3)
 		error_exit(game, MAP_ERROR, "map must be over 3 x 3 matrix");
-	show_map(game);
 }

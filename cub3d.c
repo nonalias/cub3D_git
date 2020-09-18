@@ -43,6 +43,7 @@ int		main(int argc, char **argv)
 	init(game);
 	validation(game);
 	get_texture(game);
+	mlx_hook(game->win_ptr, EXIT_BUTTON, 0, &exit_callback, game);
 	mlx_hook(game->win_ptr, KEY_PRESSED, 0, &key_press_callback, game);
 	mlx_hook(game->win_ptr, KEY_RELEASED, 0, &key_release_callback, game);
 	mlx_loop_hook(game->mlx_ptr, &hook_action, game);

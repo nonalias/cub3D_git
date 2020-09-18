@@ -198,6 +198,7 @@ void			make_ceil(t_game *game);
 
 int				key_press_callback(int keycode, t_game *game);
 int				key_release_callback(int keycode, t_game *game);
+int				exit_callback(t_game *game);
 
 int				get_wall_distance(t_game *game);
 double			shoot_ray(t_game *game);
