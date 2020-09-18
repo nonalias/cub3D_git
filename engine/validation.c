@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 20:22:00 by taehkim           #+#    #+#             */
-/*   Updated: 2020/09/17 20:22:05 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/18 22:46:51 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,16 @@ int		is_map_valid(t_game *game)
 	while (i < game->map.rows)
 	{
 		if (g_my_map[i][0] != 1 || g_my_map[i][game->map.columns - 1] != 1)
-			error_exit(game, MAP_ERROR, "Only 1 should be on the edge of the map.");
+			error_exit(game, MAP_ERROR,
+					"Only 1 should be on the edge of the map.");
 		i++;
 	}
 	i = 0;
 	while (i < game->map.columns)
 	{
 		if (g_my_map[0][i] != 1 || g_my_map[game->map.rows - 1][i] != 1)
-			error_exit(game, MAP_ERROR, "Only 1 should be on the edge of the map.");
+			error_exit(game, MAP_ERROR,
+					"Only 1 should be on the edge of the map.");
 		i++;
 	}
 	return (is_map_element_valid(game));

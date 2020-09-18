@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 18:03:15 by taehkim           #+#    #+#             */
-/*   Updated: 2020/09/07 14:53:54 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/18 22:54:50 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,11 +181,10 @@ typedef struct	s_game
 	int			key_check[300];
 }				t_game;
 
-int		g_my_map[MAX_MAP_SIZE][MAX_MAP_SIZE];
+int				g_my_map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 
 void			make_2d(t_game *game);
 void			make_rader(t_game *game);
-void			make_one_rader(t_game *game);
 void			make_rader_line(t_game *game, t_pos origin, t_pos target);
 void			make_3d(t_game *game);
 void			make_line(t_game *game, t_pos origin, t_pos target);
@@ -257,49 +256,49 @@ int				shading(double distance, int color);
 ** parse.c
 */
 
-void	resolution_parse(t_game *game, char **splited);
-int		str_to_color(char *str);
+void			resolution_parse(t_game *game, char **splited);
+int				str_to_color(char *str);
 
 /*
 ** init2.c
 */
-void	map_init(t_game *game);
+void			map_init(t_game *game);
 
 /*
 ** utils2.c
 */
 double			to_radian(double x);
 double			to_degree(double x);
-void	show_map(t_game *game);
-int		check_sprite(t_game *game, double x, double y);
+void			show_map(t_game *game);
+int				check_sprite(t_game *game, double x, double y);
 
 /*
 ** validation2.c
 */
 
-int		is_option_valid(t_game *game);
-int		is_map_element(char c);
-int		is_map_position(char c);
+int				is_option_valid(t_game *game);
+int				is_map_element(char c);
+int				is_map_position(char c);
 
 /*
 ** free.c
 */
 
-void	free_splited(char ***splited);
-void	free_line(char **line);
+void			free_splited(char ***splited);
+void			free_line(char **line);
 
 /*
 ** option_parse.c
 */
 
-int		is_option(char c);
-void	option_parsing2(t_game *game);
-void	option_parsing(t_game *game);
+int				is_option(char c);
+void			option_parsing2(t_game *game);
+void			option_parsing(t_game *game);
 
 /*
 ** bmp.c
 */
 
-int		save_bmp(t_game *game);
+int				save_bmp(t_game *game);
 
 #endif

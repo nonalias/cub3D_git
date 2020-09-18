@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_2d.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/18 22:47:36 by taehkim           #+#    #+#             */
+/*   Updated: 2020/09/18 22:47:50 by taehkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int		to_coord(t_game *game, double x, double y)
@@ -59,7 +71,6 @@ void	make_tile(t_game *game, int i, int j, int color)
 	t_pos	pos[2];
 
 	k = 0;
-	//map_print(game);
 	while (k < game->common_tsize / MINIMAP_RATIO)
 	{
 		set_pos(&pos[0], j * game->common_tsize / MINIMAP_RATIO + k,
