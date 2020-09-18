@@ -85,11 +85,11 @@ void	get_sprite_hit(t_game *game)
 
 void	make_sprite_by_image(t_game *game, t_pos pos[2])
 {
-	double tex_start;
+	double	tex_start;
 	int		color;
 
 	tex_start = (((game->temp - game->spr.realheight) / 2.0) * TEX_HEIGHT
-		/ game->temp);
+			/ game->temp);
 	game->tex.y_iter = pos[0].y;
 	while (game->tex.y_iter < pos[1].y)
 	{
