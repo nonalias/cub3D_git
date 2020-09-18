@@ -60,7 +60,5 @@ int		hook_action(t_game *game)
 	key_matching(game);
 	specify_angle(&game->player.rot_angle);
 	make_view(game);
-	if (game->flags.debug)
-		status_show(game);
 	return (1);
 }

@@ -28,7 +28,7 @@ static int
 	set_int_in_char(bmpfileheader + 18, tmp);
 	tmp = game->win.height;
 	set_int_in_char(bmpfileheader + 22, tmp);
-	bmpfileheader[27] = (unsigned char)(1);
+	bmpfileheader[26] = (unsigned char)(1);
 	bmpfileheader[28] = (unsigned char)(24);
 	return (!(write(fd, bmpfileheader, 54) < 0));
 }
@@ -39,9 +39,7 @@ static int
 	int	rgb;
 	int	color;
 
-	color = *(int*)(game->img.data
-			+ (4 * (int)game->win.width * ((int)game->win.height - 1 - y))
-			+ (4 * x));
+	color = *(int*)(game->img.data + (y * (game->win.width) + x));
 	rgb = (color & 0xFF0000) | (color & 0x00FF00) | (color & 0x0000FF);
 	return (rgb);
 }
@@ -54,8 +52,8 @@ static int
 	int					j;
 	int					color;
 
-	i = 0;
-	while (i < (int)game->win.height)
+	i = game->win.height - 1;
+	while (i >= 0)
 	{
 		j = 0;
 		while (j < (int)game->win.width)
@@ -67,7 +65,7 @@ static int
 				return (0);
 			j++;
 		}
-		i++;
+		i--;
 	}
 	return (1);
 }
@@ -81,13 +79,22 @@ int
 
 	pad = (4 - ((int)game->win.width * 3) % 4) % 4;
 	filesize = 54 + (3 * ((int)game->win.width + pad) * (int)game->win.height);
-	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT
-									| O_TRUNC | O_APPEND)) < 0)
+	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, 
+			S_IRUSR | S_IWUSR | S_IXUSR)) < 0)
+	{
+		printf("open error\n");
 		return (0);
+	}
 	if (!write_bmp_header(file, filesize, game))
+	{
+		printf("header write error\n");
 		return (0);
+	}
 	if (!write_bmp_data(file, game, pad))
+	{
+		printf("data write error\n");
 		return (0);
+	}
 	close(file);
 	return (1);
 }

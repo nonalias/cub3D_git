@@ -44,7 +44,8 @@ typedef struct tagBITMAPINFO {
 
 int	main(void)
 {
-	int fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC);
+	int fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND ,
+			S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP);
 
 
 	// bitmapfileheader 먼저 설정

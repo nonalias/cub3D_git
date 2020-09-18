@@ -46,7 +46,7 @@ SRCS	=	./cub3d.c \
 			./bmp.c \
 
 all:
-	gcc -L ./mlx -L ./libft -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./ -I ./get_next_line
+	gcc -g3 -fsanitize=address -L ./mlx -L ./libft -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./ -I ./get_next_line
 	./a.out abc.cub --save --debug
 
 # save랑 debug 딱 맞는지 체크해줘야함. (debugs 같은것도 debug로 인식)
