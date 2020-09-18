@@ -88,13 +88,13 @@ void	make_sprite_by_image(t_game *game, t_pos pos[2])
 	double tex_start;
 	int		color;
 
-	tex_start = (TEX_HEIGHT * ((game->temp - game->spr.realheight) / 2.0)
+	tex_start = (((game->temp - game->spr.realheight) / 2.0) * TEX_HEIGHT
 		/ game->temp);
 	game->tex.y_iter = pos[0].y;
 	while (game->tex.y_iter < pos[1].y)
 	{
-		game->tex.tex_y = TEX_HEIGHT * (game->tex.y_iter - pos[0].y) /
-			(pos[1].y - pos[0].y);
+		game->tex.tex_y = (game->tex.y_iter - pos[0].y) /
+			(pos[1].y - pos[0].y) * TEX_HEIGHT;
 		if (game->temp > game->win.height)
 			game->tex.tex_y = ((game->tex.y_iter / (double)game->win.height) *
 					(game->spr.realheight / game->temp) * (double)TEX_HEIGHT)
