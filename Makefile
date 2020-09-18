@@ -10,7 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	./engine/cub3d.c \
+CC		=	gcc
+CFLAGS	=	-Wall -Wextra -Werror
+NAME	=	cub3d
+
+E_SRCS	=	./engine/cub3d.c \
 			./engine/init.c \
 			./engine/init2.c \
 			./engine/callback.c \
@@ -22,13 +26,6 @@ SRCS	=	./engine/cub3d.c \
 			./engine/wall.c \
 			./engine/reset_player.c \
 			./engine/sprite.c \
-			./graphic/view.c \
-			./graphic/make_2d.c \
-			./graphic/make_3d.c \
-			./graphic/make_rader.c \
-			./graphic/make_ceil_floor.c \
-			./graphic/make_rectangle.c \
-			./graphic/make_crosshair.c \
 			./engine/raycasting_vert.c \
 			./engine/raycasting_horz.c \
 			./engine/utils.c \
@@ -41,12 +38,45 @@ SRCS	=	./engine/cub3d.c \
 			./engine/parse.c \
 			./engine/option_parse.c \
 			./engine/shading.c \
-			./get_next_line/get_next_line.c \
-			./get_next_line/get_next_line_utils.c \
 			./engine/bmp.c \
 
-all:
-	gcc -L ./mlx -L ./libft -lft -lmlx -framework OpenGL -framework Appkit $(SRCS) -I ./ -I ./get_next_line
-	./a.out abc.cub --save --debug
+G_SRCS	=	./graphic/view.c \
+			./graphic/make_2d.c \
+			./graphic/make_3d.c \
+			./graphic/make_rader.c \
+			./graphic/make_ceil_floor.c \
+			./graphic/make_rectangle.c \
+			./graphic/make_crosshair.c \
 
-# save랑 debug 딱 맞는지 체크해줘야함. (debugs 같은것도 debug로 인식)
+GNLS	=	./get_next_line/get_next_line.c \
+			./get_next_line/get_next_line_utils.c \
+
+SRCS	=	$(G_SRCS)	\
+			$(E_SRCS)	\
+			$(GNLS)		\
+
+OBJS	=	$(SRCS:.c=.o)
+
+L_MLXS	=	./mlx
+
+L_LIBFT	=	./libft
+
+G_OPT	=	-lft -lmlx -framework OpenGL -framework Appkit
+
+all		:	$(NAME)
+
+$(NAME)	:	$(OBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) -L $(L_MLXS) -L $(L_LIBFT) $(G_OPT) 
+
+%.o		:	%.c
+	$(CC) $(CFLAGS) -I ./ -I ./get_next_line -o $@ -c $<
+
+clean	:
+	rm -rf $(OBJS)
+
+fclean	:	clean
+	rm -rf $(NAME)
+
+re		:	fclean all
+
+.PHONY	:	all clean fclean re
