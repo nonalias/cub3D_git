@@ -17,12 +17,12 @@ void	make_wall_by_image2(t_game *game, t_pos pos[2])
 	int		color;
 	double	tex_start;
 
-	tex_start = (TEX_HEIGHT * ((game->temp - game->wall.realheight) / 2.0) /
-			game->temp);
+	tex_start = ((game->temp - game->wall.realheight) / 2.0) /
+			game->temp * TEX_HEIGHT;
 	while (game->tex.y_iter < pos[1].y)
 	{
-		game->tex.tex_y = TEX_HEIGHT * (game->tex.y_iter - pos[0].y) /
-			(pos[1].y - pos[0].y);
+		game->tex.tex_y = (game->tex.y_iter - pos[0].y) /
+			(pos[1].y - pos[0].y) * TEX_HEIGHT;
 		if (game->temp > game->win.height)
 			game->tex.tex_y =  ((game->tex.y_iter / (double)game->win.height) *
 					(game->wall.realheight / game->temp) * (double)TEX_HEIGHT)
