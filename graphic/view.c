@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 22:49:18 by taehkim           #+#    #+#             */
-/*   Updated: 2020/09/18 22:51:39 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/19 16:58:03 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	make_view(t_game *game)
 	{
 		if (!save_bmp(game))
 			error_exit(game, MAP_ERROR, "couldn't save screenshot");
-		game->flags.save = 0;
+		mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
+		free(game);
+		exit(0);
 	}
 	mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
 }
