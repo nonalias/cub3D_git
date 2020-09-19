@@ -43,6 +43,10 @@ void	make_wall_by_image(t_game *game, t_pos pos[2])
 	else
 		game->tex.tex_x = (int)(fmod(game->wall.x, game->common_tsize) /
 				game->common_tsize * TEX_WIDTH);
+	if (game->wall.cardinal == WEST)
+		game->tex.tex_x = TEX_HEIGHT - game->tex.tex_x;
+	if (game->wall.cardinal == SOUTH)
+		game->tex.tex_x = TEX_WIDTH - game->tex.tex_x;
 	game->temp = game->wall.realheight;
 	if (game->wall.realheight >= game->win.height)
 	{
