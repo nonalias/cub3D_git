@@ -23,6 +23,7 @@ E_SRCS	=	./engine/cub3d.c \
 			./engine/move_s.c \
 			./engine/move_a.c \
 			./engine/move_d.c \
+			./engine/move_check.c \
 			./engine/wall.c \
 			./engine/reset_player.c \
 			./engine/sprite.c \

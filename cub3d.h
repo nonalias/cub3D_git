@@ -226,7 +226,7 @@ void			move_s_d(t_game *game);
 void			move_s(t_game *game);
 void			move_a(t_game *game);
 void			move_d(t_game *game);
-int				move_check(t_game *game);
+int				move_check(t_game *game, double angle);
 int				to_coord(t_game *game, double x, double y);
 
 void			status_show(t_game *game);
