@@ -65,4 +65,6 @@ void	option_parsing(t_game *game)
 		free_line(&game->map.line);
 		code = get_next_line(game->map.fd, &game->map.line);
 	}
+	if (game->win.width == 0 || game->win.height == 0)
+		error_exit(game, FILE_ERROR, "resolution is wrong");
 }

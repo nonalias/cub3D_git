@@ -47,6 +47,8 @@ void	map_init(t_game *game)
 	game->map.floor = 0;
 	game->map.ceil = 0;
 	game->map.had_set_position = 0;
+	game->win.width = 0;
+	game->win.height = 0;
 	i = 0;
 	while (i < MAX_MAP_SIZE)
 	{
