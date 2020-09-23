@@ -19,6 +19,8 @@ void	arg_parse(t_game *game, int argc, char **argv)
 	if (argc == 1)
 		return ;
 	game->map.name = argv[1];
+	game->flags.save = 0;
+	game->flags.debug = 1;
 	i = 2;
 	while (i < argc)
 	{
