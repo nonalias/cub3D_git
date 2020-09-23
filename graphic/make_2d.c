@@ -87,19 +87,26 @@ void	make_2d(t_game *game)
 {
 	int		i;
 	int		j;
+	int		new_x;
+	int		new_y;
 
-	i = 0;
-	while (i < game->map.rows)
+	i = -10;
+	while (i < 10)
 	{
-		j = 0;
-		while (j < game->map.columns)
+		j = -10;
+		while (j < 10)
 		{
-			if (g_my_map[i][j] == 1)
-				make_tile(game, i, j, COLOR_WALL);
-			else if (g_my_map[i][j] == 2)
-				make_tile(game, i, j, 0xff0000);
+			new_x = j + game->player.x / game->common_tsize;
+			new_y = i + game->player.y / game->common_tsize;
+			if (new_x <= 0 || new_y <= 0 ||
+					new_x > MAX_MAP_SIZE || new_y > MAX_MAP_SIZE)
+				make_tile(game, i + 10, j + 10, COLOR_WALL);
+			else if (g_my_map[new_y][new_x] == 1)
+				make_tile(game, i + 10, j + 10, COLOR_WALL);
+			else if (g_my_map[new_y][new_x] == 2)
+				make_tile(game, i + 10, j + 10, 0xff0000);
 			else
-				make_tile(game, i, j, COLOR_ROAD);
+				make_tile(game, i + 10, j + 10, COLOR_ROAD);
 			j++;
 		}
 		i++;
