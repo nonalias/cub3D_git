@@ -1,0 +1,37 @@
+
+#include <stdio.h>
+
+void	print(int *a, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", a[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+#include <string.h>
+
+int	main(void)
+{
+	char		dest[100] = "origin destination";
+	char		dest2[100] = "origin destination";
+	const char	*src = "control";
+
+	printf("dest : %s\n", dest);
+	printf("dest2 : %s\n", dest2);
+	printf("src : %s\n", src);
+	printf("=====================\n");
+	
+	memcpy(dest, src, 3);
+	ft_memcpy(dest2, src, 3);
+	printf("dest : %s\n", dest);
+	printf("dest2 : %s\n", dest2);
+	printf("dest[15] : %c\n", dest[15]);
+	printf("dest2[15] : %c\n", dest2[15]);
+	return (0);
+}

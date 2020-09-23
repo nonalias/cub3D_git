@@ -1,0 +1,15 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	*s = "abcdifghijklinop";
+	char	*output;
+
+	printf("s : %s\n", s);
+	output = ft_strrchr(s, 'i');
+	printf("output : %s\n", output);
+	output = strrchr(s, 'i');
+	printf("output : %s\n", output);
+}

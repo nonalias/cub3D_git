@@ -1,0 +1,11 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("ft_toupper('a') : %c\n", ft_toupper('a'));
+	printf("ft_toupper('q') : %c\n", ft_toupper('q'));
+	printf("ft_toupper('1') : %c\n", ft_toupper('1'));
+	printf("ft_toupper('D') : %c\n", ft_toupper('D'));
+	return (0);
+}

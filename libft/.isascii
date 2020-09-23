@@ -1,0 +1,14 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("ft_isascii(97) : %s\n", ft_isascii(97)?"아스키문자입니다.":"아스키문자 아닙니다");
+	printf("(char)97 : %c\n", (char)97);
+	printf("ft_isascii(G) : %s\n", ft_isascii('G')?"아스키문자입니다.":"아스키문자 아닙니다");
+	printf("ft_isascii(!) : %s\n", ft_isascii('!')?"아스키문자입니다.":"아스키문자 아닙니다");
+	printf("ft_isascii(0) : %s\n", ft_isascii('0')?"아스키문자입니다.":"아스키문자 아닙니다");
+	printf("ft_isascii(`) : %s\n", ft_isascii('`')?"아스키문자입니다.":"아스키문자 아닙니다");
+	printf("ft_isascii(1) : %s\n", ft_isascii(555)?"아스키문자입니다.":"아스키문자 아닙니다");
+	return (0);
+}

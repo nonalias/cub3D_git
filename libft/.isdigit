@@ -1,0 +1,13 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("ft_isdigit(a) : %s\n", ft_isdigit('a')?"숫자입니다.":"숫자 아닙니다");
+	printf("ft_isdigit(G) : %s\n", ft_isdigit('G')?"숫자입니다.":"숫자 아닙니다");
+	printf("ft_isdigit(1) : %s\n", ft_isdigit('1')?"숫자입니다.":"숫자 아닙니다");
+	printf("ft_isdigit(8) : %s\n", ft_isdigit('8')?"숫자입니다.":"숫자 아닙니다");
+	printf("ft_isdigit(9) : %s\n", ft_isdigit('9')?"숫자입니다.":"숫자 아닙니다");
+	printf("ft_isdigit(!) : %s\n", ft_isdigit('!')?"숫자입니다.":"숫자 아닙니다");
+	return (0);
+}

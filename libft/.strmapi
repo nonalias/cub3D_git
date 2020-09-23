@@ -1,0 +1,19 @@
+
+char	toss(unsigned int index, char element)
+{
+	if (index % 2 == 0)
+		return (element + 2);
+	return (element);
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*src = "hihihello";
+	char	*output;
+
+	printf("src : %s\n", src);
+	output = ft_strmapi(src, &toss);
+	printf("output : %s\n", output);
+}

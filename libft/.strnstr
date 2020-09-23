@@ -1,0 +1,15 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	*haystack = "MZIRIBMZIRIBMZE123";
+	char	*needle = "MZIRIBMZE";
+	char	*output;
+
+	output = ft_strnstr(haystack, needle, ft_strlen(needle));
+	printf("output : %s\n", output);
+	output = strnstr(haystack, needle, ft_strlen(needle));
+	printf("computer output : %s\n", output);
+}

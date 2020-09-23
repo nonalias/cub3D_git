@@ -1,0 +1,39 @@
+
+#include <stdio.h>
+
+void	print(int *a, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", a[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+#include <string.h>
+
+int	main(void)
+{
+	char		dest[1000] = "abcdefghi";
+	char		dest2[1000] = "abcdefghi";
+	const char	*src = "ppp";
+	char		*output;
+
+	output = ft_memccpy(dest, src, 'd', 5);
+	printf("pointer dest : %p\n", dest);
+	printf("output : %s\n", output);
+	printf("pointer output : %p\n", output);
+	printf("dest : %s\n", dest);
+	printf("\n\n");
+	
+	output = 0;
+	output = memccpy(dest2, src, 'd', 5);
+	printf("pointer dest2 : %p\n", dest2);
+	printf("computer output : %s\n", output);
+	printf("computer pointer output : %p\n", output);
+	printf("dest2 : %s\n", dest2);
+}

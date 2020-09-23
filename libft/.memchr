@@ -1,0 +1,17 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	*s = "abcdefghijklmnop";
+	char	*output;
+
+	printf("s : %s\n", s);
+	output = ft_memchr(s, 'z', 5);
+	printf("output : %s\n", output);
+	//printf("output[0] : %c\n", output[0]);
+	output = memchr(s, 'z', 5);
+	printf("output : %s\n", output);
+	//printf("output[0] : %c\n", output[0]);
+}

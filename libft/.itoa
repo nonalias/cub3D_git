@@ -1,0 +1,10 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*output;
+
+	output = ft_itoa(-234147329);
+	printf("output : %s\n", output);
+}

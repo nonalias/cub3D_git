@@ -1,0 +1,17 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char *s = "hihihello";
+	char *p = "";
+
+	printf("origin strlen : %ld\n", strlen(s));
+	printf("my strlen : %ld\n", ft_strlen(s));
+	printf("=============\n");
+	printf("origin strlen : %ld\n", strlen(p));
+	printf("my strlen : %ld\n", ft_strlen(p));
+	printf("sizeof(size_t) : %ld\n", sizeof(size_t));
+
+}

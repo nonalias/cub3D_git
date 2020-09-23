@@ -1,0 +1,13 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("ft_isalpha(a) : %s\n", ft_isalpha('a')?"알파벳입니다.":"알파벳이 아닙니다");
+	printf("ft_isalpha(G) : %s\n", ft_isalpha('G')?"알파벳입니다.":"알파벳이 아닙니다");
+	printf("ft_isalpha(Z) : %s\n", ft_isalpha('Z')?"알파벳입니다.":"알파벳이 아닙니다");
+	printf("ft_isalpha(y) : %s\n", ft_isalpha('y')?"알파벳입니다.":"알파벳이 아닙니다");
+	printf("ft_isalpha(`) : %s\n", ft_isalpha('`')?"알파벳입니다.":"알파벳이 아닙니다");
+	printf("ft_isalpha(1) : %s\n", ft_isalpha('1')?"알파벳입니다.":"알파벳이 아닙니다");
+	return (0);
+}

@@ -1,0 +1,45 @@
+
+#include <stdio.h>
+
+void	print(int *a, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", a[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+#include <string.h>
+
+int	main(void)
+{
+	char	c[20] = "hello world";
+	char c2[20] = "hello world";
+	int	i[10] = {1, 3, 5, 7, 9, 11, 13, 15};
+	int	i2[10] = {1, 3, 5, 7, 9, 11, 13, 15};
+
+	printf("c : %s\n", c);
+	printf("c2 : %s\n", c2);
+	printf("i : ");
+	print(i, 8);
+	printf("i2 : ");
+	print(i2, 8);
+	printf("=====================\n");
+	
+	bzero(c, 5);
+	bzero(i,5);
+	ft_bzero(c2, 5);
+	ft_bzero(i2, 5);
+	printf("c : %s\n", c);
+	printf("c2 : %s\n", c2);
+	printf("i : ");
+	print(i, 8);
+	printf("i2 : ");
+	print(i2, 8);
+	return (0);
+}

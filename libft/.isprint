@@ -1,0 +1,13 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("ft_isprint('a') : %s\n", ft_isprint('a')?"프린터블입니다.":"프린터블 아닙니다");
+	printf("ft_isprint(1) : %s\n", ft_isprint(1)?"프린터블입니다.":"프린터블 아닙니다");
+	printf("ft_isprint('1') : %s\n", ft_isprint('1')?"프린터블입니다.":"프린터블 아닙니다");
+	printf("ft_isprint('8') : %s\n", ft_isprint('8')?"프린터블입니다.":"프린터블 아닙니다");
+	printf("ft_isprint('9') : %s\n", ft_isprint('9')?"프린터블입니다.":"프린터블 아닙니다");
+	printf("ft_isprint('!') : %s\n", ft_isprint('!')?"프린터블입니다.":"프린터블 아닙니다");
+	return (0);
+}

@@ -1,0 +1,38 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*coutput;
+	int	*ioutput;
+
+	coutput = (char *)ft_calloc(5, sizeof(char));
+	printf("my pcoutput : %p\n", coutput);
+	printf("my coutput[0] : %d\n", coutput[0]);
+	coutput = (char *)calloc(5, sizeof(char));
+	printf("pcoutput : %p\n", coutput);
+	printf("coutput[0] : %d\n", coutput[0]);
+	printf("========================\n");
+	ioutput = (int *)ft_calloc(5, sizeof(int));
+	printf("my pioutput : %p\n", ioutput);
+	printf("my ioutput[0] : %d\n", ioutput[0]);
+	printf("my ioutput[1] : %d\n", ioutput[1]);
+	printf("my ioutput[2] : %d\n", ioutput[2]);
+	printf("my ioutput[3] : %d\n", ioutput[3]);
+	printf("my ioutput[4] : %d\n", ioutput[4]);
+	ioutput = (int *)calloc(5, sizeof(int));
+	printf("pioutput : %p\n", ioutput);
+	printf("ioutput[0] : %d\n", ioutput[0]);
+	printf("ioutput[0] : %d\n", ioutput[1]);
+	printf("ioutput[0] : %d\n", ioutput[2]);
+	printf("ioutput[3] : %d\n", ioutput[3]);
+	printf("ioutput[4] : %d\n", ioutput[4]);
+	printf("========================\n");
+	ioutput = (int *)malloc(sizeof(int) * 5);
+	printf("malloc pioutput : %p\n", ioutput);
+	printf("ioutput[0] : %d\n", ioutput[0]);
+	printf("ioutput[0] : %d\n", ioutput[1]);
+	printf("ioutput[0] : %d\n", ioutput[2]);
+	printf("ioutput[3] : %d\n", ioutput[3]);
+	printf("ioutput[4] : %d\n", ioutput[4]);
+}

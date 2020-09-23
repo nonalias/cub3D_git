@@ -1,0 +1,17 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char		*src = "abcdefghij";
+	unsigned int	start = 4;
+	size_t		len = 7;
+	char		*output;
+
+	printf("src : %s\n", src);
+	printf("psrc : %p\n", src);
+	printf("===================\n");
+	output = ft_substr(src, start, len);
+	printf("output : %s\n", output);
+	printf("poutput : %p\n", output);
+}

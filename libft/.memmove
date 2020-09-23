@@ -1,0 +1,17 @@
+
+#include <string.h>
+
+int main(void)
+{
+	char	str[] = "abcdefghijklmn";
+	char	str2[] = "abcdefghijklmn";
+	char	*output;
+
+	output = memmove(str + 2, str, 5);
+	printf("computer output : %s\n", output);
+	printf("str : %s\n", str);
+	output = ft_memmove(str2 + 2, str2, 5);
+	printf("user output : %s\n", output);
+	printf("str2 : %s\n", str2);
+
+}

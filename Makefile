@@ -12,7 +12,7 @@
 
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-NAME	=	cub3d
+NAME	=	cub3D
 
 E_SRCS	=	./engine/cub3d.c \
 			./engine/init.c \
@@ -62,20 +62,33 @@ L_MLXS	=	./mlx
 
 L_LIBFT	=	./libft
 
+LIBFT	=	libft.a
+
+MLX		=	libmlx.a
+
 G_OPT	=	-lft -lmlx -framework OpenGL -framework Appkit
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJS)
+$(NAME)	:	$(OBJS) $(LIBFT) $(MLX)
 	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) -L $(L_MLXS) -L $(L_LIBFT) $(G_OPT) 
+
+$(LIBFT):	
+	$(MAKE) -C libft
+
+$(MLX)	:
+	$(MAKE) -C mlx
 
 %.o		:	%.c
 	$(CC) $(CFLAGS) -I ./ -I ./get_next_line -o $@ -c $<
 
 clean	:
+	$(MAKE) -C libft clean
+	$(MAKE) -C mlx clean
 	rm -rf $(OBJS)
 
 fclean	:	clean
+	$(MAKE) -C libft fclean
 	rm -rf $(NAME)
 
 re		:	fclean all

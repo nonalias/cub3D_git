@@ -1,0 +1,13 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("ft_isalnum(a) : %s\n", ft_isalnum('a')?"알파벳 혹은 숫자입니다.":"알파벳 혹은 숫자이 아닙니다");
+	printf("ft_isalnum(G) : %s\n", ft_isalnum('G')?"알파벳 혹은 숫자입니다.":"알파벳 혹은 숫자이 아닙니다");
+	printf("ft_isalnum(!) : %s\n", ft_isalnum('!')?"알파벳 혹은 숫자입니다.":"알파벳 혹은 숫자이 아닙니다");
+	printf("ft_isalnum(0) : %s\n", ft_isalnum('0')?"알파벳 혹은 숫자입니다.":"알파벳 혹은 숫자이 아닙니다");
+	printf("ft_isalnum(`) : %s\n", ft_isalnum('`')?"알파벳 혹은 숫자입니다.":"알파벳 혹은 숫자이 아닙니다");
+	printf("ft_isalnum(1) : %s\n", ft_isalnum('1')?"알파벳 혹은 숫자입니다.":"알파벳 혹은 숫자이 아닙니다");
+	return (0);
+}

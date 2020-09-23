@@ -1,0 +1,15 @@
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*src = "";
+	char	*set = "";
+	char	*output;
+	
+	printf("src : |%s|\n", src);
+	printf("psrc : %p\n", src);
+	output = ft_strtrim(src, set);
+	printf("output : |%s|\n", output);
+	printf("poutput : %p\n", output);
+}
