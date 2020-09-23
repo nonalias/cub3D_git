@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 22:51:03 by taehkim           #+#    #+#             */
-/*   Updated: 2020/09/18 22:51:04 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/23 15:10:09 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	make_rader(t_game *game)
 		else if (game->wall.angle > 360)
 			game->wall.angle -= 360;
 		distance = shoot_ray(game);
-		set_pos(&pos[0], (double)game->common_tsize * 10 / MINIMAP_RATIO,
-				(double)game->common_tsize * 10 / MINIMAP_RATIO);
-		set_pos(&pos[1], game->wall.x - (game->player.x - 10.0 * game->common_tsize / MINIMAP_RATIO),
-				game->wall.y - (game->player.y - 10.0 * game->common_tsize / MINIMAP_RATIO));
+		set_pos(&pos[0], game->player.x / MINIMAP_RATIO,
+				game->player.y / MINIMAP_RATIO);
+		set_pos(&pos[1], game->wall.x / MINIMAP_RATIO,
+				game->wall.y / MINIMAP_RATIO);
 		game->line.color = 0x0000a1;
 		make_line(game, pos[0], pos[1]);
 		game->ray.angle += 0.06;
