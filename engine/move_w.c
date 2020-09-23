@@ -6,7 +6,7 @@
 /*   By: taehkim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 20:20:49 by taehkim           #+#    #+#             */
-/*   Updated: 2020/09/17 20:20:55 by taehkim          ###   ########.fr       */
+/*   Updated: 2020/09/23 15:04:43 by taehkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void	move_w_d(t_game *game)
 	}
 }
 
-
-
 void	move_w(t_game *game)
 {
 	double	new_x;
@@ -66,7 +64,8 @@ void	move_w(t_game *game)
 	if (!check_sprite(game, new_x, new_y)
 			&& new_x < game->common_tsize * game->map.columns
 			&& new_y < game->common_tsize * game->map.rows
-			&& new_x >= 0 && new_y >= 0 && move_check(game, game->player.rot_angle))
+			&& new_x >= 0 && new_y >= 0 &&
+			move_check(game, game->player.rot_angle))
 	{
 		game->player.x = new_x;
 		game->player.y = new_y;
